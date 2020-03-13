@@ -633,6 +633,114 @@ INSERT INTO `placed_job` VALUES ('job1','company_1','2020-01-01'),('job2','compa
 UNLOCK TABLES;
 
 --
+-- Table structure for table `previous_apply_internship`
+--
+
+DROP TABLE IF EXISTS `previous_apply_internship`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `previous_apply_internship` (
+  `roll_number` char(9) NOT NULL,
+  `internship_id` char(9) NOT NULL,
+  `date` date NOT NULL,
+  PRIMARY KEY (`roll_number`,`internship_id`),
+  KEY `internship_id` (`internship_id`),
+  CONSTRAINT `previous_apply_internship_ibfk_1` FOREIGN KEY (`roll_number`) REFERENCES `student` (`roll_number`),
+  CONSTRAINT `previous_apply_internship_ibfk_2` FOREIGN KEY (`internship_id`) REFERENCES `internship` (`internship_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `previous_apply_internship`
+--
+
+LOCK TABLES `previous_apply_internship` WRITE;
+/*!40000 ALTER TABLE `previous_apply_internship` DISABLE KEYS */;
+/*!40000 ALTER TABLE `previous_apply_internship` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `previous_apply_job`
+--
+
+DROP TABLE IF EXISTS `previous_apply_job`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `previous_apply_job` (
+  `roll_number` char(9) NOT NULL,
+  `job_id` char(9) NOT NULL,
+  `date` date NOT NULL,
+  PRIMARY KEY (`roll_number`,`job_id`),
+  KEY `job_id` (`job_id`),
+  CONSTRAINT `previous_apply_job_ibfk_1` FOREIGN KEY (`roll_number`) REFERENCES `student` (`roll_number`),
+  CONSTRAINT `previous_apply_job_ibfk_2` FOREIGN KEY (`job_id`) REFERENCES `job` (`job_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `previous_apply_job`
+--
+
+LOCK TABLES `previous_apply_job` WRITE;
+/*!40000 ALTER TABLE `previous_apply_job` DISABLE KEYS */;
+/*!40000 ALTER TABLE `previous_apply_job` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `previous_placed_internship`
+--
+
+DROP TABLE IF EXISTS `previous_placed_internship`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `previous_placed_internship` (
+  `internship_id` char(9) NOT NULL,
+  `company_id` char(9) NOT NULL,
+  `date` date NOT NULL,
+  PRIMARY KEY (`internship_id`,`company_id`),
+  KEY `company_id` (`company_id`),
+  CONSTRAINT `previous_placed_internship_ibfk_1` FOREIGN KEY (`internship_id`) REFERENCES `internship` (`internship_id`),
+  CONSTRAINT `previous_placed_internship_ibfk_2` FOREIGN KEY (`company_id`) REFERENCES `company` (`company_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `previous_placed_internship`
+--
+
+LOCK TABLES `previous_placed_internship` WRITE;
+/*!40000 ALTER TABLE `previous_placed_internship` DISABLE KEYS */;
+/*!40000 ALTER TABLE `previous_placed_internship` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `previous_placed_job`
+--
+
+DROP TABLE IF EXISTS `previous_placed_job`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `previous_placed_job` (
+  `job_id` char(9) NOT NULL,
+  `company_id` char(9) NOT NULL,
+  `date` date NOT NULL,
+  PRIMARY KEY (`job_id`,`company_id`),
+  KEY `company_id` (`company_id`),
+  CONSTRAINT `previous_placed_job_ibfk_1` FOREIGN KEY (`job_id`) REFERENCES `job` (`job_id`),
+  CONSTRAINT `previous_placed_job_ibfk_2` FOREIGN KEY (`company_id`) REFERENCES `company` (`company_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `previous_placed_job`
+--
+
+LOCK TABLES `previous_placed_job` WRITE;
+/*!40000 ALTER TABLE `previous_placed_job` DISABLE KEYS */;
+/*!40000 ALTER TABLE `previous_placed_job` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `required_branch_internship`
 --
 
@@ -1079,4 +1187,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-02 21:13:29
+-- Dump completed on 2020-03-13 23:07:48
