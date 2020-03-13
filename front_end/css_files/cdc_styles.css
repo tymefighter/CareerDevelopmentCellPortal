@@ -1,0 +1,50 @@
+ul.nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    top: 0;
+    position: fixed;
+    width: 100%;
+}
+
+body {
+    margin:0;
+    background-color:gray;
+}
+  
+li.nav {
+    float: left;
+    border-right:1px solid gold;
+}
+  
+li:last-child.nav {
+    border-right: none;
+}
+  
+a.nav {
+    display: block;
+    color: gold;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+  
+a:hover.nav {
+    background-color: #111;
+}
+
+#img_logo {
+    width: 80%;
+    height: 200px;
+    margin-top: 50px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media screen and (max-width: 600px) {
+    li.nav {float:none;}
+
+}
