@@ -1,8 +1,8 @@
 -- File To Create Roles
 
 -- student vol
-create role student_vol
-grant select on academic_performance to tpo;
+create role student_vol;
+-- grant select on academic_performance to tpo;
 grant select on apply_internship to student_vol;
 grant select on apply_job to student_vol;
 grant select on batch to student_vol;
@@ -31,7 +31,7 @@ grant select on taken to student_vol;
 
 -- cdc officials
 
-create role cdc_official
+create role cdc_official;
 grant select on academic_performance to cdc_official;
 grant select on apply_internship to cdc_official;
 grant select on apply_job to cdc_official;
@@ -64,7 +64,7 @@ grant select on student_vol_info to cdc_official;
 
 -- TPO (tpo is also a cdc official, but a higher privileged one)
 create role tpo;
-grant student_vol to tpo with grant option
+grant all on student_vol to tpo with grant option;
 grant select on academic_performance to tpo;
 grant select on apply_internship to tpo;
 grant select on apply_job to tpo;
