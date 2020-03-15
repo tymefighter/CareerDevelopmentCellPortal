@@ -35,28 +35,10 @@ a:hover.nav {
     background-color: #111;
 }
 
-#img_logo {
-    width: 25%;
-    height: 300px;
-    margin-top: 50px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#cdc_heading {
-    color: goldenrod;
-    text-align: center;
-}
-
 h2.heading_common {
     color: goldenrod;
     text-align: center;
     margin-top: 50px;
-}
-
-#login_form {
-    text-align: center;
 }
 
 @media screen and (max-width: 650px) {
