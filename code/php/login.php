@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <html>
     <head>
         <title>CDC Home Page</title>
@@ -6,13 +9,14 @@
     </head>
     <body>
         <ul class="nav">
-            <li class="nav"><a href='home.html' class="nav">Home</a></li>
+            <li class="nav"><a href='../html/home.html' class="nav">Home</a></li>
             <li class="nav"><a href='https://iitpkd.ac.in' class="nav">IIT Palakkad</a></li>
-            <li class="nav"><a href="companies.html" class="nav">Companies</a></li>
-            <li class="nav"><a href="projects.html" class="nav">Projects</a></li>
-            <li class="nav"><a href="research.html" class="nav">Research</a></li>
-            <li class="nav"><a href="news.html" class="nav">News</a></li>
-            <li class="nav"><a href="login.html" class="nav">Login</a></li>
+            <li class="nav"><a href="../html/companies.html" class="nav">Companies</a></li>
+            <li class="nav"><a href="../html/projects.html" class="nav">Projects</a></li>
+            <li class="nav"><a href="../html/research.html" class="nav">Research</a></li>
+            <li class="nav"><a href="../html/news.html" class="nav">News</a></li>
+            <li class="nav"><a href="login.php" class="nav">Login</a></li>
+            <li class="nav"><a href="register.php" class="nav">Register</a></li>
         </ul>
         <h2 class="heading_common">Login</h2>
 
@@ -30,6 +34,16 @@
             
         </form>
         <a href="home.html" id="cancel_button">Cancel</a>
+        <br>
+        <br>
+        <?php
+            if($_SESSION['invalid_login'] != null && $_SESSION['invalid_login'] > 0) // There was an invalid login
+            {
+                echo "<p id ='invalid_login'>Invalid Login</p>";
+                echo "<br>";
+            }
+        ?>
+        <a href="register.php" id="register_button">Register ?</a>
         <br>
         <br>
         <div class="container" style="background-color:#f1f1f1">

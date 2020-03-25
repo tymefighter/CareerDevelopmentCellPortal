@@ -41,16 +41,16 @@ h2.heading_common {
     margin-top: 50px;
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 800px) {
     li.nav {
         float:none;
     }
     #img_logo {
         width: 50%;
         height: 200px;
-        margin-top: 340px;
+        margin-top: 440px;
     }
     h2.heading_common {
-        margin-top: 340px;
+        margin-top: 440px;
     }
 }
