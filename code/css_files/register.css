@@ -1,0 +1,23 @@
+#first_one {
+    margin-top: 50;
+}
+
+a.select_user_type {
+    display: block;
+    margin-left: 400;
+    margin-right: 400;
+    margin-bottom: 70;
+    padding-top: 20;
+    padding-bottom: 20;
+    text-align: center;
+    text-decoration: none;
+    background-color: #333;
+    color: goldenrod;
+}
+
+@media screen and (max-width: 1000px) {
+    a.select_user_type {
+        margin-left: 100;
+        margin-right: 100;
+    }
+}

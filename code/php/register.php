@@ -1,8 +1,11 @@
+<?php
+    session_start();
+?>
 <html>
     <head>
         <title>CDC Home Page</title>
         <link rel="stylesheet" href="../css_files/common.css">
-        <link rel="stylesheet" href="../css_files/news.css">
+        <link rel="stylesheet" href="../css_files/register.css">
         <script src='../javascript/automate_button.js'></script>
     </head>
     <body>
@@ -23,6 +26,11 @@
                 </div>
             </li>
         </ul>
-        <h2 class="heading_common">News</h2>
+        <h2 class="heading_common">Register</h2>
+
+        <a href='../php/register_student.php' class='select_user_type' id='first_one'>Student</a>
+        <a href='../php/register_company.php' class='select_user_type'>Company</a>
+        <a href='../php/register_student_vol.php' class='select_user_type'>Student Volunteer</a>
+        <a href='../php/register_cdc_offical.php' class='select_user_type'>CDC Official</a>
     </body>
 </html>
