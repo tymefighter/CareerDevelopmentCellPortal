@@ -41,16 +41,54 @@ h2.heading_common {
     margin-top: 50px;
 }
 
+/* 
+    For button on nav-bar
+*/
+
+#nav_button {
+    display: none;
+}
+
+.cont {
+    cursor: pointer;
+    float: right;
+    margin-right: 50;
+}
+  
+.bar1, .bar2, .bar3 {
+    width: 35px;
+    height: 5px;
+    background-color: goldenrod;
+    margin: 6px 0;
+    transition: 0.4s;
+}
+
+.change .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+    transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+.change .bar2 {opacity: 0;}
+
+.change .bar3 {
+    -webkit-transform: rotate(45deg) translate(-8px, -8px);
+    transform: rotate(45deg) translate(-8px, -8px);
+}
+
+/* 
+    For responsivity
+*/
+
 @media screen and (max-width: 800px) {
+    #nav_button {
+        display: block;
+    }
     li.nav {
+        display: none;
         float:none;
     }
     #img_logo {
         width: 50%;
         height: 200px;
-        margin-top: 440px;
-    }
-    h2.heading_common {
-        margin-top: 440px;
     }
 }
