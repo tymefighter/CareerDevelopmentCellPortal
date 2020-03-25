@@ -1,8 +1,8 @@
 <html>
     <head>
         <title>CDC Home Page</title>
-        <link rel="stylesheet" href="css_files/common.css">
-        <link rel="stylesheet" href="css_files/home_style.css">
+        <link rel="stylesheet" href="../css_files/common.css">
+        <link rel="stylesheet" href="../css_files/login_style.css">
     </head>
     <body>
         <ul class="nav">
@@ -14,6 +14,10 @@
             <li class="nav"><a href="news.html" class="nav">News</a></li>
             <li class="nav"><a href="login.html" class="nav">Login</a></li>
         </ul>
-        <h2 class="heading_common">Research</h2>
+        <h2 class="heading_common">Processing</h2>
+        <?php
+            echo '<h4>Was your username ' . $_POST['username'] . ' and password ' . $_POST['password'] . '</h4>'
+        ?>
+        
     </body>
 </html>
