@@ -1,19 +1,11 @@
 <?php
     session_start();
-    if($_SESSION['logged_in'] == null || $_SESSION['logged_in'] == false) {
-        exit('Cannot Be Accessed Without Logging In');
-    }
-
-    if($_SESSION['user_type'] != 'student') {
-        exit('This webpage cannot be accessed by a ' . $_SESSION['user_type']);
-    }
 ?>
-
 <html>
-<head>
-        <title>Student Home Page</title>
+    <head>
+        <title>CDC Home Page</title>
         <link rel="stylesheet" href="../css_files/common.css">
-        <link rel="stylesheet" href="../css_files/companies.css">
+        <link rel="stylesheet" href="../css_files/home_style.css">
         <script src='../javascript/automate_button.js'></script>
     </head>
     <body>
@@ -41,6 +33,7 @@
                 </div>
             </li>
         </ul>
-            
+        <img src="../images/iit.png" alt="cdc logo" id="img_logo">
+        <h2 id="cdc_heading">Career Development Cell IIT Palakkad<br>CDC</h2>
     </body>
 </html>

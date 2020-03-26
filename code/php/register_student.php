@@ -1,9 +1,22 @@
 <?php
     session_start();
+    if($_SESSION['logged_in'] != null && $_SESSION['logged_in'] == true) {
+
+        $user_type = $_SESSION['user_type'];
+
+        if($user_type == 'student')
+            header('Location: student_home.php');       // Redirect to student home page
+        else if($user_type == 'student_vol')
+            header('Location: student_vol_home.php');   // Redirect to student volunteer home page
+        else if($user_type == 'company')
+            header('Location: company_home.php');       // Redirect to company home page
+        else
+            header('Location: cdc_offical_home.php');   // Redirect to cdc offical home page
+    }
 ?>
 <html>
     <head>
-        <title>CDC Home Page</title>
+        <title>Register Student</title>
         <link rel="stylesheet" href="../css_files/common.css">
         <link rel="stylesheet" href="../css_files/register_common.css">
         <script src='../javascript/automate_button.js'></script>
@@ -11,14 +24,21 @@
     </head>
     <body>
         <ul class="nav">
-            <li class="nav"><a href='../html/home.html' class="nav">Home</a></li>
+            <li class="nav"><a href='../php/home.php' class="nav">Home</a></li>
             <li class="nav"><a href='https://iitpkd.ac.in' class="nav">IIT Palakkad</a></li>
-            <li class="nav"><a href="../html/companies.html" class="nav">Companies</a></li>
-            <li class="nav"><a href="../html/projects.html" class="nav">Projects</a></li>
-            <li class="nav"><a href="../html/research.html" class="nav">Research</a></li>
-            <li class="nav"><a href="../html/news.html" class="nav">News</a></li>
-            <li class="nav"><a href="../php/login.php" class="nav">Login</a></li>
-            <li class="nav"><a href="../php/register.php" class="nav">Register</a></li>
+            <li class="nav"><a href="../php/companies.php" class="nav">Companies</a></li>
+            <li class="nav"><a href="../php/projects.php" class="nav">Projects</a></li>
+            <li class="nav"><a href="../php/research.php" class="nav">Research</a></li>
+            <li class="nav"><a href="../php/news.php" class="nav">News</a></li>
+            <?php
+                if($_SESSION['logged_in'] != null && $_SESSION['logged_in'] == true) {
+                    echo '<li class="nav"><a href="../php/logout.php" class="nav">Logout</a></li>';
+                }
+                else {
+                    echo '<li class="nav"><a href="../php/login.php" class="nav">Login</a></li>';
+                    echo '<li class="nav"><a href="../php/register.php" class="nav">Register</a></li>';
+                }
+            ?>
             <li id="nav_button">
                 <div class="cont" onclick="clickMenuButton(this)">
                     <div class="bar1"></div>
@@ -29,7 +49,7 @@
         </ul>
         <h2 class="heading_common">Register Student</h2>
 
-        <form name="reg_student" action="../php/process_registration.php" onsubmit="return validateRegStudent()" method="post" id="login_form">
+        <form name="reg_student" action="../php/process_registration_student.php" onsubmit="return validateRegStudent()" method="post" id="login_form">
           
             <div class="container">
                 <label for="username"><b>Username</b></label>
@@ -128,7 +148,7 @@
             </div>
             
         </form>
-        <a href="../html/home.html" id="cancel_button">Cancel</a>
+        <a href="../php/home.php" id="cancel_button">Cancel</a>
         <br>
         <br>
         <div class="container" style="background-color:#f1f1f1">

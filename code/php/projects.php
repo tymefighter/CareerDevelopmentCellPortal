@@ -1,19 +1,11 @@
 <?php
     session_start();
-    if($_SESSION['logged_in'] == null || $_SESSION['logged_in'] == false) {
-        exit('Cannot Be Accessed Without Logging In');
-    }
-
-    if($_SESSION['user_type'] != 'student') {
-        exit('This webpage cannot be accessed by a ' . $_SESSION['user_type']);
-    }
 ?>
-
 <html>
-<head>
-        <title>Student Home Page</title>
+    <head>
+        <title>Projects Page</title>
         <link rel="stylesheet" href="../css_files/common.css">
-        <link rel="stylesheet" href="../css_files/companies.css">
+        <link rel="stylesheet" href="../css_files/projects.css">
         <script src='../javascript/automate_button.js'></script>
     </head>
     <body>
@@ -41,6 +33,6 @@
                 </div>
             </li>
         </ul>
-            
+        <h2 class="heading_common">Projects</h2>
     </body>
 </html>
