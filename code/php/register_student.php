@@ -7,15 +7,16 @@
         <link rel="stylesheet" href="../css_files/common.css">
         <link rel="stylesheet" href="../css_files/register_common.css">
         <script src='../javascript/automate_button.js'></script>
+        <script src='../javascript/validate_form.js'></script>
     </head>
     <body>
         <ul class="nav">
-            <li class="nav"><a href='home.html' class="nav">Home</a></li>
+            <li class="nav"><a href='../html/home.html' class="nav">Home</a></li>
             <li class="nav"><a href='https://iitpkd.ac.in' class="nav">IIT Palakkad</a></li>
-            <li class="nav"><a href="companies.html" class="nav">Companies</a></li>
-            <li class="nav"><a href="projects.html" class="nav">Projects</a></li>
-            <li class="nav"><a href="research.html" class="nav">Research</a></li>
-            <li class="nav"><a href="news.html" class="nav">News</a></li>
+            <li class="nav"><a href="../html/companies.html" class="nav">Companies</a></li>
+            <li class="nav"><a href="../html/projects.html" class="nav">Projects</a></li>
+            <li class="nav"><a href="../html/research.html" class="nav">Research</a></li>
+            <li class="nav"><a href="../html/news.html" class="nav">News</a></li>
             <li class="nav"><a href="../php/login.php" class="nav">Login</a></li>
             <li class="nav"><a href="../php/register.php" class="nav">Register</a></li>
             <li id="nav_button">
@@ -28,7 +29,7 @@
         </ul>
         <h2 class="heading_common">Register Student</h2>
 
-        <form action="../php/process_login.php" method="post" id="login_form">
+        <form name="reg_student" action="../php/process_registration.php" onsubmit="return validateRegStudent()" method="post" id="login_form">
           
             <div class="container">
                 <label for="username"><b>Username</b></label>
@@ -90,19 +91,19 @@
                 </select>
 
                 <br><br>
-                <label for="jee_main_rank"><b>JEE Main Rank</b></label>
-                <input type="number" placeholder="Enter JEE Main Rank" name="jee_main_rank" min="1" class="number" required>
+                <label for="JEE_main_rank"><b>JEE Main Rank</b></label>
+                <input type="number" placeholder="Enter JEE Main Rank" name="JEE_main_rank" min="1" class="number" required>
 
                 <br><br>
-                <label for="jee_advanced_rank"><b>JEE Advanced Rank</b></label>
+                <label for="JEE_advanced_rank"><b>JEE Advanced Rank</b></label>
                 <input type="number" placeholder="Enter JEE Advanced Rank" name="jee_advanced_rank" min="1" class="number" required>
 
                 <br><br>
-                <label for="building_name"><b>Building Name</b></label>
-                <input type="text" placeholder="Enter Building Name" name="building_name" required>
+                <label for="bldg_name"><b>Building Name</b></label>
+                <input type="text" placeholder="Enter Building Name" name="bldg_name" required>
 
-                <label for="street"><b>Street</b></label>
-                <input type="text" placeholder="Enter Street" name="street" required>
+                <label for="street_name"><b>Street</b></label>
+                <input type="text" placeholder="Enter Street" name="street_name" required>
 
                 <label for="district"><b>District</b></label>
                 <input type="text" placeholder="Enter District" name="district" required>
@@ -112,9 +113,6 @@
 
                 <label for="country"><b>Country</b></label>
                 <input type="text" placeholder="Enter Country Name" name="country" required>
-
-                <label for="pincode"><b>Pincode</b></label>
-                <input type="text" placeholder="Enter Pincode" name="pincode" required>
 
                 <label for="pincode"><b>Pincode</b></label>
                 <input type="text" placeholder="Enter Pincode" name="pincode" required>
