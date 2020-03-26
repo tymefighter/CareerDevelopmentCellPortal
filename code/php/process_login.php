@@ -5,8 +5,9 @@
     $db = new mysqli ('localhost', 'tymefighter', 'tymefighter', 'cdc');
     
     // Connection error, hence place error in log file
-    if($con->connect_errno) {
-        error_log("error conn(process_login.php):  " . $con->connect_errno . "\n", 3, '../log_dir/log_file');
+    $error_num = mysqli_connect_errno();
+    if($error_num) {
+        error_log("error conn(process_login.php):  " . $error_num . "\n", 3, '../log_dir/log_file');
         exit('');
     }
 

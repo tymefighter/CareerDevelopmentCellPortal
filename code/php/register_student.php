@@ -64,13 +64,14 @@
                 <br><br>
                 <label for="gender"><b>Gender: </b></label>
                 <select name="gender" class="drop_down">
-                    <option value="Female">Female</option>
-                    <option value="Male">Male</option>
+                    <option value="F">Female</option>
+                    <option value="M">Male</option>
+                    <option value="O">Other</option>
                 </select>
                 
                 <br><br>
                 <label for="tenth_percentage"><b>Tenth Percentage</b></label>
-                <input type="number" placeholder="Enter Tenth Percentage" name="tenth_percentage" min="0" max="100" class="number" required>
+                <input type="number" placeholder="Enter Tenth Percentage" name="tenth_percentage" min="0" max="100" class="number" step="0.01" required>
 
                 <br><br>
                 <label for="tenth_board"><b>Tenth Board</b></label>
@@ -81,7 +82,7 @@
 
                 <br><br>
                 <label for="twelfth_percentage"><b>Twelfth Percentage</b></label>
-                <input type="number" placeholder="Enter Twelfth Percentage" name="twelfth_percentage" min="0" max="100" class="number" required>
+                <input type="number" placeholder="Enter Twelfth Percentage" name="twelfth_percentage" min="0" max="100" class="number" step="0.01" required>
 
                 <br><br>
                 <label for="twelfth_board"><b>Twelfth Board</b></label>
@@ -96,7 +97,7 @@
 
                 <br><br>
                 <label for="JEE_advanced_rank"><b>JEE Advanced Rank</b></label>
-                <input type="number" placeholder="Enter JEE Advanced Rank" name="jee_advanced_rank" min="1" class="number" required>
+                <input type="number" placeholder="Enter JEE Advanced Rank" name="JEE_advanced_rank" min="1" class="number" required>
 
                 <br><br>
                 <label for="bldg_name"><b>Building Name</b></label>
@@ -121,13 +122,13 @@
                 <input type="text" placeholder="Enter Phone Number" name="phone_1" required>
 
                 <label for="phone_2"><b>Alternate Phone Number</b></label>
-                <input type="text" placeholder="You May Enter An Alternate Phone Number" name="phone_2">
+                <input type="text" placeholder="You May Enter An Alternate Phone Number" name="phone_2" required>
 
                 <button type="submit" id="login_button">Register</button>
             </div>
             
         </form>
-        <a href="home.html" id="cancel_button">Cancel</a>
+        <a href="../html/home.html" id="cancel_button">Cancel</a>
         <br>
         <br>
         <div class="container" style="background-color:#f1f1f1">

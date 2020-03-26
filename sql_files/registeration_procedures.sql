@@ -20,14 +20,13 @@ create procedure register_student (
     in country varchar(30),
     in pincode varchar(30),
     in phone_1 varchar(30),
-    in phone_2 varchar(30),
+    in phone_2 varchar(30)
 )
     begin
         declare encrypt_password varchar(320);
         set encrypt_password = SHA(password);
 
         insert into login_details values (username, encrypt_password, 'student');
-        insert into student_login values (roll_number, username);
         insert into student values (
             roll_number, name, nationality, dob, gender, tenth_percentage,
             tenth_board, twelfth_percentage, twelfth_board, 
@@ -35,5 +34,6 @@ create procedure register_student (
             bldg_name, street_name, district, state, country, pincode,
             phone_1, phone_2
         );
-    end
+        insert into student_login values (roll_number, username);
+    end #
 delimiter ;
