@@ -1,13 +1,13 @@
--- MariaDB dump 10.17  Distrib 10.4.11-MariaDB, for osx10.14 (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.38, for osx10.9 (x86_64)
 --
 -- Host: localhost    Database: cdc
 -- ------------------------------------------------------
--- Server version	10.4.11-MariaDB
+-- Server version	5.6.38
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -208,10 +208,9 @@ DROP TABLE IF EXISTS `cgpa`;
 /*!50001 DROP VIEW IF EXISTS `cgpa`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE TABLE `cgpa` (
-  `roll_number` tinyint NOT NULL,
-  `cgpa` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50001 CREATE VIEW `cgpa` AS SELECT 
+ 1 AS `roll_number`,
+ 1 AS `cgpa`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -232,7 +231,7 @@ CREATE TABLE `company` (
   `company_overview` varchar(500) NOT NULL,
   `hq_bldg_name` varchar(320) NOT NULL,
   `hq_street_name` varchar(320) NOT NULL,
-  `hq_district` varchar(320) NOT NULL,
+  `hq_city` varchar(320) NOT NULL,
   `hq_state` varchar(320) NOT NULL,
   `hq_country` varchar(320) NOT NULL,
   `hq_pincode` varchar(320) NOT NULL,
@@ -258,16 +257,15 @@ DROP TABLE IF EXISTS `company_internship`;
 /*!50001 DROP VIEW IF EXISTS `company_internship`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE TABLE `company_internship` (
-  `internship_id` tinyint NOT NULL,
-  `name` tinyint NOT NULL,
-  `company_overview` tinyint NOT NULL,
-  `internship` tinyint NOT NULL,
-  `description` tinyint NOT NULL,
-  `stipend` tinyint NOT NULL,
-  `duration` tinyint NOT NULL,
-  `min_cgpa` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50001 CREATE VIEW `company_internship` AS SELECT 
+ 1 AS `internship_id`,
+ 1 AS `name`,
+ 1 AS `company_overview`,
+ 1 AS `internship`,
+ 1 AS `description`,
+ 1 AS `stipend`,
+ 1 AS `duration`,
+ 1 AS `min_cgpa`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -278,16 +276,15 @@ DROP TABLE IF EXISTS `company_job`;
 /*!50001 DROP VIEW IF EXISTS `company_job`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE TABLE `company_job` (
-  `job_id` tinyint NOT NULL,
-  `name` tinyint NOT NULL,
-  `company_overview` tinyint NOT NULL,
-  `job` tinyint NOT NULL,
-  `description` tinyint NOT NULL,
-  `ctc` tinyint NOT NULL,
-  `perks` tinyint NOT NULL,
-  `min_cgpa` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50001 CREATE VIEW `company_job` AS SELECT 
+ 1 AS `job_id`,
+ 1 AS `name`,
+ 1 AS `company_overview`,
+ 1 AS `job`,
+ 1 AS `description`,
+ 1 AS `ctc`,
+ 1 AS `perks`,
+ 1 AS `min_cgpa`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -377,9 +374,9 @@ CREATE TABLE `internship` (
   `internship_id` char(9) NOT NULL,
   `name` varchar(30) NOT NULL,
   `description` varchar(200) NOT NULL,
-  `stipend` double NOT NULL DEFAULT 0,
+  `stipend` double NOT NULL DEFAULT '0',
   `duration` int(11) NOT NULL,
-  `min_cgpa` decimal(4,2) NOT NULL DEFAULT 0.00,
+  `min_cgpa` decimal(4,2) NOT NULL DEFAULT '0.00',
   PRIMARY KEY (`internship_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -430,7 +427,7 @@ CREATE TABLE `job` (
   `description` varchar(200) NOT NULL,
   `CTC` double NOT NULL,
   `perks` varchar(200) DEFAULT NULL,
-  `min_cgpa` decimal(4,2) NOT NULL DEFAULT 0.00,
+  `min_cgpa` decimal(4,2) NOT NULL DEFAULT '0.00',
   PRIMARY KEY (`job_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -455,6 +452,7 @@ DROP TABLE IF EXISTS `login_details`;
 CREATE TABLE `login_details` (
   `username` varchar(30) NOT NULL,
   `password` varchar(320) NOT NULL,
+  `user_type` enum('student','student_vol','company','cdc_official') NOT NULL,
   PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -465,7 +463,7 @@ CREATE TABLE `login_details` (
 
 LOCK TABLES `login_details` WRITE;
 /*!40000 ALTER TABLE `login_details` DISABLE KEYS */;
-INSERT INTO `login_details` VALUES ('code-to-eat','40bd001563085fc35165329ea1ff5c5ecbdbbeef'),('hoogle','aa07259ed9d427acbaa837c5d1f22d80a5b4cc87'),('iamrakesh28','a9993e364706816aba3e25717850c26c9cd0d89d'),('soil','a9993e364706816aba3e25717850c26c9cd0d89d'),('thetwo','a9993e364706816aba3e25717850c26c9cd0d89d'),('tpo','a9993e364706816aba3e25717850c26c9cd0d89d'),('tymefighter','a9993e364706816aba3e25717850c26c9cd0d89d'),('vol_user1','a9993e364706816aba3e25717850c26c9cd0d89d'),('vol_user2','a9993e364706816aba3e25717850c26c9cd0d89d');
+INSERT INTO `login_details` VALUES ('tymefighter','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','student');
 /*!40000 ALTER TABLE `login_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -477,10 +475,9 @@ DROP TABLE IF EXISTS `num_sem_completed`;
 /*!50001 DROP VIEW IF EXISTS `num_sem_completed`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE TABLE `num_sem_completed` (
-  `roll_number` tinyint NOT NULL,
-  `num_sem_completed` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50001 CREATE VIEW `num_sem_completed` AS SELECT 
+ 1 AS `roll_number`,
+ 1 AS `num_sem_completed`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -720,7 +717,7 @@ CREATE TABLE `required_branch_internship` (
 
 LOCK TABLES `required_branch_internship` WRITE;
 /*!40000 ALTER TABLE `required_branch_internship` DISABLE KEYS */;
-INSERT INTO `required_branch_internship` VALUES ('civil','intern2'),('comp sc','intern1');
+INSERT INTO `required_branch_internship` VALUES ('comp sc','intern1'),('civil','intern2');
 /*!40000 ALTER TABLE `required_branch_internship` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -747,7 +744,7 @@ CREATE TABLE `required_branch_job` (
 
 LOCK TABLES `required_branch_job` WRITE;
 /*!40000 ALTER TABLE `required_branch_job` DISABLE KEYS */;
-INSERT INTO `required_branch_job` VALUES ('civil','job2'),('comp sc','job1');
+INSERT INTO `required_branch_job` VALUES ('comp sc','job1'),('civil','job2');
 /*!40000 ALTER TABLE `required_branch_job` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -774,7 +771,7 @@ CREATE TABLE `required_course_internship` (
 
 LOCK TABLES `required_course_internship` WRITE;
 /*!40000 ALTER TABLE `required_course_internship` DISABLE KEYS */;
-INSERT INTO `required_course_internship` VALUES ('CE7194','intern2'),('CS2010','intern1');
+INSERT INTO `required_course_internship` VALUES ('CS2010','intern1'),('CE7194','intern2');
 /*!40000 ALTER TABLE `required_course_internship` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -801,7 +798,7 @@ CREATE TABLE `required_course_job` (
 
 LOCK TABLES `required_course_job` WRITE;
 /*!40000 ALTER TABLE `required_course_job` DISABLE KEYS */;
-INSERT INTO `required_course_job` VALUES ('CE7194','job2'),('CS2010','job1');
+INSERT INTO `required_course_job` VALUES ('CS2010','job1'),('CE7194','job2');
 /*!40000 ALTER TABLE `required_course_job` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -815,7 +812,7 @@ DROP TABLE IF EXISTS `student`;
 CREATE TABLE `student` (
   `roll_number` char(9) NOT NULL,
   `name` varchar(30) NOT NULL,
-  `nationality` varchar(30) NOT NULL,
+  `nationality` varchar(320) NOT NULL,
   `dob` date NOT NULL,
   `gender` enum('M','F','O') NOT NULL,
   `tenth_percentage` decimal(4,2) NOT NULL,
@@ -824,12 +821,12 @@ CREATE TABLE `student` (
   `twelfth_board` varchar(30) NOT NULL,
   `JEE_main_rank` int(11) NOT NULL,
   `JEE_advanced_rank` int(11) NOT NULL,
-  `bldg_name` varchar(30) NOT NULL,
-  `street_name` varchar(30) NOT NULL,
-  `district` varchar(30) NOT NULL,
-  `state` varchar(30) NOT NULL,
-  `country` varchar(30) NOT NULL,
-  `pincode` varchar(30) NOT NULL,
+  `bldg_name` varchar(320) NOT NULL,
+  `street_name` varchar(320) NOT NULL,
+  `city` varchar(320) NOT NULL,
+  `state` varchar(320) NOT NULL,
+  `country` varchar(320) NOT NULL,
+  `pincode` varchar(320) NOT NULL,
   `phone_1` varchar(30) NOT NULL,
   `phone_2` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`roll_number`)
@@ -842,6 +839,7 @@ CREATE TABLE `student` (
 
 LOCK TABLES `student` WRITE;
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
+INSERT INTO `student` VALUES ('111701002','Ahmed Zaheer Dadarkar','Indian','1999-11-25','M',79.80,'CBSE',92.80,'CBSE',1,4518,'Link Plaza','Malad West','Mumbai','Maharashtra','India','400064','7594069315','9920460918');
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -853,15 +851,14 @@ DROP TABLE IF EXISTS `student_info`;
 /*!50001 DROP VIEW IF EXISTS `student_info`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE TABLE `student_info` (
-  `roll_number` tinyint NOT NULL,
-  `name` tinyint NOT NULL,
-  `dob` tinyint NOT NULL,
-  `gender` tinyint NOT NULL,
-  `year_of_admission` tinyint NOT NULL,
-  `branch` tinyint NOT NULL,
-  `cgpa` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50001 CREATE VIEW `student_info` AS SELECT 
+ 1 AS `roll_number`,
+ 1 AS `name`,
+ 1 AS `dob`,
+ 1 AS `gender`,
+ 1 AS `year_of_admission`,
+ 1 AS `branch`,
+ 1 AS `cgpa`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -887,6 +884,7 @@ CREATE TABLE `student_login` (
 
 LOCK TABLES `student_login` WRITE;
 /*!40000 ALTER TABLE `student_login` DISABLE KEYS */;
+INSERT INTO `student_login` VALUES ('111701002','tymefighter');
 /*!40000 ALTER TABLE `student_login` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -921,18 +919,17 @@ DROP TABLE IF EXISTS `student_vol_info`;
 /*!50001 DROP VIEW IF EXISTS `student_vol_info`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE TABLE `student_vol_info` (
-  `vol_id` tinyint NOT NULL,
-  `roll_number` tinyint NOT NULL,
-  `name` tinyint NOT NULL,
-  `year_of_admission` tinyint NOT NULL,
-  `branch` tinyint NOT NULL,
-  `gender` tinyint NOT NULL,
-  `dob` tinyint NOT NULL,
-  `designation` tinyint NOT NULL,
-  `date_join` tinyint NOT NULL,
-  `cgpa` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50001 CREATE VIEW `student_vol_info` AS SELECT 
+ 1 AS `vol_id`,
+ 1 AS `roll_number`,
+ 1 AS `name`,
+ 1 AS `year_of_admission`,
+ 1 AS `branch`,
+ 1 AS `gender`,
+ 1 AS `dob`,
+ 1 AS `designation`,
+ 1 AS `date_join`,
+ 1 AS `cgpa`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -1019,7 +1016,6 @@ UNLOCK TABLES;
 -- Final view structure for view `cgpa`
 --
 
-/*!50001 DROP TABLE IF EXISTS `cgpa`*/;
 /*!50001 DROP VIEW IF EXISTS `cgpa`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1029,7 +1025,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `cgpa` AS select `n`.`roll_number` AS `roll_number`,case when `n`.`num_sem_completed` <> 0 then (coalesce(`a`.`sem1`,0) + coalesce(`a`.`sem2`,0) + coalesce(`a`.`sem3`,0) + coalesce(`a`.`sem4`,0) + coalesce(`a`.`sem5`,0) + coalesce(`a`.`sem6`,0) + coalesce(`a`.`sem7`,0) + coalesce(`a`.`sem8`,0)) / `n`.`num_sem_completed` else 0 end AS `cgpa` from (`academic_performance` `a` join `num_sem_completed` `n`) where `a`.`roll_number` = `n`.`roll_number` */;
+/*!50001 VIEW `cgpa` AS select `n`.`roll_number` AS `roll_number`,(case when (`n`.`num_sem_completed` <> 0) then ((((((((coalesce(`a`.`sem1`,0) + coalesce(`a`.`sem2`,0)) + coalesce(`a`.`sem3`,0)) + coalesce(`a`.`sem4`,0)) + coalesce(`a`.`sem5`,0)) + coalesce(`a`.`sem6`,0)) + coalesce(`a`.`sem7`,0)) + coalesce(`a`.`sem8`,0)) / `n`.`num_sem_completed`) else 0 end) AS `cgpa` from (`academic_performance` `a` join `num_sem_completed` `n`) where (`a`.`roll_number` = `n`.`roll_number`) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -1038,7 +1034,6 @@ UNLOCK TABLES;
 -- Final view structure for view `company_internship`
 --
 
-/*!50001 DROP TABLE IF EXISTS `company_internship`*/;
 /*!50001 DROP VIEW IF EXISTS `company_internship`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1048,7 +1043,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `company_internship` AS select `internship`.`internship_id` AS `internship_id`,`company`.`name` AS `name`,`company`.`company_overview` AS `company_overview`,`internship`.`name` AS `internship`,`internship`.`description` AS `description`,`internship`.`stipend` AS `stipend`,`internship`.`duration` AS `duration`,`internship`.`min_cgpa` AS `min_cgpa` from ((`company` join `internship`) join `placed_internship`) where `company`.`company_id` = `placed_internship`.`company_id` and `internship`.`internship_id` = `placed_internship`.`internship_id` */;
+/*!50001 VIEW `company_internship` AS select `internship`.`internship_id` AS `internship_id`,`company`.`name` AS `name`,`company`.`company_overview` AS `company_overview`,`internship`.`name` AS `internship`,`internship`.`description` AS `description`,`internship`.`stipend` AS `stipend`,`internship`.`duration` AS `duration`,`internship`.`min_cgpa` AS `min_cgpa` from ((`company` join `internship`) join `placed_internship`) where ((`company`.`company_id` = `placed_internship`.`company_id`) and (`internship`.`internship_id` = `placed_internship`.`internship_id`)) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -1057,7 +1052,6 @@ UNLOCK TABLES;
 -- Final view structure for view `company_job`
 --
 
-/*!50001 DROP TABLE IF EXISTS `company_job`*/;
 /*!50001 DROP VIEW IF EXISTS `company_job`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1067,7 +1061,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `company_job` AS select `job`.`job_id` AS `job_id`,`company`.`name` AS `name`,`company`.`company_overview` AS `company_overview`,`job`.`name` AS `job`,`job`.`description` AS `description`,`job`.`CTC` AS `ctc`,`job`.`perks` AS `perks`,`job`.`min_cgpa` AS `min_cgpa` from ((`company` join `job`) join `placed_job`) where `company`.`company_id` = `placed_job`.`company_id` and `job`.`job_id` = `placed_job`.`job_id` */;
+/*!50001 VIEW `company_job` AS select `job`.`job_id` AS `job_id`,`company`.`name` AS `name`,`company`.`company_overview` AS `company_overview`,`job`.`name` AS `job`,`job`.`description` AS `description`,`job`.`CTC` AS `ctc`,`job`.`perks` AS `perks`,`job`.`min_cgpa` AS `min_cgpa` from ((`company` join `job`) join `placed_job`) where ((`company`.`company_id` = `placed_job`.`company_id`) and (`job`.`job_id` = `placed_job`.`job_id`)) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -1076,7 +1070,6 @@ UNLOCK TABLES;
 -- Final view structure for view `num_sem_completed`
 --
 
-/*!50001 DROP TABLE IF EXISTS `num_sem_completed`*/;
 /*!50001 DROP VIEW IF EXISTS `num_sem_completed`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1086,7 +1079,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `num_sem_completed` AS select `academic_performance`.`roll_number` AS `roll_number`,(case when `academic_performance`.`sem1` is null then 0 else 1 end) + (case when `academic_performance`.`sem2` is null then 0 else 1 end) + (case when `academic_performance`.`sem3` is null then 0 else 1 end) + (case when `academic_performance`.`sem4` is null then 0 else 1 end) + (case when `academic_performance`.`sem5` is null then 0 else 1 end) + (case when `academic_performance`.`sem6` is null then 0 else 1 end) + (case when `academic_performance`.`sem7` is null then 0 else 1 end) + (case when `academic_performance`.`sem8` is null then 0 else 1 end) AS `num_sem_completed` from `academic_performance` */;
+/*!50001 VIEW `num_sem_completed` AS select `academic_performance`.`roll_number` AS `roll_number`,((((((((case when isnull(`academic_performance`.`sem1`) then 0 else 1 end) + (case when isnull(`academic_performance`.`sem2`) then 0 else 1 end)) + (case when isnull(`academic_performance`.`sem3`) then 0 else 1 end)) + (case when isnull(`academic_performance`.`sem4`) then 0 else 1 end)) + (case when isnull(`academic_performance`.`sem5`) then 0 else 1 end)) + (case when isnull(`academic_performance`.`sem6`) then 0 else 1 end)) + (case when isnull(`academic_performance`.`sem7`) then 0 else 1 end)) + (case when isnull(`academic_performance`.`sem8`) then 0 else 1 end)) AS `num_sem_completed` from `academic_performance` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -1095,7 +1088,6 @@ UNLOCK TABLES;
 -- Final view structure for view `student_info`
 --
 
-/*!50001 DROP TABLE IF EXISTS `student_info`*/;
 /*!50001 DROP VIEW IF EXISTS `student_info`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1105,7 +1097,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`ahmed`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `student_info` AS select `student`.`roll_number` AS `roll_number`,`student`.`name` AS `name`,`student`.`dob` AS `dob`,`student`.`gender` AS `gender`,`belongs_to`.`year_of_admission` AS `year_of_admission`,`has_branch`.`name` AS `branch`,`cgpa`.`cgpa` AS `cgpa` from (((`student` join `belongs_to`) join `has_branch`) join `cgpa`) where `student`.`roll_number` = `belongs_to`.`roll_number` and `student`.`roll_number` = `has_branch`.`roll_number` and `student`.`roll_number` = `cgpa`.`roll_number` */;
+/*!50001 VIEW `student_info` AS select `cdc`.`student`.`roll_number` AS `roll_number`,`cdc`.`student`.`name` AS `name`,`cdc`.`student`.`dob` AS `dob`,`cdc`.`student`.`gender` AS `gender`,`cdc`.`belongs_to`.`year_of_admission` AS `year_of_admission`,`cdc`.`has_branch`.`name` AS `branch`,`cgpa`.`cgpa` AS `cgpa` from (((`student` join `belongs_to`) join `has_branch`) join `cgpa`) where ((`cdc`.`student`.`roll_number` = `cdc`.`belongs_to`.`roll_number`) and (`cdc`.`student`.`roll_number` = `cdc`.`has_branch`.`roll_number`) and (`cdc`.`student`.`roll_number` = `cgpa`.`roll_number`)) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -1114,7 +1106,6 @@ UNLOCK TABLES;
 -- Final view structure for view `student_vol_info`
 --
 
-/*!50001 DROP TABLE IF EXISTS `student_vol_info`*/;
 /*!50001 DROP VIEW IF EXISTS `student_vol_info`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1124,7 +1115,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `student_vol_info` AS select `student_vol`.`vol_id` AS `vol_id`,`student`.`roll_number` AS `roll_number`,`student`.`name` AS `name`,`belongs_to`.`year_of_admission` AS `year_of_admission`,`has_branch`.`name` AS `branch`,`student`.`gender` AS `gender`,`student`.`dob` AS `dob`,`student_vol`.`designation` AS `designation`,`volunteer`.`date_join` AS `date_join`,`cgpa`.`cgpa` AS `cgpa` from (((((`student_vol` join `student`) join `volunteer`) join `cgpa`) join `belongs_to`) join `has_branch`) where `student_vol`.`vol_id` = `volunteer`.`vol_id` and `volunteer`.`roll_number` = `student`.`roll_number` and `student`.`roll_number` = `cgpa`.`roll_number` and `student`.`roll_number` = `belongs_to`.`roll_number` and `student`.`roll_number` = `has_branch`.`roll_number` */;
+/*!50001 VIEW `student_vol_info` AS select `student_vol`.`vol_id` AS `vol_id`,`student`.`roll_number` AS `roll_number`,`student`.`name` AS `name`,`belongs_to`.`year_of_admission` AS `year_of_admission`,`has_branch`.`name` AS `branch`,`student`.`gender` AS `gender`,`student`.`dob` AS `dob`,`student_vol`.`designation` AS `designation`,`volunteer`.`date_join` AS `date_join`,`cgpa`.`cgpa` AS `cgpa` from (((((`student_vol` join `student`) join `volunteer`) join `cgpa`) join `belongs_to`) join `has_branch`) where ((`student_vol`.`vol_id` = `volunteer`.`vol_id`) and (`volunteer`.`roll_number` = `student`.`roll_number`) and (`student`.`roll_number` = `cgpa`.`roll_number`) and (`student`.`roll_number` = `belongs_to`.`roll_number`) and (`student`.`roll_number` = `has_branch`.`roll_number`)) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -1138,4 +1129,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-25 15:42:59
+-- Dump completed on 2020-03-26 17:08:58

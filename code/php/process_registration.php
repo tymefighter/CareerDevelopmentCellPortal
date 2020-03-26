@@ -52,7 +52,7 @@
             $_POST['JEE_advanced_rank'],
             $_POST['bldg_name'],
             $_POST['street_name'],
-            $_POST['district'],
+            $_POST['city'],
             $_POST['state'],
             $_POST['country'],
             $_POST['pincode'],

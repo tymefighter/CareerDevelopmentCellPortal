@@ -106,8 +106,8 @@
                 <label for="street_name"><b>Street</b></label>
                 <input type="text" placeholder="Enter Street" name="street_name" required>
 
-                <label for="district"><b>District</b></label>
-                <input type="text" placeholder="Enter District" name="district" required>
+                <label for="city"><b>City</b></label>
+                <input type="text" placeholder="Enter City" name="city" required>
 
                 <label for="state"><b>State</b></label>
                 <input type="text" placeholder="Enter State Name" name="state" required>
