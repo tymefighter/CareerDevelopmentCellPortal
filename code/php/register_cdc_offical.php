@@ -50,7 +50,7 @@
         </ul>
         <h2 class="heading_common">Register CDC Offical</h2>
 
-        <form name="reg_student" action="../php/process_registration_cdc_offical.php" onsubmit="return validateRegStudent()" method="post" id="login_form">
+        <form name="reg_offical" action="../php/process_registration_cdc_official.php" onsubmit="return validateRegOfficial()" method="post" id="login_form">
           
             <div class="container">
                 <label for="username"><b>Username</b></label>
@@ -63,7 +63,7 @@
                 <input type="password" placeholder="Enter Password" name="re_password" required>
 
                 <label for="cdc_offical_code"><b>Enter CDC Offical's Code</b></label>
-                <input type="password" placeholder="Enter Student Code" name="cdc_offical_code" required>
+                <input type="password" placeholder="Enter Offical Code" name="cdc_offical_code" required>
 
                 <label for="name"><b>Enter Full Name</b></label>
                 <input type="text" placeholder="Enter Full Name" name="name" required>

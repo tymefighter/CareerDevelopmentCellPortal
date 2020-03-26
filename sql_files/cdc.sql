@@ -185,7 +185,7 @@ CREATE TABLE `cdc_official` (
   `email` varchar(320) NOT NULL,
   `phone_1` varchar(30) NOT NULL,
   `phone_2` varchar(30) DEFAULT NULL,
-  `bldg_name` varchar(30) NOT NULL,
+  `bldg_name` varchar(320) NOT NULL,
   `room_number` varchar(30) NOT NULL,
   PRIMARY KEY (`official_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -197,6 +197,7 @@ CREATE TABLE `cdc_official` (
 
 LOCK TABLES `cdc_official` WRITE;
 /*!40000 ALTER TABLE `cdc_official` DISABLE KEYS */;
+INSERT INTO `cdc_official` VALUES ('u4ym60aht','I AM TPO','TPO','tpo@tpo.com','12312','23423','Ab','AA123');
 /*!40000 ALTER TABLE `cdc_official` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -463,7 +464,7 @@ CREATE TABLE `login_details` (
 
 LOCK TABLES `login_details` WRITE;
 /*!40000 ALTER TABLE `login_details` DISABLE KEYS */;
-INSERT INTO `login_details` VALUES ('tymefighter','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','student');
+INSERT INTO `login_details` VALUES ('tpotpo','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','cdc_official'),('tymefighter','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','student');
 /*!40000 ALTER TABLE `login_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -503,6 +504,7 @@ CREATE TABLE `official_login` (
 
 LOCK TABLES `official_login` WRITE;
 /*!40000 ALTER TABLE `official_login` DISABLE KEYS */;
+INSERT INTO `official_login` VALUES ('u4ym60aht','tpotpo');
 /*!40000 ALTER TABLE `official_login` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1129,4 +1131,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-26 17:08:58
+-- Dump completed on 2020-03-26 23:30:50

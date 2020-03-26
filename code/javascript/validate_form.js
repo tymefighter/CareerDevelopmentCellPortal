@@ -92,3 +92,40 @@ function validateRegStudent() {
 
     return true;
 }
+
+function validateRegOfficial() {
+    var form_element = document.forms['reg_offical'];
+
+    if(form_element['password'].value != form_element['re_password'].value) {
+        alert('Both Passwords do not match');
+        return false;
+    }
+
+    if(isPasswordGood(form_element['password'].value) == false) {
+        var alert_message = 'Password must contain ' + minPasswordSize.toString() + ' characters\n';
+        if(requireUpperCase == true)
+            alert_message = alert_message + 'Password must contain atleast one uppercase character';
+        if(requireSpecialChar == true)
+            alert_message = alert_message + 'Password must contain atleast one character among @, #, $, %, &, *\n';
+        if(requireDigit == true)
+            alert_message = alert_message + 'Password must contain atleast one digit\n';
+        
+        alert(alert_message);
+        return false;
+    }
+
+    // Anything but a digit
+    const regexOtherThanDigit = new RegExp('[^0-9]');
+    
+    if(regexOtherThanDigit.test(form_element['phone_1'].value) == true) {
+        alert('Phone number contains characters other than digits');
+        return false;
+    }
+
+    if(regexOtherThanDigit.test(form_element['phone_2'].value) == true) {
+        alert('Alternate phone number contains characters other than digits');
+        return false;
+    }
+
+    return true;
+}

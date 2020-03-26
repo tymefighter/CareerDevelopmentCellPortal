@@ -37,3 +37,28 @@ create procedure register_student (
         insert into student_login values (roll_number, username);
     end #
 delimiter ;
+
+delimiter #
+create procedure register_cdc_offical (
+    in username varchar(30),
+    in password varchar(320),
+    in offical_id char(9),
+    in name varchar(30),
+    in designation varchar(30),
+    in email varchar(320),
+    in phone_1 varchar(30),
+    in phone_2 varchar(30),
+    in bldg_name varchar(320),
+    in room_number varchar(30)
+)
+    begin
+        declare encrypt_password varchar(320);
+        set encrypt_password = SHA(password);
+
+        insert into login_details values (username, encrypt_password, 'cdc_official');
+        insert into cdc_official values (
+            offical_id, name, designation, email, phone_1, phone_2, bldg_name, room_number
+        );
+        insert into official_login values (offical_id, username);
+    end #
+delimiter ;

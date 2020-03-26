@@ -1,32 +1,48 @@
 <?php
     session_start();
 
+    // Check if entered form values are valid or not
     function validateFormValues() {
-        if(is_numeric($_POST['roll_number']) == false)
-            return false;
-        if(is_numeric($_POST['pincode']) == false)
-            return false;
+
         if(is_numeric($_POST['phone_1']) == false)
             return false;
         if(empty($_POST['phone_2']) == false && is_numeric($_POST['phone_2']) == false)
             return false;
         
-        $date_regex = '/([12][0-9]{3}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01]))/';
-
-        if(preg_match($date_regex, $_POST['dob']) == false)
-            return false;
-
         return true;
     }
 
+    // Check if username is taken or not
     function usernameTaken($db) {
-        $uname_search_qry = "SELECT * from login_details WHERE username = ?";
+        $uname_search_qry = "SELECT username FROM login_details WHERE username = ?";
         $stmt_uname = $db->prepare($uname_search_qry);
+        $stmt_uname->bind_param('s', $_POST['username']);
         $stmt_uname->execute();
         $stmt_uname->store_result();
-        if($stmt->num_rows != 0)
+        if($stmt_uname->num_rows != 0)
             return true;
         return false;
+    }
+
+    // Generate a random offical id that has not been used before
+    function generateOfficialID($db) {
+        
+        $str = "0123456789abcdefghijklnmopqrstuvqxyz";
+        $found_a_value = false;
+        $id_search_query = "SELECT official_id FROM cdc_official WHERE official_id = ?";
+        $stmt_id = $db->prepare($id_search_query);
+        $id = '';
+        $stmt_id->bind_param('s', $id);
+
+        while($found_a_value == false) {
+            $id = str_shuffle($str).substr(0, 9);
+            $stmt_id->execute();
+            $stmt_id->store_result();
+            if($stmt_id->num_rows == 0)
+                $found_a_value = true;
+        }
+
+        return $id;
     }
 
     // Try to establish connection to cdc database via tymefighter@localhost user
@@ -45,46 +61,39 @@
 
         $is_username_taken = usernameTaken($db);
         if($is_username_taken == false) {
-            $query = "CALL register_student(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+            $offical_id = generateOfficialID($db);
+
+            $query = "CALL register_cdc_offical(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
             $stmt = $db->prepare($query);
             $stmt->bind_param(
-                'sssssssdsdsiissssssss', 
+                'ssssssssss', 
                 $_POST['username'], 
                 $_POST['password'],
-                $_POST['roll_number'],
+                $offical_id,
                 $_POST['name'],
-                $_POST['nationality'],
-                $_POST['dob'],
-                $_POST['gender'],
-                $_POST['tenth_percentage'],
-                $_POST['tenth_board'],
-                $_POST['twelfth_percentage'],
-                $_POST['twelfth_board'],
-                $_POST['JEE_main_rank'],
-                $_POST['JEE_advanced_rank'],
-                $_POST['bldg_name'],
-                $_POST['street_name'],
-                $_POST['city'],
-                $_POST['state'],
-                $_POST['country'],
-                $_POST['pincode'],
+                $_POST['designation'],
+                $_POST['email'],
                 $_POST['phone_1'],
-                $_POST['phone_2']
+                $_POST['phone_2'],
+                $_POST['bldg_name'],
+                $_POST['room_number']
             );
 
             if($stmt->execute())
             {
                 $_SESSION['username'] = $_POST['username'];
-                $_SESSION['user_type'] = 'student';
+                $_SESSION['user_type'] = 'cdc_official';
                 $_SESSION['logged_in'] = true;
-                header("Location: ../php/student_home.php");
+                header("Location: ../php/cdc_official_home.php");
                 exit('');
             }
 
-            error_log("error conn(process_registeration.php):  " . $stmt->error . "\n", 3, '../log_dir/log_file');
+            error_log("error conn(process_registration_cdc_offical.php):  " . $stmt->error . "\n", 3, '../log_dir/log_file');
         }
     }
+    
 ?>
 
 <html>
