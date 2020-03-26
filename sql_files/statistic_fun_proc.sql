@@ -1,27 +1,4 @@
 delimiter #
-create procedure show_verified_batch(in batch varchar(30))
-    begin
-        select belongs_to.roll_number from belongs_to, is_verified where belongs_to.roll_number = is_verified.roll_number and belongs_to.year_of_admission = batch;
-    end #
-delimiter ;
-
-delimiter #
-create procedure show_verified_branch(in branch varchar(30))
-    begin
-        select has_branch.roll_number from has_branch, is_verified where has_branch.roll_number = is_verified.roll_number and has_branch.name = branch;
-    end #
-delimiter ;
-
-delimiter #
-create procedure verify_student(in roll_number char(9))
-begin
-    if (roll_number not in (select is_verified.roll_number from is_verified)) then
-        insert into is_verified values (roll_number);
-    end if;
-end #
-delimiter ;
-
-delimiter #
 create function get_avg_cgpa_job_applied (job_id char(9))
 returns decimal(15, 6)
 begin
@@ -41,13 +18,6 @@ begin
     return avg_cgpa;
 end #
 
-delimiter ;
-
-delimiter #
-create procedure update_password (username varchar(30), prev_pass varchar(320), new_pass varchar(320))
-begin
-    update login_details set password = SHA(new_pass) where login_details.username = username and login_details.password = SHA(prev_pass);
-end #
 delimiter ;
 
 delimiter #
