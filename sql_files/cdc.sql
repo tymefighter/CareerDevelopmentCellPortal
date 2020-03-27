@@ -464,7 +464,7 @@ CREATE TABLE `login_details` (
 
 LOCK TABLES `login_details` WRITE;
 /*!40000 ALTER TABLE `login_details` DISABLE KEYS */;
-INSERT INTO `login_details` VALUES ('tpotpo','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','cdc_official'),('tymefighter','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','student');
+INSERT INTO `login_details` VALUES ('tpotpo','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','cdc_official'),('tymefighter','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','student'),('vol123','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','student_vol');
 /*!40000 ALTER TABLE `login_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -910,6 +910,7 @@ CREATE TABLE `student_vol` (
 
 LOCK TABLES `student_vol` WRITE;
 /*!40000 ALTER TABLE `student_vol` DISABLE KEYS */;
+INSERT INTO `student_vol` VALUES ('kvg5dlqn6','student_volunteer');
 /*!40000 ALTER TABLE `student_vol` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -985,6 +986,7 @@ CREATE TABLE `volunteer` (
 
 LOCK TABLES `volunteer` WRITE;
 /*!40000 ALTER TABLE `volunteer` DISABLE KEYS */;
+INSERT INTO `volunteer` VALUES ('kvg5dlqn6','111701002','2020-01-01');
 /*!40000 ALTER TABLE `volunteer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1011,6 +1013,7 @@ CREATE TABLE `volunteer_login` (
 
 LOCK TABLES `volunteer_login` WRITE;
 /*!40000 ALTER TABLE `volunteer_login` DISABLE KEYS */;
+INSERT INTO `volunteer_login` VALUES ('kvg5dlqn6','vol123');
 /*!40000 ALTER TABLE `volunteer_login` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1131,4 +1134,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-26 23:30:50
+-- Dump completed on 2020-03-27 22:50:53

@@ -129,3 +129,40 @@ function validateRegOfficial() {
 
     return true;
 }
+
+function validateRegVolunteer() {
+    var form_element = document.forms['reg_volunteer'];
+
+    if(form_element['password'].value != form_element['re_password'].value) {
+        alert('Both Passwords do not match');
+        return false;
+    }
+
+    if(isPasswordGood(form_element['password'].value) == false) {
+        var alert_message = 'Password must contain ' + minPasswordSize.toString() + ' characters\n';
+        if(requireUpperCase == true)
+            alert_message = alert_message + 'Password must contain atleast one uppercase character';
+        if(requireSpecialChar == true)
+            alert_message = alert_message + 'Password must contain atleast one character among @, #, $, %, &, *\n';
+        if(requireDigit == true)
+            alert_message = alert_message + 'Password must contain atleast one digit\n';
+        
+        alert(alert_message);
+        return false;
+    }
+
+    // Anything but a digit
+    const regexOtherThanDigit = new RegExp('[^0-9]');
+
+    if(regexOtherThanDigit.test(form_element['roll_number'].value) == true) {
+        alert('Roll Number contains characters other than digits');
+        return false;
+    }
+
+    if(checkDateFormat(form_element['doj'].value) == false) {
+        alert('Date Format should be yyyy-mm-dd');
+        return false;
+    }
+
+    return true;
+}
