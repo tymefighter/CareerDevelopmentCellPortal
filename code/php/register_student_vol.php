@@ -48,7 +48,7 @@
                 </div>
             </li>
         </ul>
-        <h2 class="heading_common">Register CDC Offical</h2>
+        <h2 class="heading_common">Register Student Volunteer</h2>
 
         <form name="reg_volunteer" action="../php/process_registration_student_volunteer.php" onsubmit="return validateRegVolunteer()" method="post" id="login_form">
           

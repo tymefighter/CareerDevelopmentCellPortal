@@ -47,7 +47,7 @@
                 </div>
             </li>
         </ul>
-        <h2 class="heading_common">Register Student</h2>
+        <h2 class="heading_common">Register Company</h2>
 
         <form name="reg_company" action="../php/process_registration_company.php" onsubmit="return validateRegCompany()" method="post" id="login_form">
           
