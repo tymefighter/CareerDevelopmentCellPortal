@@ -4,14 +4,14 @@
         exit('Cannot Be Accessed Without Logging In');
     }
 
-    if($_SESSION['user_type'] != 'student') {
+    if($_SESSION['user_type'] != 'company') {
         exit('This webpage cannot be accessed by a ' . $_SESSION['user_type']);
     }
 ?>
 
 <html>
 <head>
-        <title>Student Home Page</title>
+        <title>Company Home Page</title>
         <link rel="stylesheet" href="../css_files/common.css">
         <link rel="stylesheet" href="../css_files/common_home.css">
         <script src='../javascript/automate_button.js'></script>
@@ -44,27 +44,23 @@
 
         <div class="sidenav">
             <br>
-            <a href="../php/student_profile.php"><> Profile</a>
+            <a href="../php/company_profile.php"><> Profile</a>
             <br>
-            <a href="../php/student_resume.php">My Resume</a>
+            <a href="../php/company_placed_internships.php">Placed Internships</a>
             <br>
-            <a href="../php/student_applications.php">Applications</a>
-            <br>
-            <a href="../php/student_verification.php">Verification</a>
+            <a href="../php/company_placed_jobs.php">Placed Jobs</a>
         </div>
 
         <div class="main">
             <br>
-            <h2>Student Home</h2>
+            <h2>Company Home</h2>
             <h3>Latest Feed</h3>
             <div id="latest_feed">
                 <?php
                 ?>
             </div>
             <br><br>
-            <a class="main_link" href="../php/student_browse_internships.php">Browse Internships</a>
-            <br><br>
-            <a class="main_link" href="../php/student_browse_jobs.php">Browse Jobs</a>
+            <a class="main_link" href="../php/company_browse_students.php">Browse Students</a>
         </div>
    
 </body>
