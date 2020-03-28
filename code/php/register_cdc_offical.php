@@ -83,7 +83,7 @@
                 <input type="text" placeholder="Enter Phone Number" name="phone_1" required>
 
                 <label for="phone_2"><b>Alternate Phone Number</b></label>
-                <input type="text" placeholder="You May Enter An Alternate Phone Number" name="phone_2" required>
+                <input type="text" placeholder="You May Enter An Alternate Phone Number" name="phone_2">
 
                 <label for="bldg_name"><b>Institute Building Name</b></label>
                 <input type="text" placeholder="Enter Institute Building Name" name="bldg_name" required>

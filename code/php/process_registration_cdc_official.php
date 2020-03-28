@@ -67,6 +67,12 @@
             $query = "CALL register_cdc_offical(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
             $stmt = $db->prepare($query);
+
+            if($_POST['phone_2'] == '')
+                $phone_2 = null;
+            else
+                $phone_2 = $_POST['phone_2'];
+
             $stmt->bind_param(
                 'ssssssssss', 
                 $_POST['username'], 
@@ -76,7 +82,7 @@
                 $_POST['designation'],
                 $_POST['email'],
                 $_POST['phone_1'],
-                $_POST['phone_2'],
+                $phone_2,
                 $_POST['bldg_name'],
                 $_POST['room_number']
             );
