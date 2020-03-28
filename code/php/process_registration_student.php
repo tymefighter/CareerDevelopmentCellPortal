@@ -48,6 +48,12 @@
             $query = "CALL register_student(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
             $stmt = $db->prepare($query);
+
+            if($_POST['phone_2'] == '')
+                $phone_2 = null;
+            else
+                $phone_2 = $_POST['phone_2'];
+
             $stmt->bind_param(
                 'sssssssdsdsiissssssss', 
                 $_POST['username'], 
@@ -70,7 +76,7 @@
                 $_POST['country'],
                 $_POST['pincode'],
                 $_POST['phone_1'],
-                $_POST['phone_2']
+                $phone_2
             );
 
             if($stmt->execute())

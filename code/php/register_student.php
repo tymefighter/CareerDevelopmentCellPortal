@@ -142,7 +142,7 @@
                 <input type="text" placeholder="Enter Phone Number" name="phone_1" required>
 
                 <label for="phone_2"><b>Alternate Phone Number</b></label>
-                <input type="text" placeholder="You May Enter An Alternate Phone Number" name="phone_2" required>
+                <input type="text" placeholder="You May Enter An Alternate Phone Number" name="phone_2">
 
                 <button type="submit" id="login_button">Register</button>
             </div>
