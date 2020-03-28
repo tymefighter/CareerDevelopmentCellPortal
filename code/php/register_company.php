@@ -70,13 +70,13 @@
 
                 <br>
                 <label for="email_id_2"><b>Alternate Email Id</b></label>
-                <input type="email" class="email" placeholder="Enter Alternate Email Id" name="email_id_2"  required>
+                <input type="email" class="email" placeholder="Enter Alternate Email Id" name="email_id_2">
 
                 <label for="phone_1"><b>Phone Number</b></label>
                 <input type="text" placeholder="Enter Phone Number" name="phone_1" required>
 
                 <label for="phone_2"><b>Alternate Phone Number</b></label>
-                <input type="text" placeholder="You May Enter An Alternate Phone Number" name="phone_2" required>
+                <input type="text" placeholder="You May Enter An Alternate Phone Number" name="phone_2">
 
                 <br><br>
                 <label for="is_startup"><b>Startup ? </b></label>
@@ -86,7 +86,7 @@
                 </select>
 
                 <label for="company_overview"><b>Company Overview:</b></label>
-                <textarea class="txtArea" rows="10" cols="50" name="company_overview" form="reg_company">Write Company Overview Here</textarea>
+                <textarea class="txtArea" rows="10" cols="50" name="company_overview" form="login_form">Write Company Overview Here</textarea>
 
                 <br><br>
                 <label for="hq_bldg_name"><b>Building Name of Headquarters</b></label>

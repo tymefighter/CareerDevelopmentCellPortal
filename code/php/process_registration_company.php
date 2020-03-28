@@ -68,6 +68,16 @@
 
             $query = "CALL register_company(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
+            if($_POST['email_id_2'] == '')
+                $email_id_2 = null;
+            else
+                $email_id_2 = $_POST['email_id_2'];
+
+            if($_POST['phone_2'] == '')
+                $phone_2 = null;
+            else
+                $phone_2 = $_POST['phone_2'];
+
             $stmt = $db->prepare($query);
             $stmt->bind_param(
                 'ssssssssissssssss',
@@ -76,9 +86,9 @@
                 $company_id,
                 $_POST['name'],
                 $_POST['email_id_1'],
-                $_POST['email_id_2'],
+                $email_id_2,
                 $_POST['phone_1'],
-                $_POST['phone_2'],
+                $phone_2,
                 $_POST['is_startup'],
                 $_POST['company_overview'],
                 $_POST['hq_bldg_name'],
