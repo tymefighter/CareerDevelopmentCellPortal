@@ -80,6 +80,7 @@ h2.heading_common {
 */
 
 @media screen and (max-width: 800px) {
+    
     #nav_button {
         display: block;
     }

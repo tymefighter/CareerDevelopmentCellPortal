@@ -13,7 +13,7 @@
 <head>
         <title>Student Home Page</title>
         <link rel="stylesheet" href="../css_files/common.css">
-        <link rel="stylesheet" href="../css_files/companies.css">
+        <link rel="stylesheet" href="../css_files/student_home.css">
         <script src='../javascript/automate_button.js'></script>
     </head>
     <body>
@@ -41,6 +41,34 @@
                 </div>
             </li>
         </ul>
+
+        <div class="sidenav">
+            <br>
+            <a href="../php/student_profile.php"><> Profile</a>
+            <br>
+            <a href="../php/student_resume.php">My Resume</a>
+            <br>
+            <a href="../php/student_applications.php">Applications</a>
+            <br>
+            <a href="../php/student_verification.php">Verification</a>
+        </div>
+
+        <div class="main">
+            <br>
+            <h2>Student Home</h2>
+            <h3>Latest Feed</h3>
+            <div id="latest_feed">
+                <?php
+                ?>
+            </div>
+            <br><br>
+            <a class="main_link" href="../php/student_browse_internships.php">Browse Internships</a>
+            <br><br>
+            <a class="main_link" href="../php/student_browse_jobs.php">Browse Jobs &nbsp &nbsp &nbsp &nbsp &nbsp</a>
+        </div>
+   
+</body>
+</html> 
             
     </body>
 </html>
