@@ -82,3 +82,37 @@ create procedure register_student_vol (
         insert into volunteer values (vol_id, roll_number, date_join);
     end #
 delimiter ;
+
+delimiter #
+create procedure register_company (
+    in username varchar(30),
+    in password varchar(320),
+    in company_id char(9),
+    in name varchar(320),
+    in email_id_1 varchar(320),
+    in email_id_2 varchar(320),
+    in phone_1 varchar(30),
+    in phone_2 varchar(30),
+    in is_startup tinyint(1),
+    in company_overview varchar(500),
+    in hq_bldg_name varchar(320),
+    in hq_street_name varchar(320),
+    in hq_city varchar(320),
+    in hq_state varchar(320),
+    in hq_country varchar(320),
+    in hq_pincode varchar(320),
+    in company_website varchar(320)
+)
+    begin
+        declare encrypt_password varchar(320);
+        set encrypt_password = SHA(password);
+
+        insert into login_details values (username, encrypt_password, 'company');
+        insert into company values (
+            company_id, name, email_id_1, email_id_2, phone_1, phone_2, is_startup,
+            company_overview, hq_bldg_name, hq_street_name, hq_city, hq_state,
+            hq_country, hq_pincode, company_website
+        );
+        insert into company_login values (company_id, username);
+    end #
+delimiter ;
