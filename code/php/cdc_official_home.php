@@ -4,14 +4,14 @@
         exit('Cannot Be Accessed Without Logging In');
     }
 
-    if($_SESSION['user_type'] != 'student_vol') {
+    if($_SESSION['user_type'] != 'cdc_official') {
         exit('This webpage cannot be accessed by a ' . $_SESSION['user_type']);
     }
 ?>
 
 <html>
 <head>
-        <title>Volunteer Home Page</title>
+        <title>CDC Official Home Page</title>
         <link rel="stylesheet" href="../css_files/common.css">
         <link rel="stylesheet" href="../css_files/common_home.css">
         <script src='../javascript/automate_button.js'></script>
@@ -44,30 +44,29 @@
 
         <div class="sidenav">
             <br>
-            <a href="../php/student_vol_profile.php"><> Profile</a>
-            <br>
-            <a href="../php/student_vol_contribution.php">My Contribution</a>
+            <a href="../php/cdc_official_profile.php"><> Profile</a>
         </div>
 
         <div class="main">
             <br>
-            <h2>Volunteer Home</h2>
+            <h2>CDC Official</h2>
             <h3>Latest Feed</h3>
             <div id="latest_feed">
                 <?php
                 ?>
             </div>
             <br><br>
-            <a class="main_link" href="../php/student_vol_browse_companies.php">Browse Companies</a>
+            <a class="main_link" href="../php/cdc_official_browse_companies.php">Browse Companies</a>
             <br><br>
-            <a class="main_link" href="../php/student_vol_browse_internships.php">Browse Internships</a>
+            <a class="main_link" href="../php/cdc_official_browse_internships.php">Browse Internships</a>
             <br><br>
-            <a class="main_link" href="../php/student_vol_browse_jobs.php">Browse Jobs</a>
+            <a class="main_link" href="../php/cdc_official_browse_jobs.php">Browse Jobs</a>
             <br><br>
-            <a class="main_link" href="../php/student_vol_verification.php">Verification Applicant List</a>
+            <a class="main_link" href="../php/cdc_official_browse_students.php">Browse Students</a>
             <br><br>
-            <a class="main_link" href="../php/student_vol_add_content.php">Add Content</a>
+            <a class="main_link" href="../php/cdc_official_browse_volunteers.php">Browse Volunteers</a>
             <br><br>
+            <a class="main_link" href="../php/cdc_official_browse_edit_content.php">Edit Content</a>
         </div>
    
 </body>
