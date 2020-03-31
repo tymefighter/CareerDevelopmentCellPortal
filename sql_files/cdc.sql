@@ -197,7 +197,7 @@ CREATE TABLE `cdc_official` (
 
 LOCK TABLES `cdc_official` WRITE;
 /*!40000 ALTER TABLE `cdc_official` DISABLE KEYS */;
-INSERT INTO `cdc_official` VALUES ('u4ym60aht','I AM TPO','TPO','tpo@tpo.com','12312','23423','Ab','AA123');
+INSERT INTO `cdc_official` VALUES ('6xecmopuh','afadf','TPO','ab@def.com','21341',NULL,'asdfa','asf3'),('u4ym60aht','I AM TPO','TPO','tpo@tpo.com','12312','23423','Ab','AA123');
 /*!40000 ALTER TABLE `cdc_official` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -247,46 +247,9 @@ CREATE TABLE `company` (
 
 LOCK TABLES `company` WRITE;
 /*!40000 ALTER TABLE `company` DISABLE KEYS */;
+INSERT INTO `company` VALUES ('2dfya45bl','FriendsBook','friend@book.com',NULL,'123',NULL,0,'Friend of Friends','asf','asdf','asdf','asdf','asd','12321312','friend@bbookk.kkoob'),('74vhqxgd2','FriendsBook','friend@book.com','','123','',0,'Friend of Friends','asf','asdf','asdf','asdf','asd','12321312','friend@bbookk.kkoob'),('fvsj83tx4','Hoogle','hoogle@hoogle.com','ab@hoogle.com','123123','2123123',0,'Great Company','asdf','asf','asdf','asdf','asdf','100001','abc@def.com');
 /*!40000 ALTER TABLE `company` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Temporary table structure for view `company_internship`
---
-
-DROP TABLE IF EXISTS `company_internship`;
-/*!50001 DROP VIEW IF EXISTS `company_internship`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE VIEW `company_internship` AS SELECT 
- 1 AS `internship_id`,
- 1 AS `name`,
- 1 AS `company_overview`,
- 1 AS `internship`,
- 1 AS `description`,
- 1 AS `stipend`,
- 1 AS `duration`,
- 1 AS `min_cgpa`*/;
-SET character_set_client = @saved_cs_client;
-
---
--- Temporary table structure for view `company_job`
---
-
-DROP TABLE IF EXISTS `company_job`;
-/*!50001 DROP VIEW IF EXISTS `company_job`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE VIEW `company_job` AS SELECT 
- 1 AS `job_id`,
- 1 AS `name`,
- 1 AS `company_overview`,
- 1 AS `job`,
- 1 AS `description`,
- 1 AS `ctc`,
- 1 AS `perks`,
- 1 AS `min_cgpa`*/;
-SET character_set_client = @saved_cs_client;
 
 --
 -- Table structure for table `company_login`
@@ -311,6 +274,7 @@ CREATE TABLE `company_login` (
 
 LOCK TABLES `company_login` WRITE;
 /*!40000 ALTER TABLE `company_login` DISABLE KEYS */;
+INSERT INTO `company_login` VALUES ('74vhqxgd2','friendbook'),('2dfya45bl','friendbookkh'),('fvsj83tx4','hoogle');
 /*!40000 ALTER TABLE `company_login` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -388,7 +352,7 @@ CREATE TABLE `internship` (
 
 LOCK TABLES `internship` WRITE;
 /*!40000 ALTER TABLE `internship` DISABLE KEYS */;
-INSERT INTO `internship` VALUES ('intern1','SDE Intern','software intern',80000,80,5.00),('intern2','Soil intern','Best internship',81000,85,5.50);
+INSERT INTO `internship` VALUES ('ap1b123h2','SDE Intern','SDE Intern Position is being offered by HOOGLE inc.',10000,90,10.00),('intern1','SDE Intern','software intern',80000,80,5.00),('intern2','Soil intern','Best internship',81000,85,5.50);
 /*!40000 ALTER TABLE `internship` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -464,7 +428,7 @@ CREATE TABLE `login_details` (
 
 LOCK TABLES `login_details` WRITE;
 /*!40000 ALTER TABLE `login_details` DISABLE KEYS */;
-INSERT INTO `login_details` VALUES ('tpotpo','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','cdc_official'),('tymefighter','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','student'),('vol123','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','student_vol');
+INSERT INTO `login_details` VALUES ('abcdef','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','cdc_official'),('friendbook','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','company'),('friendbookkh','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','company'),('habib','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','student'),('hoogle','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','company'),('tpotpo','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','cdc_official'),('tymefighter','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','student'),('vol123','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','student_vol');
 /*!40000 ALTER TABLE `login_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -504,7 +468,7 @@ CREATE TABLE `official_login` (
 
 LOCK TABLES `official_login` WRITE;
 /*!40000 ALTER TABLE `official_login` DISABLE KEYS */;
-INSERT INTO `official_login` VALUES ('u4ym60aht','tpotpo');
+INSERT INTO `official_login` VALUES ('6xecmopuh','abcdef'),('u4ym60aht','tpotpo');
 /*!40000 ALTER TABLE `official_login` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -532,6 +496,7 @@ CREATE TABLE `placed_internship` (
 
 LOCK TABLES `placed_internship` WRITE;
 /*!40000 ALTER TABLE `placed_internship` DISABLE KEYS */;
+INSERT INTO `placed_internship` VALUES ('ap1b123h2','fvsj83tx4','2020-04-30');
 /*!40000 ALTER TABLE `placed_internship` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -841,7 +806,7 @@ CREATE TABLE `student` (
 
 LOCK TABLES `student` WRITE;
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
-INSERT INTO `student` VALUES ('111701002','Ahmed Zaheer Dadarkar','Indian','1999-11-25','M',79.80,'CBSE',92.80,'CBSE',1,4518,'Link Plaza','Malad West','Mumbai','Maharashtra','India','400064','7594069315','9920460918');
+INSERT INTO `student` VALUES ('111000111','habib habib','Indian','2000-01-01','M',99.99,'CBSE',99.99,'CBSE',1,1,'asd','asf','asdf','asdf','asd','123213','11231231',NULL),('111701002','Ahmed Zaheer Dadarkar','Indian','1999-11-25','M',79.80,'CBSE',92.80,'CBSE',1,4518,'Link Plaza','Malad West','Mumbai','Maharashtra','India','400064','7594069315','9920460918');
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -886,7 +851,7 @@ CREATE TABLE `student_login` (
 
 LOCK TABLES `student_login` WRITE;
 /*!40000 ALTER TABLE `student_login` DISABLE KEYS */;
-INSERT INTO `student_login` VALUES ('111701002','tymefighter');
+INSERT INTO `student_login` VALUES ('111000111','habib'),('111701002','tymefighter');
 /*!40000 ALTER TABLE `student_login` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1036,42 +1001,6 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = @saved_col_connection */;
 
 --
--- Final view structure for view `company_internship`
---
-
-/*!50001 DROP VIEW IF EXISTS `company_internship`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8 */;
-/*!50001 SET character_set_results     = utf8 */;
-/*!50001 SET collation_connection      = utf8_general_ci */;
-/*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `company_internship` AS select `internship`.`internship_id` AS `internship_id`,`company`.`name` AS `name`,`company`.`company_overview` AS `company_overview`,`internship`.`name` AS `internship`,`internship`.`description` AS `description`,`internship`.`stipend` AS `stipend`,`internship`.`duration` AS `duration`,`internship`.`min_cgpa` AS `min_cgpa` from ((`company` join `internship`) join `placed_internship`) where ((`company`.`company_id` = `placed_internship`.`company_id`) and (`internship`.`internship_id` = `placed_internship`.`internship_id`)) */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `company_job`
---
-
-/*!50001 DROP VIEW IF EXISTS `company_job`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8 */;
-/*!50001 SET character_set_results     = utf8 */;
-/*!50001 SET collation_connection      = utf8_general_ci */;
-/*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `company_job` AS select `job`.`job_id` AS `job_id`,`company`.`name` AS `name`,`company`.`company_overview` AS `company_overview`,`job`.`name` AS `job`,`job`.`description` AS `description`,`job`.`CTC` AS `ctc`,`job`.`perks` AS `perks`,`job`.`min_cgpa` AS `min_cgpa` from ((`company` join `job`) join `placed_job`) where ((`company`.`company_id` = `placed_job`.`company_id`) and (`job`.`job_id` = `placed_job`.`job_id`)) */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
 -- Final view structure for view `num_sem_completed`
 --
 
@@ -1134,4 +1063,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-27 22:50:53
+-- Dump completed on 2020-03-31 14:42:45
