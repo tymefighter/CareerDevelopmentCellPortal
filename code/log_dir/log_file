@@ -29,3 +29,4 @@ yo5
 5
 error conn(process_registration_company.php):  PROCEDURE cdc.register_company does not exist
 error conn(process_registration_company.php):  Column 'company_overview' cannot be null
+error conn(process_company_add_internship.php):  PROCEDURE cdc.add_internship does not exist

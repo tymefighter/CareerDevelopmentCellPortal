@@ -352,7 +352,7 @@ CREATE TABLE `internship` (
 
 LOCK TABLES `internship` WRITE;
 /*!40000 ALTER TABLE `internship` DISABLE KEYS */;
-INSERT INTO `internship` VALUES ('ap1b123h2','SDE Intern','SDE Intern Position is being offered by HOOGLE inc.',10000,90,10.00),('intern1','SDE Intern','software intern',80000,80,5.00),('intern2','Soil intern','Best internship',81000,85,5.50);
+INSERT INTO `internship` VALUES ('8ib1dyuzc','Full Stack Developer','Be A full Stack Dev here at Hoogle inc.',25000,90,9.50),('ap1b123h2','SDE Intern','SDE Intern Position is being offered by HOOGLE inc.',10000,90,10.00),('intern1','SDE Intern','software intern',80000,80,5.00),('intern2','Soil intern','Best internship',81000,85,5.50);
 /*!40000 ALTER TABLE `internship` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -403,7 +403,7 @@ CREATE TABLE `job` (
 
 LOCK TABLES `job` WRITE;
 /*!40000 ALTER TABLE `job` DISABLE KEYS */;
-INSERT INTO `job` VALUES ('job1','ML Engineer','',1500000,'',6.00),('job2','Manager','',1650000,'',5.00);
+INSERT INTO `job` VALUES ('h1jf89yio','SDE','SDE Job at Hoogle',100000,NULL,8.95),('job1','ML Engineer','',1500000,'',6.00),('job2','Manager','',1650000,'',5.00),('tbly1z79n','Reinforcement Learning Enginee','RL at Hoogle !!',500000,NULL,9.00);
 /*!40000 ALTER TABLE `job` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -496,7 +496,7 @@ CREATE TABLE `placed_internship` (
 
 LOCK TABLES `placed_internship` WRITE;
 /*!40000 ALTER TABLE `placed_internship` DISABLE KEYS */;
-INSERT INTO `placed_internship` VALUES ('ap1b123h2','fvsj83tx4','2020-04-30');
+INSERT INTO `placed_internship` VALUES ('8ib1dyuzc','fvsj83tx4','2020-03-31'),('ap1b123h2','fvsj83tx4','2020-04-30');
 /*!40000 ALTER TABLE `placed_internship` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -524,6 +524,7 @@ CREATE TABLE `placed_job` (
 
 LOCK TABLES `placed_job` WRITE;
 /*!40000 ALTER TABLE `placed_job` DISABLE KEYS */;
+INSERT INTO `placed_job` VALUES ('h1jf89yio','fvsj83tx4','2020-01-10'),('tbly1z79n','fvsj83tx4','2020-03-31');
 /*!40000 ALTER TABLE `placed_job` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1063,4 +1064,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-31 14:42:45
+-- Dump completed on 2020-03-31 18:23:23
