@@ -1,3 +1,5 @@
+-- This procedure is used to update the password of an account
+-- given the account's username and previous password
 delimiter #
 create procedure update_password (username varchar(30), prev_pass varchar(320), new_pass varchar(320))
 begin

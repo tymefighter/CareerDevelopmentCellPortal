@@ -1,3 +1,4 @@
+-- Procedure to register a new student
 delimiter #
 create procedure register_student (
     in username varchar(30),
@@ -38,6 +39,7 @@ create procedure register_student (
     end #
 delimiter ;
 
+-- Procedure to register a cdc official
 delimiter #
 create procedure register_cdc_offical (
     in username varchar(30),
@@ -63,6 +65,7 @@ create procedure register_cdc_offical (
     end #
 delimiter ;
 
+-- Procedure to register a student volunteer
 delimiter #
 create procedure register_student_vol (
     in username varchar(30),
@@ -83,6 +86,7 @@ create procedure register_student_vol (
     end #
 delimiter ;
 
+-- Procedure to register a company
 delimiter #
 create procedure register_company (
     in username varchar(30),

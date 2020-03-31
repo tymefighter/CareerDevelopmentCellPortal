@@ -1,3 +1,5 @@
+-- This procedure gives the average cgpa of all those students
+-- that have applied to a particular job
 delimiter #
 create function get_avg_cgpa_job_applied (job_id char(9))
 returns decimal(15, 6)
@@ -9,6 +11,8 @@ end #
 
 delimiter ;
 
+-- This procedure gives the average cgpa of all those students
+-- that have applied to a particular internship
 delimiter #
 create function get_avg_cgpa_internship_applied (internship_id char(9))
 returns decimal(15, 6)
@@ -20,6 +24,8 @@ end #
 
 delimiter ;
 
+-- This procedure gives the number of students of each
+-- branch that have applied for this job
 delimiter #
 create procedure get_branch_count_job(job_id char(9))
 begin
@@ -28,6 +34,8 @@ begin
 end #
 delimiter ;
 
+-- This procedure gives the number of students of each
+-- branch that have applied for this internships
 delimiter #
 create procedure get_branch_count_internship(internship_id char(9))
 begin
@@ -36,6 +44,8 @@ begin
 end #
 delimiter ;
 
+-- This procedure gives the number of students of each
+-- batch that have applied for this internships
 delimiter #
 create procedure get_batch_count_internship(internship_id char(9))
 begin

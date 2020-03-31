@@ -1,3 +1,5 @@
+-- This procedure shows all the students in a batch
+-- that are verified
 delimiter #
 create procedure show_verified_batch(in batch varchar(30))
     begin
@@ -5,6 +7,8 @@ create procedure show_verified_batch(in batch varchar(30))
     end #
 delimiter ;
 
+-- This procedure shows all the students in a branch
+-- that are verified
 delimiter #
 create procedure show_verified_branch(in branch varchar(30))
     begin
@@ -12,6 +16,7 @@ create procedure show_verified_branch(in branch varchar(30))
     end #
 delimiter ;
 
+-- This procedure verifies an unverified student
 delimiter #
 create procedure verify_student(in roll_number char(9))
 begin
