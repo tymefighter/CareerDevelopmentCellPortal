@@ -20,9 +20,21 @@ delimiter ;
 
 -- This procedure gives all internships
 -- that are available to a student
--- delimiter #
--- create procedure get_allowed_internships(in student_id char(9))
---     begin
-        
---     end #
--- delimiter ;
+delimiter #
+create procedure get_allowed_internships(in roll_number char(9))
+    begin
+        select internship.internship_id, internship.name, internship.description,
+            internship.stipend, internship.duration, internship.min_cgpa, placed_internship.date
+        from available_internship, 
+            belongs_to, cgpa, has_branch, internship, 
+            placed_internship, required_batch_internship, required_branch_internship
+        where available_internship.internship_id = internship.internship_id and
+            belongs_to.roll_number = roll_number and
+            belongs_to.batch = required_batch_internship.batch and
+            has_branch.roll_number = roll_number and
+            has_branch.branch = required_branch_internship.branch and
+            internship.company_id = company.company_id and
+            cgpa.roll_number = roll_number and
+            cgpa.cgpa >= internship.min_cgpa;
+    end #
+delimiter ;

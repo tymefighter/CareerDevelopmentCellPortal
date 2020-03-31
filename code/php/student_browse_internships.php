@@ -69,12 +69,12 @@
                     exit('');
                 }
 
-                if($_SESSION['student_id'] == null)
+                if($_SESSION['roll_number'] == null)
                     exit('Huge Error Occurred');
 
                 $query = 'call get_allowed_internships(?)';
                 $stmt = $db->prepare($query);
-                $stmt->bind_param('s', $_SESSION['student_id']);
+                $stmt->bind_param('s', $_SESSION['roll_number']);
                 $stmt->execute();
                 $stmt->store_result();
                 
