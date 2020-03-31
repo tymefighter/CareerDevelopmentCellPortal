@@ -21,7 +21,9 @@ create procedure register_student (
     in country varchar(320),
     in pincode varchar(320),
     in phone_1 varchar(30),
-    in phone_2 varchar(30)
+    in phone_2 varchar(30),
+    in branch varchar(30),
+    in year_of_admission int
 )
     begin
         declare encrypt_password varchar(320);
@@ -36,6 +38,8 @@ create procedure register_student (
             phone_1, phone_2
         );
         insert into student_login values (roll_number, username);
+        insert into has_branch values (roll_number, branch);
+        insert into belongs_to values (roll_number, year_of_admission);
     end #
 delimiter ;
 

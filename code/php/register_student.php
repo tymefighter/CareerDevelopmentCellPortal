@@ -144,6 +144,25 @@
                 <label for="phone_2"><b>Alternate Phone Number</b></label>
                 <input type="text" placeholder="You May Enter An Alternate Phone Number" name="phone_2">
 
+                <br><br>
+                <label for="branch"><b>Branch</b></label>
+                <select name="branch" class="drop_down">
+                    <option value="civil_eng">Civil Engg.</option>
+                    <option value="mech_eng">Mechanical Engg.</option>
+                    <option value="elec_eng">Elec Engg.</option>
+                    <option value="comp_sc">Computer Science</option> 
+                </select>
+
+                <br><br>
+                <label for="batch"><b>Batch</b></label>
+                <select name="batch" class="drop_down">
+                    <option value="2016">2016</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                </select>
+
                 <button type="submit" id="login_button">Register</button>
             </div>
             

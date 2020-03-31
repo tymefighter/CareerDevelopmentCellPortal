@@ -45,7 +45,7 @@
 
         $is_username_taken = usernameTaken($db);
         if($is_username_taken == false) {
-            $query = "CALL register_student(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $query = "CALL register_student(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
             $stmt = $db->prepare($query);
 
@@ -55,7 +55,7 @@
                 $phone_2 = $_POST['phone_2'];
 
             $stmt->bind_param(
-                'sssssssdsdsiissssssss', 
+                'sssssssdsdsiissssssssss', 
                 $_POST['username'], 
                 $_POST['password'],
                 $_POST['roll_number'],
@@ -76,7 +76,9 @@
                 $_POST['country'],
                 $_POST['pincode'],
                 $_POST['phone_1'],
-                $phone_2
+                $phone_2,
+                $_POST['branch'],
+                $_POST['batch']
             );
 
             if($stmt->execute())

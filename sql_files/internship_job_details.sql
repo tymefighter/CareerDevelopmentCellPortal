@@ -17,3 +17,12 @@ create procedure get_all_jobs(in company_id char(9))
             where job.job_id = placed_job.job_id and placed_job.company_id = company_id;
     end #
 delimiter ;
+
+-- This procedure gives all internships
+-- that are available to a student
+-- delimiter #
+-- create procedure get_allowed_internships(in student_id char(9))
+--     begin
+        
+--     end #
+-- delimiter ;
