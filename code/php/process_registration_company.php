@@ -105,6 +105,7 @@
                 $_SESSION['username'] = $_POST['username'];
                 $_SESSION['user_type'] = 'company';
                 $_SESSION['logged_in'] = true;
+                $_SESSION['company_id'] = $company_id;
                 header("Location: ../php/company_home.php");
                 exit('');
             }

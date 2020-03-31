@@ -92,6 +92,7 @@
                 $_SESSION['username'] = $_POST['username'];
                 $_SESSION['user_type'] = 'cdc_official';
                 $_SESSION['logged_in'] = true;
+                $_SESSION['offical_id'] = $offical_id;
                 header("Location: ../php/cdc_official_home.php");
                 exit('');
             }

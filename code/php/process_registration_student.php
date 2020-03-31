@@ -84,6 +84,7 @@
                 $_SESSION['username'] = $_POST['username'];
                 $_SESSION['user_type'] = 'student';
                 $_SESSION['logged_in'] = true;
+                $_SESSION['roll_number'] = $_POST['roll_number'];
                 header("Location: ../php/student_home.php");
                 exit('');
             }

@@ -99,6 +99,7 @@
                 $_SESSION['username'] = $_POST['username'];
                 $_SESSION['user_type'] = 'student_vol';
                 $_SESSION['logged_in'] = true;
+                $_SESSION['vol_id'] = $vol_id;
                 header("Location: ../php/student_vol_home.php");
                 exit('');
             }
