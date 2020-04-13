@@ -93,7 +93,7 @@
                 while($stmt->fetch()) {
                     echo '<tr>';
 
-                    echo '<td>' . '<a class="simple_link" href="company_edit_job.php?internship_id=' . $job_id . '">'
+                    echo '<td>' . '<a class="simple_link" href="job_detail.php?job_id=' . $job_id . '">'
                         . htmlspecialchars($job_id) 
                         . '</a>'
                         . '</td>';

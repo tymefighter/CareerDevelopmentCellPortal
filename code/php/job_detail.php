@@ -14,16 +14,16 @@
     // Connection error, hence place error in log file
     $error_num = mysqli_connect_errno();
     if($error_num) {
-        error_log("error conn(internship_detail.php):  " . $error_num . "\n", 3, '../log_dir/log_file');
+        error_log("error conn(job_detail.php):  " . $error_num . "\n", 3, '../log_dir/log_file');
         exit('');
     }
 
     if($_SESSION['company_id'] == null)
         exit('Huge Error Occurred');
 
-    $query = 'select i.internship_id from internship as i, placed_internship as p_i where i.internship_id = ? and p_i.company_id = ? and i.internship_id = p_i.internship_id';
+    $query = 'select j.job_id from job as j, placed_job as p_j where j.job_id = ? and p_j.company_id = ? and j.job_id = p_j.job_id';
     $stmt = $db->prepare($query);
-    $stmt->bind_param('ss', $_GET['internship_id'], $_SESSION['company_id']);
+    $stmt->bind_param('ss', $_GET['job_id'], $_SESSION['company_id']);
     $stmt->execute();
     $stmt->store_result();
 
@@ -31,12 +31,12 @@
         exit('Huge Error Occurred');
     }
 
-    $_SESSION['internship_id'] = $_GET['internship_id'];
+    $_SESSION['job_id'] = $_GET['job_id'];
 ?>
 
 <html>
 <head>
-        <title>Internship Details - Company</title>
+        <title>Job Details - Company</title>
         <link rel="stylesheet" href="../css_files/common.css">
         <link rel="stylesheet" href="../css_files/common_home.css">
         <link rel="stylesheet" href="../css_files/internship_job_detail.css">
@@ -80,9 +80,9 @@
         <div class="main">
             
             <?php
-                $query = 'call get_internship_details(?)';
+                $query = 'call get_job_details(?)';
                 $stmt = $db->prepare($query);
-                $stmt->bind_param('s', $_SESSION['internship_id']);
+                $stmt->bind_param('s', $_SESSION['job_id']);
                 $stmt->execute();
                 $stmt->store_result();
 
@@ -91,21 +91,18 @@
                 }
 
                 $stmt->bind_result(
-                    $internship_id, $internship_name, $company_name,
-                    $description, $stipend, $duration, $min_cgpa, $date
+                    $job_id, $job_name, $company_name,
+                    $description, $CTC, $perks, $min_cgpa, $date
                 );
 
                 $stmt->fetch();
                 $stmt->close();
-                
 
-
-                $query = 'select branch_name from required_branch_internship where internship_id = ?';
+                $query = 'select branch_name from required_branch_job where job_id = ?';
                 $stmt = $db->prepare($query);
-                $stmt->bind_param('s', $_SESSION['internship_id']);
+                $stmt->bind_param('s', $_SESSION['job_id']);
                 $stmt->execute();
                 $stmt->bind_result($branch_name);
-
 
                 $branches = '';
 
@@ -115,32 +112,17 @@
                     $branches = $branches . $branch_name;
                 }
                 $stmt->close();
-
-                $query = 'select year_of_admission from required_batch_internship where internship_id = ?';
-                $stmt = $db->prepare($query);
-                $stmt->bind_param('s', $_SESSION['internship_id']);
-                $stmt->execute();
-                $stmt->bind_result($batch);
-
-                $batches = '';
-
-                while($stmt->fetch()) {
-                    if($batches != '')
-                        $batches = $batches . ', ';
-                    $batches = $batches . $batch;
-                }
-                $stmt->close();
             ?>
 
             <br><br>
             <table>
             <tr>
-                <th>Internship Id</th>
-                <td><?php echo $internship_id; ?></td>
+                <th>Job Id</th>
+                <td><?php echo $job_id; ?></td>
             </tr>
             <tr>
-                <th>Internship Name</th>
-                <td><?php echo $internship_name; ?></td>
+                <th>Job Name</th>
+                <td><?php echo $job_name; ?></td>
             </tr>
             <tr>
                 <th>Company Name</th>
@@ -151,12 +133,12 @@
                 <td><?php echo $description; ?></td>
             </tr>
             <tr>
-                <th>Stipend</th>
-                <td><?php echo $stipend; ?></td>
+                <th>CTC</th>
+                <td><?php echo $CTC; ?></td>
             </tr>
             <tr>
-                <th>Duration</th>
-                <td><?php echo $duration; ?></td>
+                <th>Perks</th>
+                <td><?php echo $perks; ?></td>
             </tr>
             <tr>
                 <th>Min CGPA</th>
@@ -170,14 +152,9 @@
                 <th>Allowed Branches</th>
                 <td><?php echo $branches; ?></td>
             </tr>
-            <tr>
-                <th>Allowed Batches</th>
-                <td><?php echo $batches; ?></td>
-            </tr>
             </table>
 
         </div>
-   
 </body>
 </html> 
             

@@ -83,3 +83,18 @@ delimiter ;
 
 -- This procedure gives all details
 -- about a job
+delimiter #
+create procedure get_job_details(in job_id char(9))
+    begin
+        select
+            job.job_id, job.name, company.name,
+            job.description, job.CTC, job.perks,
+            job.min_cgpa, placed_job.date
+        from
+            job, placed_job, company
+        where
+            job.job_id = job_id and
+            placed_job.job_id = job_id and
+            company.company_id = placed_job.company_id;
+    end #
+delimiter ;
