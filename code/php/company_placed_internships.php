@@ -13,7 +13,7 @@
         <title>Company Placed Internship</title>
         <link rel="stylesheet" href="../css_files/common.css">
         <link rel="stylesheet" href="../css_files/common_home.css">
-        <link rel="stylesheet" href="../css_files/company_placed_internships.css">
+        <link rel="stylesheet" href="../css_files/company_placed.css">
         <script src='../javascript/automate_button.js'></script>
     </head>
     <body>
@@ -92,7 +92,11 @@
 
                 while($stmt->fetch()) {
                     echo '<tr>';
-                    echo '<td>'. htmlspecialchars($internship_id) .'</td>';
+                    echo '<td>' . '<a class="simple_link" href="internship_detail.php?internship_id=' . $internship_id . '">'
+                        . htmlspecialchars($internship_id) 
+                        . '</a>'
+                        . '</td>';
+
                     echo '<td>'. htmlspecialchars($name) .'</td>';
                     if(strlen($description) <= 70)
                         echo '<td>'. htmlspecialchars($description) .'</td>';

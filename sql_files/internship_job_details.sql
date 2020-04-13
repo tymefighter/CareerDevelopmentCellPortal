@@ -62,3 +62,21 @@ create procedure get_allowed_jobs(in roll_number char(9))
             cgpa.cgpa >= job.min_cgpa;
     end #
 delimiter ;
+
+-- This procedure gives all details
+-- about an internship
+delimiter #
+create procedure get_internship_details(in internship_id char(9))
+    begin
+        select 
+            internship.internship_id, internship.name, company.name,
+            internship.description, internship.stipend, internship.duration, 
+            internship.min_cgpa, placed_internship.date
+        from
+            internship, placed_internship, company
+        where
+            internship.internship_id = internship_id and
+            placed_internship.internship_id = internship_id and
+            company.company_id = placed_internship.company_id;
+    end #
+delimiter ;

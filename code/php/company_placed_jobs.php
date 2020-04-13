@@ -13,7 +13,7 @@
         <title>Company Placed Jobs</title>
         <link rel="stylesheet" href="../css_files/common.css">
         <link rel="stylesheet" href="../css_files/common_home.css">
-        <link rel="stylesheet" href="../css_files/company_placed_internships.css">
+        <link rel="stylesheet" href="../css_files/company_placed.css">
         <script src='../javascript/automate_button.js'></script>
     </head>
     <body>
@@ -77,7 +77,7 @@
                 $stmt->execute();
                 $stmt->store_result();
                 
-                $stmt->bind_result($internship_id, $name, $description, $CTC, $perks, $min_cgpa, $date_of_placing);
+                $stmt->bind_result($job_id, $name, $description, $CTC, $perks, $min_cgpa, $date_of_placing);
 
                 echo '<table>';
                 echo '<tr>
@@ -92,7 +92,12 @@
 
                 while($stmt->fetch()) {
                     echo '<tr>';
-                    echo '<td>'. htmlspecialchars($internship_id) .'</td>';
+
+                    echo '<td>' . '<a class="simple_link" href="company_edit_job.php?internship_id=' . $job_id . '">'
+                        . htmlspecialchars($job_id) 
+                        . '</a>'
+                        . '</td>';
+
                     echo '<td>'. htmlspecialchars($name) .'</td>';
                     if(strlen($description) <= 70)
                         echo '<td>'. htmlspecialchars($description) .'</td>';

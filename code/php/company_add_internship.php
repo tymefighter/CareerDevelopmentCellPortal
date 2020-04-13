@@ -74,6 +74,39 @@
                 <br>
                 <label for="min_cgpa"><b>Minimum CGPA Allowed</b></label>
                 <input type="number" placeholder="Enter CGPA" name="min_cgpa" min="0" max="10" class="number" step="0.01" required>
+
+                <div align="left" style = "font-size: 20px;">
+                    <h3>Allowed Branches</h3>
+                    <input type="checkbox" name="civil_eng" value="civil_eng">
+                    <label for="civil_eng">Civil Engg.</label><br>
+                    
+                    <input type="checkbox" name="comp_sc" value="comp_sc">
+                    <label for="comp_sc">Computer Sc. and Engg.</label><br>
+
+                    <input type="checkbox" name="elec_eng" value="elec_eng">
+                    <label for="elec_eng">Electrical Engg.</label><br>
+
+                    <input type="checkbox" name="mech_eng" value="mech_eng">
+                    <label for="mech_eng">Mechanical Engg.</label><br>
+                </div>
+
+                <div align="left" style = "font-size: 20px;">
+                    <h3>Allowed Batches</h3>
+                    <input type="checkbox" name="2016" value="2016">
+                    <label for="2016">2016</label><br>
+                    
+                    <input type="checkbox" name="2017" value="2017">
+                    <label for="2017">2017</label><br>
+
+                    <input type="checkbox" name="2018" value="2018">
+                    <label for="2018">2018</label><br>
+
+                    <input type="checkbox" name="2019" value="2019">
+                    <label for="2019">2019</label><br>
+
+                    <input type="checkbox" name="2020" value="2020">
+                    <label for="2020">2020</label><br>
+                </div>
                 
                 <button type="submit" id="login_button">Add Internship</button>
             </div>
