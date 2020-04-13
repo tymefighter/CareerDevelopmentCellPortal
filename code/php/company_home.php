@@ -60,7 +60,6 @@
                 ?>
             </div>
             <br><br>
-            <a class="main_link" href="../php/company_browse_students.php">Browse Students</a>
         </div>
    
 </body>

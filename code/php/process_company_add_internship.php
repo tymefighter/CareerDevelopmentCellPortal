@@ -53,12 +53,50 @@
 
     if($stmt->execute())
     {
+        $stmt->close();
+
+        $query = 'SELECT name FROM branch';
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+        $stmt->bind_result($branch_name);
+        $branch_arr = array();
+        while($stmt->fetch()) {
+            if($_POST[$branch_name] == $branch_name)
+                array_push($branch_arr, $branch_name);
+        }
+        $stmt->close();
+
+        $query_insert = 'INSERT INTO required_branch_internship VALUES (?, ?)';
+        $stmt_insert = $db->prepare($query_insert);
+        $stmt_insert->bind_param('ss', $branch_name, $internship_id);
+        foreach($branch_arr as $branch_name) {
+            $stmt_insert->execute();
+        }
+        $stmt_insert->close();
+
+
+        $query = 'SELECT year_of_admission FROM batch';
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+        $stmt->bind_result($batch);
+        $batch_arr = array();
+        while($stmt->fetch()) {
+            if($_POST[$batch] == $batch)
+                array_push($batch_arr, $batch);
+        }
+        $stmt->close();
+
+        $query_insert = 'INSERT INTO required_batch_internship VALUES (?, ?)';
+        $stmt_insert = $db->prepare($query_insert);
+        $stmt_insert->bind_param('ss', $batch, $internship_id);
+        foreach($batch_arr as $batch) {
+            $stmt_insert->execute();
+        }
+        $stmt_insert->close();
+        
         header("Location: ../php/company_placed_internships.php");
         exit('');
     }
-
-    error_log("error conn(process_company_add_internship.php):  " . $stmt->error . "\n", 3, '../log_dir/log_file');
-    
 ?>
 
 <html>
