@@ -23,18 +23,42 @@ delimiter ;
 delimiter #
 create procedure get_allowed_internships(in roll_number char(9))
     begin
-        select internship.internship_id, internship.name, internship.description,
+        select internship.internship_id, internship.name, company.name, internship.description,
             internship.stipend, internship.duration, internship.min_cgpa, placed_internship.date
-        from available_internship, 
-            belongs_to, cgpa, has_branch, internship, 
+        from company, belongs_to, cgpa, has_branch, internship, 
             placed_internship, required_batch_internship, required_branch_internship
-        where available_internship.internship_id = internship.internship_id and
+        where
+            required_batch_internship.internship_id = internship.internship_id and
+            required_branch_internship.internship_id = internship.internship_id and
             belongs_to.roll_number = roll_number and
-            belongs_to.batch = required_batch_internship.batch and
             has_branch.roll_number = roll_number and
-            has_branch.branch = required_branch_internship.branch and
-            internship.company_id = company.company_id and
+            belongs_to.year_of_admission = required_batch_internship.year_of_admission and
+            has_branch.name = required_branch_internship.branch_name and
+            internship.internship_id = placed_internship.internship_id and
+            placed_internship.company_id = company.company_id and
             cgpa.roll_number = roll_number and
             cgpa.cgpa >= internship.min_cgpa;
+    end #
+delimiter ;
+
+-- This procedure gives all jobs
+-- that are available to a student
+delimiter #
+create procedure get_allowed_jobs(in roll_number char(9))
+    begin
+        select job.job_id, job.name, company.name, job.description,
+            job.CTC, job.perks, job.min_cgpa, placed_job.date
+        from company, belongs_to, cgpa, has_branch, job, 
+            placed_job, required_branch_job
+        where
+            required_branch_job.job_id = job.job_id and
+            belongs_to.roll_number = roll_number and
+            has_branch.roll_number = roll_number and
+            belongs_to.year_of_admission = (YEAR(CURDATE()) - 4) and
+            has_branch.name = required_branch_job.branch_name and
+            job.job_id = placed_job.job_id and
+            placed_job.company_id = company.company_id and
+            cgpa.roll_number = roll_number and
+            cgpa.cgpa >= job.min_cgpa;
     end #
 delimiter ;

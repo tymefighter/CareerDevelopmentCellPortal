@@ -10,7 +10,7 @@
 ?>
 <html>
     <head>
-        <title>Student Browse Internship</title>
+        <title>Student Browse Jobs</title>
         <link rel="stylesheet" href="../css_files/common.css">
         <link rel="stylesheet" href="../css_files/common_home.css">
         <link rel="stylesheet" href="../css_files/company_placed_internships.css">
@@ -72,37 +72,41 @@
                 if($_SESSION['roll_number'] == null)
                     exit('Huge Error Occurred');
 
-                $query = 'call get_allowed_internships(?)';
+                $query = 'call get_allowed_jobs(?)';
                 $stmt = $db->prepare($query);
                 $stmt->bind_param('s', $_SESSION['roll_number']);
                 $stmt->execute();
                 $stmt->store_result();
                 
-                $stmt->bind_result($internship_id, $name, $company_name, $description, $stipend, $duration, $min_cgpa, $date_of_placing);
+                $stmt->bind_result($job_id, $name, $company_name, $description, $CTC, $perks, $min_cgpa, $date_of_placing);
 
                 echo '<table>';
                 echo '<tr>
-                        <th>Internship Id</th>
+                        <th>Job Id</th>
                         <th>Name</th>
                         <th>Company name</th>
                         <th>Description</th>
-                        <th>Stipend</th>
-                        <th>Duration</th>
+                        <th>CTC</th>
+                        <th>Perks</th>
                         <th>Min CGPA</th>
                         <th>Date of Placing</th>
                     </tr>';
 
                 while($stmt->fetch()) {
                     echo '<tr>';
-                    echo '<td>'. htmlspecialchars($internship_id) .'</td>';
+                    echo '<td>'. htmlspecialchars($job_id) .'</td>';
                     echo '<td>'. htmlspecialchars($name) .'</td>';
                     echo '<td>'. htmlspecialchars($company_name) .'</td>';
                     if(strlen($description) <= 70)
                         echo '<td>'. htmlspecialchars($description) .'</td>';
                     else
                         echo '<td>'. htmlspecialchars(substr($description, 0, 70)) .'</td>';
-                    echo '<td>'. htmlspecialchars($stipend) .'</t>';
-                    echo '<td>'. htmlspecialchars($duration) .'</td>';
+                    
+                    echo '<td>'. htmlspecialchars($CTC) .'</t>';
+                    if(strlen($perks) <= 70)
+                        echo '<td>'. htmlspecialchars($perks) .'</td>';
+                    else
+                        echo '<td>'. htmlspecialchars(substr($perks, 0, 70)) .'</td>';
                     echo '<td>'. htmlspecialchars($min_cgpa) .'</td>';
                     echo '<td>'. htmlspecialchars($date_of_placing) .'</td>';
                     echo '</tr>';
