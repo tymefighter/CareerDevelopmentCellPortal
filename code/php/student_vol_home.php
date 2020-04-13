@@ -58,11 +58,11 @@
                 ?>
             </div>
             <br><br>
-            <a class="main_link" href="../php/student_vol_browse_companies.php">Browse Companies</a>
+            <a class="main_link" href="../php/browse_all_companies.php">Browse Companies</a>
             <br><br>
-            <a class="main_link" href="../php/student_vol_browse_internships.php">Browse Internships</a>
+            <a class="main_link" href="../php/browse_all_internships.php">Browse Internships</a>
             <br><br>
-            <a class="main_link" href="../php/student_vol_browse_jobs.php">Browse Jobs</a>
+            <a class="main_link" href="../php/browse_all_jobs.php">Browse Jobs</a>
             <br><br>
             <a class="main_link" href="../php/student_vol_verification.php">Verification Applicant List</a>
             <br><br>

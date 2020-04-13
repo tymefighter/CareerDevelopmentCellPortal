@@ -4,10 +4,6 @@
         exit('Cannot Be Accessed Without Logging In');
     }
 
-    if($_SESSION['user_type'] != 'company' && $_SESSION['user_type'] != 'student') {
-        exit('This webpage cannot be accessed by a ' . $_SESSION['user_type']);
-    }
-
     // Try to establish connection to cdc database via tymefighter@localhost user
     $db = new mysqli ('localhost', 'tymefighter', 'tymefighter', 'cdc');
                     
@@ -18,7 +14,7 @@
         exit('');
     }
 
-    if($_SESSION['user_type'] != 'student' && $_SESSION['company_id'] == null)
+    if($_SESSION['user_type'] == 'company' && $_SESSION['company_id'] == null)
         exit('Huge Error Occurred');
 
     if($_SESSION['user_type'] == 'company') {
@@ -41,7 +37,7 @@
         <title>Job Details</title>
         <link rel="stylesheet" href="../css_files/common.css">
         <link rel="stylesheet" href="../css_files/common_home.css">
-        <link rel="stylesheet" href="../css_files/internship_job_detail.css">
+        <link rel="stylesheet" href="../css_files/table.css">
         <script src='../javascript/automate_button.js'></script>
     </head>
     <body>
@@ -80,7 +76,7 @@
                     <br>
                     <a href="../php/company_placed_jobs.php">Placed Jobs</a>
                     </div>';
-            else
+            else if($_SESSION['user_type'] == 'student')
                 echo '<div class="sidenav">
                     <br>
                     <a href="../php/student_profile.php"><> Profile</a>
@@ -90,6 +86,18 @@
                     <a href="../php/student_applications.php">Applications</a>
                     <br>
                     <a href="../php/student_verification.php">Verification</a>
+                    </div>';
+            else if($_SESSION['user_type'] == 'student_vol')
+                echo '<div class="sidenav">
+                        <br>
+                        <a href="../php/student_vol_profile.php"><> Profile</a>
+                        <br>
+                        <a href="../php/student_vol_contribution.php">My Contribution</a>
+                    </div>';
+            else
+                echo '<div class="sidenav">
+                        <br>
+                        <a href="../php/cdc_official_profile.php"><> Profile</a>
                     </div>';
         ?>
 

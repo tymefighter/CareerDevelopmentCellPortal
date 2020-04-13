@@ -4,20 +4,21 @@
         exit('Cannot Be Accessed Without Logging In');
     }
 
-    if($_SESSION['user_type'] != 'company') {
+    if($_SESSION['user_type'] != 'student_vol' && $_SESSION['user_type'] != 'cdc_official') {
         exit('This webpage cannot be accessed by a ' . $_SESSION['user_type']);
     }
 ?>
+
 <html>
-    <head>
-        <title>Company Placed Jobs</title>
+<head>
+        <title>Volunteer Browse Companies</title>
         <link rel="stylesheet" href="../css_files/common.css">
         <link rel="stylesheet" href="../css_files/common_home.css">
         <link rel="stylesheet" href="../css_files/table.css">
         <script src='../javascript/automate_button.js'></script>
     </head>
     <body>
-    <ul class="nav">
+        <ul class="nav">
             <li class="nav"><a href='../php/home.php' class="nav">Home</a></li>
             <li class="nav"><a href='https://iitpkd.ac.in' class="nav">IIT Palakkad</a></li>
             <li class="nav"><a href="../php/companies.php" class="nav">Companies</a></li>
@@ -44,76 +45,63 @@
 
         <div class="sidenav">
             <br>
-            <a href="../php/company_profile.php"><> Profile</a>
+            <a href="../php/student_vol_profile.php"><> Profile</a>
             <br>
-            <a href="../php/company_placed_internships.php">Placed Internships</a>
-            <br>
-            <a href="../php/company_placed_jobs.php">Placed Jobs</a>
+            <a href="../php/student_vol_contribution.php">My Contribution</a>
         </div>
 
         <div class="main">
             <br>
-            <h2>Placed Jobs</h2>
-            <a class="main_link" href="../php/company_add_job.php">Add Job</a>
-            <br><br>
+            <h2>Browse All Companies</h2>
             <?php
-                
+
                 // Try to establish connection to cdc database via tymefighter@localhost user
                 $db = new mysqli ('localhost', 'tymefighter', 'tymefighter', 'cdc');
-                    
+                
                 // Connection error, hence place error in log file
                 $error_num = mysqli_connect_errno();
                 if($error_num) {
-                    error_log("error conn(company_placed_internship.php):  " . $error_num . "\n", 3, '../log_dir/log_file');
+                    error_log("error conn(browse_all_companies.php):  " . $error_num . "\n", 3, '../log_dir/log_file');
                     exit('');
                 }
 
-                if($_SESSION['company_id'] == null)
-                    exit('Huge Error Occurred');
-
-                $query = 'call get_all_jobs(?)';
+                $query = 'select company_id, name, company_overview, company_website from company';
                 $stmt = $db->prepare($query);
-                $stmt->bind_param('s', $_SESSION['company_id']);
                 $stmt->execute();
-                $stmt->store_result();
-                
-                $stmt->bind_result($job_id, $name, $description, $CTC, $perks, $min_cgpa, $date_of_placing);
+                $stmt->bind_result($company_id, $company_name, $company_overview, $company_website);
 
                 echo '<table>';
                 echo '<tr>
-                        <th>Job Id</th>
+                        <th>Company Id</th>
                         <th>Name</th>
-                        <th>Description</th>
-                        <th>CTC</th>
-                        <th>Perks</th>
-                        <th>Min CGPA</th>
-                        <th>Date of Placing</th>
+                        <th>Company Overview</th>
+                        <th>Company Website</th>
                     </tr>';
 
                 while($stmt->fetch()) {
                     echo '<tr>';
-
-                    echo '<td>' . '<a class="simple_link" href="job_detail.php?job_id=' . $job_id . '">'
-                        . htmlspecialchars($job_id) 
+                    echo '<td>' . '<a class="simple_link" href="company_detail.php?company_id=' . $company_id . '">'
+                        . htmlspecialchars($company_id) 
                         . '</a>'
                         . '</td>';
 
-                    echo '<td>'. htmlspecialchars($name) .'</td>';
-                    if(strlen($description) <= 70)
-                        echo '<td>'. htmlspecialchars($description) .'</td>';
+                    echo '<td>'. htmlspecialchars($company_name) .'</td>';
+                    if(strlen($company_overview) <= 120)
+                        echo '<td>'. htmlspecialchars($company_overview) .'</td>';
                     else
-                        echo '<td>'. htmlspecialchars(substr($description, 0, 70)) .'</td>';
-                    echo '<td>'. htmlspecialchars($CTC) .'</t>';
-                    echo '<td>'. htmlspecialchars($perks) .'</td>';
-                    echo '<td>'. htmlspecialchars($min_cgpa) .'</td>';
-                    echo '<td>'. htmlspecialchars($date_of_placing) .'</td>';
+                        echo '<td>'. htmlspecialchars(substr($company_overview, 0, 120)) .'</td>';
+                    echo '<td>'. htmlspecialchars($company_website) .'</t>';
                     echo '</tr>';
                 }
 
                 echo '</table>';
-
+                $stmt->close();
             ?>
+            <br><br>
         </div>
-
+   
+</body>
+</html> 
+            
     </body>
 </html>
