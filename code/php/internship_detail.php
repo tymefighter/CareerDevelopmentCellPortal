@@ -4,7 +4,7 @@
         exit('Cannot Be Accessed Without Logging In');
     }
 
-    if($_SESSION['user_type'] != 'company') {
+    if($_SESSION['user_type'] != 'company' && $_SESSION['user_type'] != 'student') {
         exit('This webpage cannot be accessed by a ' . $_SESSION['user_type']);
     }
 
@@ -18,17 +18,19 @@
         exit('');
     }
 
-    if($_SESSION['company_id'] == null)
+    if($_SESSION['user_type'] != 'student' && $_SESSION['company_id'] == null)
         exit('Huge Error Occurred');
 
-    $query = 'select i.internship_id from internship as i, placed_internship as p_i where i.internship_id = ? and p_i.company_id = ? and i.internship_id = p_i.internship_id';
-    $stmt = $db->prepare($query);
-    $stmt->bind_param('ss', $_GET['internship_id'], $_SESSION['company_id']);
-    $stmt->execute();
-    $stmt->store_result();
+    if($_SESSION['user_type'] == 'company') {
+        $query = 'select i.internship_id from internship as i, placed_internship as p_i where i.internship_id = ? and p_i.company_id = ? and i.internship_id = p_i.internship_id';
+        $stmt = $db->prepare($query);
+        $stmt->bind_param('ss', $_GET['internship_id'], $_SESSION['company_id']);
+        $stmt->execute();
+        $stmt->store_result();
 
-    if($stmt->num_rows == 0) {
-        exit('Huge Error Occurred');
+        if($stmt->num_rows == 0) {
+            exit('Huge Error Occurred');
+        }
     }
 
     $_SESSION['internship_id'] = $_GET['internship_id'];
@@ -36,7 +38,7 @@
 
 <html>
 <head>
-        <title>Internship Details - Company</title>
+        <title>Internship Details</title>
         <link rel="stylesheet" href="../css_files/common.css">
         <link rel="stylesheet" href="../css_files/common_home.css">
         <link rel="stylesheet" href="../css_files/internship_job_detail.css">
@@ -68,14 +70,28 @@
             </li>
         </ul>
 
-        <div class="sidenav">
-            <br>
-            <a href="../php/company_profile.php"><> Profile</a>
-            <br>
-            <a href="../php/company_placed_internships.php">Placed Internships</a>
-            <br>
-            <a href="../php/company_placed_jobs.php">Placed Jobs</a>
-        </div>
+        <?php
+            if($_SESSION['user_type'] == 'company')
+                echo '<div class="sidenav">
+                    <br>
+                    <a href="../php/company_profile.php"><> Profile</a>
+                    <br>
+                    <a href="../php/company_placed_internships.php">Placed Internships</a>
+                    <br>
+                    <a href="../php/company_placed_jobs.php">Placed Jobs</a>
+                    </div>';
+            else
+                echo '<div class="sidenav">
+                    <br>
+                    <a href="../php/student_profile.php"><> Profile</a>
+                    <br>
+                    <a href="../php/student_resume.php">My Resume</a>
+                    <br>
+                    <a href="../php/student_applications.php">Applications</a>
+                    <br>
+                    <a href="../php/student_verification.php">Verification</a>
+                    </div>';
+        ?>
 
         <div class="main">
             
