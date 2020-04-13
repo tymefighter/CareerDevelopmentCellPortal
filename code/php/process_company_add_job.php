@@ -58,6 +58,27 @@
 
     if($stmt->execute())
     {
+        $stmt->close();
+
+        $query = 'SELECT name FROM branch';
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+        $stmt->bind_result($branch_name);
+        $branch_arr = array();
+        while($stmt->fetch()) {
+            if($_POST[$branch_name] == $branch_name)
+                array_push($branch_arr, $branch_name);
+        }
+        $stmt->close();
+
+        $query_insert = 'INSERT INTO required_branch_job VALUES (?, ?)';
+        $stmt_insert = $db->prepare($query_insert);
+        $stmt_insert->bind_param('ss', $branch_name, $job_id);
+        foreach($branch_arr as $branch_name) {
+            $stmt_insert->execute();
+        }
+        $stmt_insert->close();
+
         header("Location: ../php/company_placed_jobs.php");
         exit('');
     }

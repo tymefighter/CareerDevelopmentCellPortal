@@ -74,6 +74,21 @@
                 <br>
                 <label for="min_cgpa"><b>Minimum CGPA Allowed</b></label>
                 <input type="number" placeholder="Enter CGPA" name="min_cgpa" min="0" max="10" class="number" step="0.01" required>
+
+                <div align="left" style = "font-size: 20px;">
+                    <h3>Allowed Branches</h3>
+                    <input type="checkbox" name="civil_eng" value="civil_eng">
+                    <label for="civil_eng">Civil Engg.</label><br>
+                    
+                    <input type="checkbox" name="comp_sc" value="comp_sc">
+                    <label for="comp_sc">Computer Sc. and Engg.</label><br>
+
+                    <input type="checkbox" name="elec_eng" value="elec_eng">
+                    <label for="elec_eng">Electrical Engg.</label><br>
+
+                    <input type="checkbox" name="mech_eng" value="mech_eng">
+                    <label for="mech_eng">Mechanical Engg.</label><br>
+                </div>
                 
                 <button type="submit" id="login_button">Add Job</button>
             </div>
