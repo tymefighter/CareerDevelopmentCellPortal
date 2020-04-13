@@ -4,20 +4,21 @@
         exit('Cannot Be Accessed Without Logging In');
     }
 
-    if($_SESSION['user_type'] != 'company') {
+    if($_SESSION['user_type'] != 'student_vol' && $_SESSION['user_type'] != 'cdc_official') {
         exit('This webpage cannot be accessed by a ' . $_SESSION['user_type']);
     }
 ?>
+
 <html>
-    <head>
-        <title>Company Placed Internship</title>
+<head>
+        <title>Verification List</title>
         <link rel="stylesheet" href="../css_files/common.css">
         <link rel="stylesheet" href="../css_files/common_home.css">
         <link rel="stylesheet" href="../css_files/table.css">
         <script src='../javascript/automate_button.js'></script>
     </head>
     <body>
-    <ul class="nav">
+        <ul class="nav">
             <li class="nav"><a href='../php/home.php' class="nav">Home</a></li>
             <li class="nav"><a href='https://iitpkd.ac.in' class="nav">IIT Palakkad</a></li>
             <li class="nav"><a href="../php/companies.php" class="nav">Companies</a></li>
@@ -44,20 +45,15 @@
 
         <div class="sidenav">
             <br>
-            <a href="../php/company_profile.php"><> Profile</a>
+            <a href="../php/student_vol_profile.php"><> Profile</a>
             <br>
-            <a href="../php/company_placed_internships.php">Placed Internships</a>
-            <br>
-            <a href="../php/company_placed_jobs.php">Placed Jobs</a>
+            <a href="../php/student_vol_contribution.php">My Contribution</a>
         </div>
 
         <div class="main">
             <br>
-            <h2>Placed Internships</h2>
-            <a class="main_link" href="../php/company_add_internship.php">Add Internship</a>
-            <br><br>
+            <h2>Verification List</h2>
             <?php
-                
                 // Try to establish connection to cdc database via tymefighter@localhost user
                 $db = new mysqli ('localhost', 'tymefighter', 'tymefighter', 'cdc');
                     
@@ -68,52 +64,42 @@
                     exit('');
                 }
 
-                if($_SESSION['company_id'] == null)
-                    exit('Huge Error Occurred');
-
-                $query = 'call get_all_internships(?)';
+                $query = 'select s.roll_number, s.name, h.name, b.year_of_admission
+                    from student as s, has_branch as h, belongs_to as b, verification_req as v
+                    where s.roll_number = v.roll_number and s.roll_number = h.roll_number
+                        and b.roll_number = s.roll_number';
                 $stmt = $db->prepare($query);
-                $stmt->bind_param('s', $_SESSION['company_id']);
                 $stmt->execute();
-                $stmt->store_result();
-                
-                $stmt->bind_result($internship_id, $name, $description, $stipend, $duration, $min_cgpa, $date_of_placing);
+                $stmt->bind_result($roll_number, $name, $branch, $batch);
 
                 echo '<table>';
                 echo '<tr>
-                        <th>Internship Id</th>
+                        <th>Roll Number</th>
                         <th>Name</th>
-                        <th>Description</th>
-                        <th>Stipend</th>
-                        <th>Duration</th>
-                        <th>Min CGPA</th>
-                        <th>Date of Placing</th>
+                        <th>Branch</th>
+                        <th>Batch</th>
                     </tr>';
 
                 while($stmt->fetch()) {
                     echo '<tr>';
-                    echo '<td>' . '<a class="simple_link" href="internship_detail.php?internship_id=' . $internship_id . '">'
-                        . htmlspecialchars($internship_id) 
+                    echo '<td>' . '<a class="simple_link" href="student_detail.php?roll_number=' . $roll_number . '">'
+                        . htmlspecialchars($roll_number) 
                         . '</a>'
                         . '</td>';
 
                     echo '<td>'. htmlspecialchars($name) .'</td>';
-                    if(strlen($description) <= 70)
-                        echo '<td>'. htmlspecialchars($description) .'</td>';
-                    else
-                        echo '<td>'. htmlspecialchars(substr($description, 0, 70)) .'</td>';
-                    echo '<td>'. htmlspecialchars($stipend) .'</t>';
-                    echo '<td>'. htmlspecialchars($duration) .'</td>';
-                    echo '<td>'. htmlspecialchars($min_cgpa) .'</td>';
-                    echo '<td>'. htmlspecialchars($date_of_placing) .'</td>';
+                    echo '<td>'. htmlspecialchars($branch) .'</t>';
+                    echo '<td>'. htmlspecialchars($batch) .'</td>';
                     echo '</tr>';
                 }
 
                 echo '</table>';
                 $stmt->close();
-
             ?>
         </div>
-
+   
+</body>
+</html> 
+            
     </body>
 </html>

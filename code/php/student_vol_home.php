@@ -64,7 +64,7 @@
             <br><br>
             <a class="main_link" href="../php/browse_all_jobs.php">Browse Jobs</a>
             <br><br>
-            <a class="main_link" href="../php/student_vol_verification.php">Verification Applicant List</a>
+            <a class="main_link" href="../php/verification_list.php">Verification Applicant List</a>
             <br><br>
             <a class="main_link" href="../php/student_vol_add_content.php">Add Content</a>
             <br><br>
