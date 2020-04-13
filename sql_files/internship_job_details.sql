@@ -80,3 +80,6 @@ create procedure get_internship_details(in internship_id char(9))
             company.company_id = placed_internship.company_id;
     end #
 delimiter ;
+
+-- This procedure gives all details
+-- about a job

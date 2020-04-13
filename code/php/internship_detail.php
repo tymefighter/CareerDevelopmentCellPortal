@@ -96,6 +96,40 @@
                 );
 
                 $stmt->fetch();
+                $stmt->close();
+                
+
+
+                $query = 'select branch_name from required_branch_internship where internship_id = ?';
+                $stmt = $db->prepare($query);
+                $stmt->bind_param('s', $_SESSION['internship_id']);
+                $stmt->execute();
+                $stmt->bind_result($branch_name);
+
+
+                $branches = '';
+
+                while($stmt->fetch()) {
+                    if($branches != '')
+                        $branches = $branches . ', ';
+                    $branches = $branches . $branch_name;
+                }
+                $stmt->close();
+
+                $query = 'select year_of_admission from required_batch_internship where internship_id = ?';
+                $stmt = $db->prepare($query);
+                $stmt->bind_param('s', $_SESSION['internship_id']);
+                $stmt->execute();
+                $stmt->bind_result($batch);
+
+                $batches = '';
+
+                while($stmt->fetch()) {
+                    if($batches != '')
+                        $batches = $batches . ', ';
+                    $batches = $batches . $batch;
+                }
+                $stmt->close();
             ?>
 
             <br><br>
@@ -131,6 +165,14 @@
             <tr>
                 <th>Date Of Placing</th>
                 <td><?php echo $date; ?></td>
+            </tr>
+            <tr>
+                <th>Allowed Branches</th>
+                <td><?php echo $branches; ?></td>
+            </tr>
+            <tr>
+                <th>Allowed Batches</th>
+                <td><?php echo $batches; ?></td>
             </tr>
             </table>
 
