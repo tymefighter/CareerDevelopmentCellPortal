@@ -60,29 +60,36 @@
             <br>
             <h2>Verification</h2>
             <?php
-
                 // Try to establish connection to cdc database via tymefighter@localhost user
                 $db = new mysqli ('localhost', 'tymefighter', 'tymefighter', 'cdc');
                 
                 // Connection error, hence place error in log file
                 $error_num = mysqli_connect_errno();
                 if($error_num) {
-                    error_log("error conn(student_verification.php):  " . $error_num . "\n", 3, '../log_dir/log_file');
+                    error_log("error conn(send_verification_req.php):  " . $error_num . "\n", 3, '../log_dir/log_file');
                     exit('');
                 }
 
-                $query = 'select roll_number from is_verified where is_verified.roll_number = ?';
+                $query_check = 'select roll_number from verification_req where verification_req.roll_number = ?';
+                $stmt_check = $db->prepare($query_check);
+                $stmt_check->bind_param('s', $_SESSION['roll_number']);
+                $stmt_check->execute();
+                $stmt_check->store_result();
+
+                if($stmt_check->num_rows == 1) {
+                    $stmt_check->close();
+                    echo '<h3>Verification Request Already Sent</h3>';
+                    exit('');
+                }
+                $stmt_check->close();
+
+                $query = 'insert into verification_req values (?)';
                 $stmt = $db->prepare($query);
                 $stmt->bind_param('s', $_SESSION['roll_number']);
                 $stmt->execute();
-                $stmt->store_result();
-
-                if($stmt->num_rows == 0)
-                    echo '<a class="main_link" href="../php/send_verification_req.php">Send Verification Request</a>';
-                else
-                    echo '<h3 style="color:goldenrod;">You Are Already Verified</h3>';
-
                 $stmt->close();
+
+                echo '<h3>Verification Request Sent</h3>'
             ?>
         </div>
    

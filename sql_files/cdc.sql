@@ -935,6 +935,29 @@ LOCK TABLES `taken` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `verification_req`
+--
+
+DROP TABLE IF EXISTS `verification_req`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `verification_req` (
+  `roll_number` char(9) NOT NULL DEFAULT '',
+  PRIMARY KEY (`roll_number`),
+  CONSTRAINT `verification_req_ibfk_1` FOREIGN KEY (`roll_number`) REFERENCES `student` (`roll_number`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `verification_req`
+--
+
+LOCK TABLES `verification_req` WRITE;
+/*!40000 ALTER TABLE `verification_req` DISABLE KEYS */;
+/*!40000 ALTER TABLE `verification_req` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `volunteer`
 --
 
@@ -1070,4 +1093,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-13 20:17:58
+-- Dump completed on 2020-04-13 20:21:31
