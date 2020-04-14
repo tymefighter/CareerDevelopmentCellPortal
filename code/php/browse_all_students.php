@@ -79,7 +79,7 @@
 
                 while($stmt->fetch()) {
                     echo '<tr>';
-                    echo '<td>' . '<a class="simple_link" href="student_detail.php?roll_number=' . $roll_number . '">'
+                    echo '<td>' . '<a class="simple_link" href="student_profile.php?roll_number=' . $roll_number . '">'
                         . htmlspecialchars($roll_number) 
                         . '</a>'
                         . '</td>';

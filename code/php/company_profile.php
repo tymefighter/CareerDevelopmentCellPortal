@@ -76,7 +76,7 @@
 
         <div class="main">
             <br>
-            <h2>Profile</h2>
+            <h2>Company Profile</h2>
 
             <?php
 
@@ -106,11 +106,6 @@
 
                 if($stmt->num_rows == 0)
                     exit('Company Does Not Exist');
-
-                if($email_id_2 == null)
-                    $email_id_2 = '';
-                if($phone_2 == null)
-                    $phone_2 = '';
 
                 $stmt->fetch();
                 $stmt->close();
