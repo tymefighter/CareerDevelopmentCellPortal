@@ -45,14 +45,12 @@
 
         <div class="sidenav">
             <br>
-            <a href="../php/student_vol_profile.php"><> Profile</a>
-            <br>
-            <a href="../php/student_vol_contribution.php">My Contribution</a>
+            <a href="../php/cdc_official_profile.php"><> Profile</a>
         </div>
 
         <div class="main">
             <br>
-            <h2>Browse Internships</h2>
+            <h2>Browse Students</h2>
             <?php
 
                 // Try to establish connection to cdc database via tymefighter@localhost user
