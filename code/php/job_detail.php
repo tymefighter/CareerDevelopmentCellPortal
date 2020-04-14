@@ -200,6 +200,13 @@
 
                     $stmt->close();
                 }
+                else if($_SESSION['user_type'] == 'company') {
+                    
+                    if($_SESSION['company_id'] == null)
+                        exit('Huge Error Occurred');
+
+                    echo '<a href="../php/job_student_applied.php" class="main_link">Students Applied</a>';
+                }
             ?>
             <br><br>
             <div class="container" style="background-color:#f1f1f1">
