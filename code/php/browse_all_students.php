@@ -59,50 +59,35 @@
                 // Connection error, hence place error in log file
                 $error_num = mysqli_connect_errno();
                 if($error_num) {
-                    error_log("error conn(browse_all_internships.php):  " . $error_num . "\n", 3, '../log_dir/log_file');
+                    error_log("error conn(browse_all_students.php):  " . $error_num . "\n", 3, '../log_dir/log_file');
                     exit('');
                 }
 
-                $query = 'select i.internship_id, i.name, c.name, 
-                        i.description, i.stipend, i.duration, i.min_cgpa, p_i.date
-                    from internship as i, placed_internship as p_i, company as c
-                    where 
-                        i.internship_id = p_i.internship_id
-                        and p_i.company_id = c.company_id';
+                $query = 'call get_all_student_info()';
                 $stmt = $db->prepare($query);
                 $stmt->execute();
-                $stmt->bind_result($internship_id, $internship_name, $company_name, $description,
-                    $stipend, $duration, $min_cgpa, $date);
+                $stmt->bind_result($roll_number, $name, $cgpa, $branch, $batch);
 
                 echo '<table>';
                 echo '<tr>
-                        <th>Internship Id</th>
-                        <th>Internship Name</th>
-                        <th>Company Name</th>
-                        <th>Description</th>
-                        <th>Stipend</th>
-                        <th>Duration</th>
-                        <th>Min CGPA</th>
-                        <th>Date of Placing</th>
+                        <th>Roll Number</th>
+                        <th>Name</th>
+                        <th>CGPA</th>
+                        <th>Branch</th>
+                        <th>Batch</th>
                     </tr>';
 
                 while($stmt->fetch()) {
                     echo '<tr>';
-                    echo '<td>' . '<a class="simple_link" href="internship_detail.php?internship_id=' . $internship_id . '">'
-                        . htmlspecialchars($internship_id) 
+                    echo '<td>' . '<a class="simple_link" href="student_detail.php?roll_number=' . $roll_number . '">'
+                        . htmlspecialchars($roll_number) 
                         . '</a>'
                         . '</td>';
 
-                    echo '<td>'. htmlspecialchars($internship_name) .'</td>';
-                    echo '<td>'. htmlspecialchars($company_name) .'</td>';
-                    if(strlen($description) <= 40)
-                        echo '<td>'. htmlspecialchars($description) .'</td>';
-                    else
-                        echo '<td>'. htmlspecialchars(substr($description, 0, 40)) .'</td>';
-                    echo '<td>'. htmlspecialchars($stipend) .'</t>';
-                    echo '<td>'. htmlspecialchars($duration) .'</t>';
-                    echo '<td>'. htmlspecialchars($min_cgpa) .'</t>';
-                    echo '<td>'. htmlspecialchars($date) .'</t>';
+                    echo '<td>'. htmlspecialchars($name) .'</td>';
+                    echo '<td>'. htmlspecialchars($cgpa) .'</td>';
+                    echo '<td>'. htmlspecialchars($branch) .'</t>';
+                    echo '<td>'. htmlspecialchars($batch) .'</t>';
                     echo '</tr>';
                 }
 
