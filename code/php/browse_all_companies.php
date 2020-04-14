@@ -88,7 +88,7 @@
 
                 while($stmt->fetch()) {
                     echo '<tr>';
-                    echo '<td>' . '<a class="simple_link" href="company_detail.php?company_id=' . $company_id . '">'
+                    echo '<td>' . '<a class="simple_link" href="company_profile.php?company_id=' . $company_id . '">'
                         . htmlspecialchars($company_id) 
                         . '</a>'
                         . '</td>';
