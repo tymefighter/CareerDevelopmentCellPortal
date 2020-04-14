@@ -28,7 +28,7 @@
     // Connection error, hence place error in log file
     $error_num = mysqli_connect_errno();
     if($error_num) {
-        error_log("error conn(process_registeration_company.php):  " . $error_num . "\n", 3, '../log_dir/log_file');
+        error_log("error conn(process_company_add_internship.php):  " . $error_num . "\n", 3, '../log_dir/log_file');
         exit('');
     }
 
