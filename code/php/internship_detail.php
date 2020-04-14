@@ -200,7 +200,34 @@
                 <td><?php echo $batches; ?></td>
             </tr>
             </table>
+            <br>
+            <?php
+                if($_SESSION['user_type'] == 'student') {
 
+                    if($_SESSION['roll_number'] == null)
+                        exit('Huge Error Occurred');
+
+                    $query = 'select roll_number from is_verified where roll_number = ?';
+                    $stmt = $db->prepare($query);
+                    $stmt->bind_param('s', $_SESSION['roll_number']);
+                    $stmt->execute();
+                    $stmt->store_result();
+
+                    if($stmt->num_rows == 0) {
+                        echo '<h4>You cannot apply since you have not been verified yet</h4>';
+                    }
+                    else {
+                        $_SESSION['internship_id'] = $internship_id;
+                        echo '<a href="../php/student_apply_internship.php" class="main_link">Apply For Internship</a>';
+                    }
+
+                    $stmt->close();
+                }
+            ?>
+            <br><br>
+            <div class="container" style="background-color:#f1f1f1">
+                <br><br>
+            </div>
         </div>
    
 </body>
