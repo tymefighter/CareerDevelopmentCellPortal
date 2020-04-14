@@ -10,7 +10,7 @@
 ?>
 <html>
     <head>
-        <title>Student Browse Jobs</title>
+        <title>Student Applications</title>
         <link rel="stylesheet" href="../css_files/common.css">
         <link rel="stylesheet" href="../css_files/common_home.css">
         <link rel="stylesheet" href="../css_files/table.css">
@@ -55,41 +55,81 @@
 
         <div class="main">
             <br>
-            <h2>Internships</h2>
-            <br><br>
             <?php
-                
                 // Try to establish connection to cdc database via tymefighter@localhost user
                 $db = new mysqli ('localhost', 'tymefighter', 'tymefighter', 'cdc');
                     
                 // Connection error, hence place error in log file
                 $error_num = mysqli_connect_errno();
                 if($error_num) {
-                    error_log("error conn(student_browse_internship.php):  " . $error_num . "\n", 3, '../log_dir/log_file');
+                    error_log("error conn(student_applications.php):  " . $error_num . "\n", 3, '../log_dir/log_file');
                     exit('');
                 }
 
                 if($_SESSION['roll_number'] == null)
                     exit('Huge Error Occurred');
-
-                $query = 'call get_allowed_jobs(?)';
+                
+                // Internships Applied
+                echo '<h2>Internships</h2><br><br>';
+                $query = 'call get_applied_internships(?)';
                 $stmt = $db->prepare($query);
                 $stmt->bind_param('s', $_SESSION['roll_number']);
                 $stmt->execute();
                 $stmt->store_result();
                 
-                $stmt->bind_result($job_id, $name, $company_name, $description, $CTC, $perks, $min_cgpa, $date_of_placing);
+                $stmt->bind_result($internship_id, $name, $description, $stipend, $duration, $min_cgpa, $date_of_application);
+
+                echo '<table>';
+                echo '<tr>
+                        <th>Internship Id</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Stipend</th>
+                        <th>Duration</th>
+                        <th>Min CGPA</th>
+                        <th>Date of Application</th>
+                    </tr>';
+
+                while($stmt->fetch()) {
+                    echo '<tr>';
+                    echo '<td>' . '<a class="simple_link" href="internship_detail.php?internship_id=' . $internship_id . '">'
+                        . htmlspecialchars($internship_id) 
+                        . '</a>'
+                        . '</td>';
+                    echo '<td>'. htmlspecialchars($name) .'</td>';
+                    if(strlen($description) <= 70)
+                        echo '<td>'. htmlspecialchars($description) .'</td>';
+                    else
+                        echo '<td>'. htmlspecialchars(substr($description, 0, 70)) .'</td>';
+                    echo '<td>'. htmlspecialchars($stipend) .'</t>';
+                    echo '<td>'. htmlspecialchars($duration) .'</td>';
+                    echo '<td>'. htmlspecialchars($min_cgpa) .'</td>';
+                    echo '<td>'. htmlspecialchars($date_of_application) .'</td>';
+                    echo '</tr>';
+                }
+
+                echo '</table>';
+                $stmt->close();
+                
+                // Jobs Applied
+                echo '<h2>Jobs</h2><br><br>';
+                $query = 'call get_applied_jobs(?)';
+                $stmt = $db->prepare($query);
+                $stmt->bind_param('s', $_SESSION['roll_number']);
+                $stmt->execute();
+                $stmt->store_result();
+                
+                $stmt->bind_result($job_id, $name, $description, $CTC, $perks, $min_cgpa, $date_of_application);
 
                 echo '<table>';
                 echo '<tr>
                         <th>Job Id</th>
                         <th>Name</th>
-                        <th>Company name</th>
                         <th>Description</th>
                         <th>CTC</th>
                         <th>Perks</th>
                         <th>Min CGPA</th>
-                        <th>Date of Placing</th>
+                        <th>Date of Application</th>
                     </tr>';
 
                 while($stmt->fetch()) {
@@ -99,7 +139,6 @@
                         . '</a>'
                         . '</td>';
                     echo '<td>'. htmlspecialchars($name) .'</td>';
-                    echo '<td>'. htmlspecialchars($company_name) .'</td>';
                     if(strlen($description) <= 70)
                         echo '<td>'. htmlspecialchars($description) .'</td>';
                     else
@@ -111,7 +150,7 @@
                     else
                         echo '<td>'. htmlspecialchars(substr($perks, 0, 70)) .'</td>';
                     echo '<td>'. htmlspecialchars($min_cgpa) .'</td>';
-                    echo '<td>'. htmlspecialchars($date_of_placing) .'</td>';
+                    echo '<td>'. htmlspecialchars($date_of_application) .'</td>';
                     echo '</tr>';
                 }
 

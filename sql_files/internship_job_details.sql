@@ -98,3 +98,38 @@ create procedure get_job_details(in job_id char(9))
             company.company_id = placed_job.company_id;
     end #
 delimiter ;
+
+-- This procedure gives all internships and their details
+-- to which a student with a particular roll number as
+-- applied to
+delimiter #
+create procedure get_applied_internships(in roll_number char(9))
+    begin
+        select
+            internship.internship_id, internship.name, internship.description,
+            internship.stipend, internship.duration, internship.min_cgpa,
+            apply_internship.date
+        from
+            internship, apply_internship
+        where
+            roll_number = apply_internship.roll_number
+            and internship.internship_id = apply_internship.internship_id;
+    end #
+delimiter ;
+
+-- This procedure gives all jobs and their details
+-- to which a student with a particular roll number as
+-- applied to
+delimiter #
+create procedure get_applied_jobs(in roll_number char(9))
+    begin
+        select
+            job.job_id, job.name, job.description,
+            job.CTC, job.perks, job.min_cgpa, apply_job.date
+        from
+            job, apply_job
+        where
+            roll_number = apply_job.roll_number
+            and job.job_id = apply_job.job_id;
+    end #
+delimiter ;

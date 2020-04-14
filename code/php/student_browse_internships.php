@@ -112,6 +112,7 @@
                 }
 
                 echo '</table>';
+                $stmt->close();
 
             ?>
         </div>
