@@ -177,7 +177,7 @@
                 <td><?php echo $branches; ?></td>
             </tr>
             </table>
-
+            <br>
             <?php
                 if($_SESSION['user_type'] == 'student') {
 
