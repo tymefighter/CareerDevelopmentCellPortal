@@ -43,12 +43,20 @@
             </li>
         </ul>
 
-        <div class="sidenav">
-            <br>
-            <a href="../php/student_vol_profile.php"><> Profile</a>
-            <br>
-            <a href="../php/student_vol_contribution.php">My Contribution</a>
-        </div>
+        <?php
+            if($_SESSION['user_type'] == 'student_vol')
+                echo'<div class="sidenav">
+                        <br>
+                        <a href="../php/student_vol_profile.php"><> Profile</a>
+                        <br>
+                        <a href="../php/student_vol_contribution.php">My Contribution</a>
+                    </div>';
+            else
+                echo '<div class="sidenav">
+                        <br>
+                        <a href="../php/cdc_official_profile.php"><> Profile</a>
+                    </div>';
+        ?>
 
         <div class="main">
             <br>

@@ -4,14 +4,14 @@
         exit('Cannot Be Accessed Without Logging In');
     }
 
-    if($_SESSION['user_type'] != 'student_vol' && $_SESSION['user_type'] != 'cdc_official') {
+    if($_SESSION['user_type'] != 'cdc_official') {
         exit('This webpage cannot be accessed by a ' . $_SESSION['user_type']);
     }
 ?>
 
 <html>
 <head>
-        <title>Browse All Jobs</title>
+        <title>Browse All Students</title>
         <link rel="stylesheet" href="../css_files/common.css">
         <link rel="stylesheet" href="../css_files/common_home.css">
         <link rel="stylesheet" href="../css_files/table.css">
@@ -43,24 +43,16 @@
             </li>
         </ul>
 
-        <?php
-            if($_SESSION['user_type'] == 'student_vol')
-                echo'<div class="sidenav">
-                        <br>
-                        <a href="../php/student_vol_profile.php"><> Profile</a>
-                        <br>
-                        <a href="../php/student_vol_contribution.php">My Contribution</a>
-                    </div>';
-            else
-                echo '<div class="sidenav">
-                        <br>
-                        <a href="../php/cdc_official_profile.php"><> Profile</a>
-                    </div>';
-        ?>
+        <div class="sidenav">
+            <br>
+            <a href="../php/student_vol_profile.php"><> Profile</a>
+            <br>
+            <a href="../php/student_vol_contribution.php">My Contribution</a>
+        </div>
 
         <div class="main">
             <br>
-            <h2>Browse Jobs</h2>
+            <h2>Browse Internships</h2>
             <?php
 
                 // Try to establish connection to cdc database via tymefighter@localhost user
@@ -69,49 +61,50 @@
                 // Connection error, hence place error in log file
                 $error_num = mysqli_connect_errno();
                 if($error_num) {
-                    error_log("error conn(browse_all_jobs.php):  " . $error_num . "\n", 3, '../log_dir/log_file');
+                    error_log("error conn(browse_all_internships.php):  " . $error_num . "\n", 3, '../log_dir/log_file');
                     exit('');
                 }
 
-                $query = 'select j.job_id, j.name, c.name, j.description, j.CTC, j.perks, j.min_cgpa, p_j.date
-                    from job as j, company as c, placed_job as p_j
-                    where j.job_id = p_j.job_id and c.company_id = p_j.company_id';
+                $query = 'select i.internship_id, i.name, c.name, 
+                        i.description, i.stipend, i.duration, i.min_cgpa, p_i.date
+                    from internship as i, placed_internship as p_i, company as c
+                    where 
+                        i.internship_id = p_i.internship_id
+                        and p_i.company_id = c.company_id';
                 $stmt = $db->prepare($query);
                 $stmt->execute();
-                $stmt->bind_result($job_id, $name, $company_name, $description, $CTC, $perks, $min_cgpa, $date_of_placing);
+                $stmt->bind_result($internship_id, $internship_name, $company_name, $description,
+                    $stipend, $duration, $min_cgpa, $date);
 
                 echo '<table>';
                 echo '<tr>
-                        <th>Job Id</th>
-                        <th>Name</th>
-                        <th>Company name</th>
+                        <th>Internship Id</th>
+                        <th>Internship Name</th>
+                        <th>Company Name</th>
                         <th>Description</th>
-                        <th>CTC</th>
-                        <th>Perks</th>
+                        <th>Stipend</th>
+                        <th>Duration</th>
                         <th>Min CGPA</th>
                         <th>Date of Placing</th>
                     </tr>';
 
                 while($stmt->fetch()) {
                     echo '<tr>';
-                    echo '<td>' . '<a class="simple_link" href="job_detail.php?job_id=' . $job_id . '">'
-                        . htmlspecialchars($job_id) 
+                    echo '<td>' . '<a class="simple_link" href="internship_detail.php?internship_id=' . $internship_id . '">'
+                        . htmlspecialchars($internship_id) 
                         . '</a>'
                         . '</td>';
-                    echo '<td>'. htmlspecialchars($name) .'</td>';
+
+                    echo '<td>'. htmlspecialchars($internship_name) .'</td>';
                     echo '<td>'. htmlspecialchars($company_name) .'</td>';
-                    if(strlen($description) <= 70)
+                    if(strlen($description) <= 40)
                         echo '<td>'. htmlspecialchars($description) .'</td>';
                     else
-                        echo '<td>'. htmlspecialchars(substr($description, 0, 70)) .'</td>';
-                    
-                    echo '<td>'. htmlspecialchars($CTC) .'</t>';
-                    if(strlen($perks) <= 70)
-                        echo '<td>'. htmlspecialchars($perks) .'</td>';
-                    else
-                        echo '<td>'. htmlspecialchars(substr($perks, 0, 70)) .'</td>';
-                    echo '<td>'. htmlspecialchars($min_cgpa) .'</td>';
-                    echo '<td>'. htmlspecialchars($date_of_placing) .'</td>';
+                        echo '<td>'. htmlspecialchars(substr($description, 0, 40)) .'</td>';
+                    echo '<td>'. htmlspecialchars($stipend) .'</t>';
+                    echo '<td>'. htmlspecialchars($duration) .'</t>';
+                    echo '<td>'. htmlspecialchars($min_cgpa) .'</t>';
+                    echo '<td>'. htmlspecialchars($date) .'</t>';
                     echo '</tr>';
                 }
 

@@ -56,17 +56,17 @@
                 ?>
             </div>
             <br><br>
-            <a class="main_link" href="../php/cdc_official_browse_companies.php">Browse Companies</a>
+            <a class="main_link" href="../php/browse_all_companies.php">Browse Companies</a>
             <br><br>
-            <a class="main_link" href="../php/cdc_official_browse_internships.php">Browse Internships</a>
+            <a class="main_link" href="../php/browse_all_internships.php">Browse Internships</a>
             <br><br>
-            <a class="main_link" href="../php/cdc_official_browse_jobs.php">Browse Jobs</a>
+            <a class="main_link" href="../php/browse_all_jobs.php">Browse Jobs</a>
             <br><br>
-            <a class="main_link" href="../php/cdc_official_browse_students.php">Browse Students</a>
+            <a class="main_link" href="../php/browse_all_students.php">Browse Students</a>
             <br><br>
-            <a class="main_link" href="../php/cdc_official_browse_volunteers.php">Browse Volunteers</a>
+            <a class="main_link" href="../php/browse_all_volunteers.php">Browse Volunteers</a>
             <br><br>
-            <a class="main_link" href="../php/cdc_official_browse_edit_content.php">Edit Content</a>
+            <a class="main_link" href="../php/edit_content.php">Edit Content</a>
         </div>
    
 </body>

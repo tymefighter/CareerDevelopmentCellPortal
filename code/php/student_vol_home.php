@@ -66,7 +66,7 @@
             <br><br>
             <a class="main_link" href="../php/verification_list.php">Verification Applicant List</a>
             <br><br>
-            <a class="main_link" href="../php/student_vol_add_content.php">Add Content</a>
+            <a class="main_link" href="../php/edit_content.php">Edit Content</a>
             <br><br>
         </div>
    
