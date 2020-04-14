@@ -13,7 +13,7 @@
         <title>Student Browse Internship</title>
         <link rel="stylesheet" href="../css_files/common.css">
         <link rel="stylesheet" href="../css_files/common_home.css">
-        <link rel="stylesheet" href="../css_files/company_placed.css">
+        <link rel="stylesheet" href="../css_files/table.css">
         <script src='../javascript/automate_button.js'></script>
     </head>
     <body>
