@@ -16,10 +16,13 @@ create procedure show_verified_branch(in branch varchar(30))
     end #
 delimiter ;
 
--- This procedure verifies an unverified student
+-- This procedure verifies an unverified student after
+-- removing her/his verification request
 delimiter #
 create procedure verify_student(in roll_number char(9))
 begin
+    delete from verification_req where roll_number = roll_number;
+
     if (roll_number not in (select is_verified.roll_number from is_verified)) then
         insert into is_verified values (roll_number);
     end if;
