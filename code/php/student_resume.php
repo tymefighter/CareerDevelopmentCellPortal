@@ -95,7 +95,7 @@
                 // If user is a student, then she/he can upload a new resume
                 echo '<form action="upload_resume.php" method="post" enctype="multipart/form-data">
                         <h3 style="color:goldenrod;">Upload Resume</h3>
-                        <input type="file" name="resumeFile">
+                        <input type="file" name="resumeFile" accept=".pdf">
                         <button type="submit" id="login_button">Upload</button>
                     </form>';
             ?>

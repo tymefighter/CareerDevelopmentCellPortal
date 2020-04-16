@@ -28,3 +28,12 @@ begin
     end if;
 end #
 delimiter ;
+
+-- Unverify student and remove verification request
+delimiter #
+create procedure unverify_student(in roll_number char(9))
+begin
+    delete from verification_req where roll_number = roll_number;
+    delete from is_verified where roll_number = roll_number;
+end #
+delimiter ;
