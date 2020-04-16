@@ -274,7 +274,20 @@
                 <td><?php echo $cgpa; ?></td>
             </tr>
             </table>
-
+            <br>
+            <a class="main_link" href="../php/student_resume.php">Resume</a>
+            <br><br>
+            <?php
+                if($_SESSION['user_type'] == 'student_vol')
+                    echo '<a class="main_link" href="../php/verify_student.php">Verify Student</a>
+                        <br><br>';
+                else if($_SESSION['user_type'] == 'student')
+                    echo '<a class="main_link" href="../php/student_update_academic.php">Update Academic Details</a>
+                        <br><br>'
+            ?>
+            <div class="container" style="background-color:#f1f1f1">
+                <br><br><br>
+            </div><br>
         </div>
    
 </body>

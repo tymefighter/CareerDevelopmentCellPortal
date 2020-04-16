@@ -4,17 +4,16 @@
         exit('Cannot Be Accessed Without Logging In');
     }
 
-    if($_SESSION['user_type'] != 'student_vol' && $_SESSION['user_type'] != 'cdc_official') {
+    if($_SESSION['user_type'] != 'student') {
         exit('This webpage cannot be accessed by a ' . $_SESSION['user_type']);
     }
 ?>
 
 <html>
 <head>
-        <title>Verification List</title>
+        <title>Process Update Academic</title>
         <link rel="stylesheet" href="../css_files/common.css">
         <link rel="stylesheet" href="../css_files/common_home.css">
-        <link rel="stylesheet" href="../css_files/table.css">
         <script src='../javascript/automate_button.js'></script>
     </head>
     <body>
@@ -45,57 +44,45 @@
 
         <div class="sidenav">
             <br>
-            <a href="../php/student_vol_profile.php"><> Profile</a>
+            <a href="../php/student_profile.php"><> Profile</a>
             <br>
-            <a href="../php/student_vol_contribution.php">My Contribution</a>
+            <a href="../php/student_resume.php">My Resume</a>
+            <br>
+            <a href="../php/student_applications.php">Applications</a>
+            <br>
+            <a href="../php/student_verification.php">Verification</a>
         </div>
 
         <div class="main">
             <br>
-            <h2>Verification List</h2>
+            <h2>Updating Details</h2>
             <?php
+
+                if($_SESSION['roll_number'] == null)
+                    exit('Huge Error Occurred');
+
+                $roll_number = $_SESSION['roll_number'];
+
                 // Try to establish connection to cdc database via tymefighter@localhost user
                 $db = new mysqli ('localhost', 'tymefighter', 'tymefighter', 'cdc');
-                    
+                            
                 // Connection error, hence place error in log file
                 $error_num = mysqli_connect_errno();
                 if($error_num) {
-                    error_log("error conn(company_placed_internship.php):  " . $error_num . "\n", 3, '../log_dir/log_file');
+                    error_log("error conn(process_update_academic.php):  " . $error_num . "\n", 3, '../log_dir/log_file');
                     exit('');
                 }
 
-                $query = 'select s.roll_number, s.name, h.name, b.year_of_admission
-                    from student as s, has_branch as h, belongs_to as b, verification_req as v
-                    where s.roll_number = v.roll_number and s.roll_number = h.roll_number
-                        and b.roll_number = s.roll_number';
+                $query = 'call update_academic_details(?, ?, ?, ?, ?, ?, ?, ?, ?)';
                 $stmt = $db->prepare($query);
+                $stmt->bind_param('sdddddddd', $roll_number, $_POST['sem1'], $_POST['sem2'], $_POST['sem3'], 
+                    $_POST['sem4'], $_POST['sem5'], $_POST['sem6'], $_POST['sem7'], $_POST['sem8']);
                 $stmt->execute();
-                $stmt->bind_result($roll_number, $name, $branch, $batch);
-
-                echo '<table>';
-                echo '<tr>
-                        <th>Roll Number</th>
-                        <th>Name</th>
-                        <th>Branch</th>
-                        <th>Batch</th>
-                    </tr>';
-
-                while($stmt->fetch()) {
-                    echo '<tr>';
-                    echo '<td>' . '<a class="simple_link" href="student_profile.php?roll_number=' . $roll_number . '">'
-                        . htmlspecialchars($roll_number) 
-                        . '</a>'
-                        . '</td>';
-
-                    echo '<td>'. htmlspecialchars($name) .'</td>';
-                    echo '<td>'. htmlspecialchars($branch) .'</t>';
-                    echo '<td>'. htmlspecialchars($batch) .'</td>';
-                    echo '</tr>';
-                }
-
-                echo '</table>';
                 $stmt->close();
             ?>
+
+            <h3>Academic Details Successfully Changed</h3>
+            <a class="main_link" href="../php/student_profile.php">Profile</a>
         </div>
    
 </body>
