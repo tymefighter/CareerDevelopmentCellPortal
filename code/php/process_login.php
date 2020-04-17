@@ -124,10 +124,11 @@
 
     // The following variable stores the number of invalid logins
     // made by the user
-    if($_SESSION['invalid_login'] == null)
-        $_SESSION['invalid_login'] = 1;
+    $_SESSION['invalid_login'] = TRUE;
+    if($_SESSION['invalid_attempt'] == null)
+        $_SESSION['invalid_attempt'] = 1;
     else
-        $_SESSION['invalid_login'] = $_SESSION['invalid_login'] + 1;
+        $_SESSION['invalid_attempt'] = $_SESSION['invalid_attempt'] + 1;
 
     // Now, we move back to login page
     die(header("location:login.php"));
