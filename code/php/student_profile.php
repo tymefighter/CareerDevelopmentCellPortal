@@ -122,6 +122,34 @@
             <br>
             <h2>Student Profile</h2>
             <?php
+
+                if($roll_number == null)
+                    exit('Huge error occurred');
+
+                $image_extensions = array('.jpg', '.jpeg', '.png');
+                $picture_is_present = false;
+
+                foreach($image_extensions as $ext) {
+                    $img_path = '../profile_images/' . $roll_number . $ext;
+
+                    $fp = fopen($img_path, 'r');
+                    if($fp == false)
+                        continue;
+
+                    $picture_is_present = true;
+                    
+                    echo '<img border="0" alt="profile_picture" src="' . $img_path . '" width="300" height="200">';
+
+                    fclose($fp);
+                    break;
+                }
+
+                if($picture_is_present == false) {
+                    echo '<a href="add_profile_picture.php">
+                        <img border="0" alt="profile_picture_default" src="../profile_images/default.jpg" width="300" height="200">
+                        </a>';
+                }
+
                 // General Student Details
                 $query = 'SELECT name, nationality, dob, gender, tenth_percentage, tenth_board,
                         twelfth_percentage, twelfth_board, JEE_main_rank, JEE_advanced_rank, bldg_name,
