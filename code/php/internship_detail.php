@@ -1,11 +1,31 @@
 <?php
     session_start();
+    if ($_SESSION['login_info'] == null) {
+		$line = file_get_contents("../login_info.txt") or die("Unable to open file!");
+		$lines = explode("\n", $line);
+		if (count($lines) < 4)
+	   		die("Some login information are missing!");
+       	$_SESSION['server']   = $lines[0];
+       	$_SESSION['user']     = $lines[1];
+       	$_SESSION['pass']     = $lines[2];
+       	$_SESSION['database'] = $lines[3];
+       	$_SESSION['login_info'] = TRUE;
+    }
+    
+    $server	= $_SESSION['server'];
+    $user	= $_SESSION['user'];
+    $pass	= $_SESSION['pass'];
+    $database	= $_SESSION['database'];
+?>
+
+<?php
+
     if($_SESSION['logged_in'] == null || $_SESSION['logged_in'] == false) {
         exit('Cannot Be Accessed Without Logging In');
     }
 
-    // Try to establish connection to cdc database via tymefighter@localhost user
-    $db = new mysqli ('localhost', 'tymefighter', 'tymefighter', 'cdc');
+    // Try to establish connection to cdc database
+    $db = new mysqli ($server, $user, $pass, $database);
                     
     // Connection error, hence place error in log file
     $error_num = mysqli_connect_errno();

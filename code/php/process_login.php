@@ -74,8 +74,28 @@
 <?php
 
     session_start();
-    // Try to establish connection to cdc database via mustang28@localhost user
-    $db = new mysqli ('localhost', 'mustang28', 'mustang28', 'cdc');
+    if ($_SESSION['login_info'] == null) {
+	$line = file_get_contents("../login_info.txt") or die("Unable to open file!");
+	$lines = explode("\n", $line);
+	if (count($lines) < 4)
+	   die("Some login information are missing!");
+       	$_SESSION['server']   = $lines[0];
+       	$_SESSION['user']     = $lines[1];
+       	$_SESSION['pass']     = $lines[2];
+       	$_SESSION['database'] = $lines[3];
+       	$_SESSION['login_info'] = TRUE;
+    }
+    
+    $server	= $_SESSION['server'];
+    $user	= $_SESSION['user'];
+    $pass	= $_SESSION['pass'];
+    $database	= $_SESSION['database'];
+?>
+
+<?php
+    
+    // Try to establish connection to cdc database
+    $db = new mysqli ($server, $user, $pass, $database);
     // Connection error, hence place error in log file
     $error_num = mysqli_connect_errno();
     if($error_num) {
@@ -92,7 +112,8 @@
     // Valid Login
     if($stmt->num_rows != 0) {
     
-        $_SESSION['invalid_login'] = 0; // Valid login, hence set count to 0            
+        $_SESSION['invalid_attempt'] = 0; // Valid login, hence set count to 0
+        $_SESSION['invalid_login'] = FALSE;
 
         $stmt->bind_result($user_type);
         $stmt->fetch();
