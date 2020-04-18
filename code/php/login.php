@@ -51,25 +51,25 @@
         <form action="../php/process_login.php" method="post" id="login_form">
           
             <div class="container">
-              <label for="username"><b>Username</b></label>
-              <input type="text" placeholder="Enter Username" name="username"
-	      required="" oninvalid="this.setCustomValidity('Username is Required')"
-	      oninput="setCustomValidity('')">
+                <label for="username"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="username"
+	                required="" oninvalid="this.setCustomValidity('Username is Required')"
+	                oninput="setCustomValidity('')">
           
-              <label for="password"><b>Password</b></label>
-              <input type="password" placeholder="Enter Password" name="password"
-	      required="" oninvalid="this.setCustomValidity('Please enter your password')"
-	      oninput="setCustomValidity('')">
+                <label for="password"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="password"
+	                required="" oninvalid="this.setCustomValidity('Please enter your password')"
+	                oninput="setCustomValidity('')">
                   
-              <button type="submit" id="login_button">Login</button>
-	      <?php
-		    $attempt = $_SESSION["invalid_login"];
-	      	    if ($attempt != null) {
-		       $invalid = "Invalid Username or Password";
-		       echo $invalid;
-		       $_SESSION["invalid_login"] = null;
-		    }
-	      ?>
+                <button type="submit" id="login_button">Login</button>
+                <?php
+                    $attempt = $_SESSION["invalid_login"];
+                    if ($attempt != null) {
+                        $invalid = "Invalid Username or Password";
+                        echo $invalid;
+                        $_SESSION["invalid_login"] = null;
+                    }
+                ?>
             </div>
             
         </form>
