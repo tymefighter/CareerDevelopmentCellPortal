@@ -158,14 +158,16 @@
 
                     $picture_is_present = true;
                     
-                    echo '<img border="0" alt="profile_picture" src="' . $img_path . '" width="300" height="200">';
+                    echo '<a style="text-decoration:none;" href="add_profile_picture.php">
+                        <img border="0" alt="profile_picture" src="' . $img_path . '" width="300" height="200">
+                        </a>';
 
                     fclose($fp);
                     break;
                 }
 
                 if($picture_is_present == false) {
-                    echo '<a href="add_profile_picture.php">
+                    echo '<a style="text-decoration:none;" href="add_profile_picture.php">
                         <img border="0" alt="profile_picture_default" src="../profile_images/default.jpg" width="300" height="200">
                         </a>';
                 }
