@@ -72,32 +72,48 @@
 ?>
 
 <?php
-    session_start();
 
-    // Try to establish connection to cdc database via tymefighter@localhost user
-    $db = new mysqli ('localhost', 'tymefighter', 'tymefighter', 'cdc');
+    session_start();
+    if ($_SESSION['login_info'] == null) {
+	$line = file_get_contents("../login_info.txt") or die("Unable to open file!");
+	$lines = explode("\n", $line);
+	if (count($lines) < 4)
+	   die("Some login information are missing!");
+       	$_SESSION['server']   = $lines[0];
+       	$_SESSION['user']     = $lines[1];
+       	$_SESSION['pass']     = $lines[2];
+       	$_SESSION['database'] = $lines[3];
+       	$_SESSION['login_info'] = TRUE;
+    }
     
+    $server	= $_SESSION['server'];
+    $user	= $_SESSION['user'];
+    $pass	= $_SESSION['pass'];
+    $database	= $_SESSION['database'];
+?>
+
+<?php
+    
+    // Try to establish connection to cdc database
+    $db = new mysqli ($server, $user, $pass, $database);
     // Connection error, hence place error in log file
     $error_num = mysqli_connect_errno();
     if($error_num) {
         error_log("error conn(process_login.php):  " . $error_num . "\n", 3, '../log_dir/log_file');
         exit('');
     }
-
     $username = $_POST['username'];
     $password = $_POST['password'];
-
     $query = "SELECT user_type FROM login_details WHERE username = ? AND password = SHA(?)";
-
     $stmt = $db->prepare($query);
     $stmt->bind_param('ss', $username, $password);
     $stmt->execute();
-
     $stmt->store_result();
     // Valid Login
     if($stmt->num_rows != 0) {
     
-        $_SESSION['invalid_login'] = 0; // Valid login, hence set count to 0            
+        $_SESSION['invalid_attempt'] = 0; // Valid login, hence set count to 0
+        $_SESSION['invalid_login'] = FALSE;
 
         $stmt->bind_result($user_type);
         $stmt->fetch();
@@ -129,51 +145,12 @@
 
     // The following variable stores the number of invalid logins
     // made by the user
-    if($_SESSION['invalid_login'] == null)
-        $_SESSION['invalid_login'] = 1;
+    $_SESSION['invalid_login'] = TRUE;
+    if($_SESSION['invalid_attempt'] == null)
+        $_SESSION['invalid_attempt'] = 1;
     else
-        $_SESSION['invalid_login'] = $_SESSION['invalid_login'] + 1;
+        $_SESSION['invalid_attempt'] = $_SESSION['invalid_attempt'] + 1;
 
-    // Now, we display the page with an error message
+    // Now, we move back to login page
+    die(header("location:login.php"));
 ?>
-
-<html>
-    <head>
-        <title>Processing Login</title>
-        <link rel="stylesheet" href="../css_files/common.css">
-        <link rel="stylesheet" href="../css_files/error.css">
-        <script src='../javascript/automate_button.js'></script>
-    </head>
-    <body>
-        <ul class="nav">
-            <li class="nav"><a href='../php/home.php' class="nav">Home</a></li>
-            <li class="nav"><a href='https://iitpkd.ac.in' class="nav">IIT Palakkad</a></li>
-            <li class="nav"><a href="../php/companies.php" class="nav">Companies</a></li>
-            <li class="nav"><a href="../php/projects.php" class="nav">Projects</a></li>
-            <li class="nav"><a href="../php/research.php" class="nav">Research</a></li>
-            <li class="nav"><a href="../php/news.php" class="nav">News</a></li>
-            <?php
-                if($_SESSION['logged_in'] != null && $_SESSION['logged_in'] == true) {
-                    echo '<li class="nav"><a href="../php/logout.php" class="nav">Logout</a></li>';
-                }
-                else {
-                    echo '<li class="nav"><a href="../php/login.php" class="nav">Login</a></li>';
-                    echo '<li class="nav"><a href="../php/register.php" class="nav">Register</a></li>';
-                }
-            ?>
-            <li id="nav_button">
-                <div class="cont" onclick="clickMenuButton(this)">
-                    <div class="bar1"></div>
-                    <div class="bar2"></div>
-                    <div class="bar3"></div>
-                </div>
-            </li>
-        </ul>
-        <h3 id="error_heading">Invalid Username or Password</h3>
-        <a href="login.php" id="back_button">Back To Login Page</a>
-        <br><br><br>
-        <div class="container" style="background-color:#f1f1f1">
-            <br><br>
-        </div>
-    </body>
-</html>
