@@ -336,7 +336,10 @@
                 }
                 else if($_SESSION['user_type'] == 'student')
                     echo '<a class="main_link" href="../php/student_update_academic.php">Update Academic Details</a>
-                        <br><br>'
+                        <br><br>';
+                else if($_SESSION['user_type'] == 'company')
+                    echo '<a class="main_link" href="../php/company_accept_student.php">Accept Student</a>
+                        <br><br>';
             ?>
             <div class="container" style="background-color:#f1f1f1">
                 <br><br><br>

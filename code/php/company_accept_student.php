@@ -38,24 +38,21 @@
     // Connection error, hence place error in log file
     $error_num = mysqli_connect_errno();
     if($error_num) {
-        error_log("error conn(internship_student_applied.php):  " . $error_num . "\n", 3, '../log_dir/log_file');
+        error_log("error conn(company_accept_student.php):  " . $error_num . "\n", 3, '../log_dir/log_file');
         exit('');
     }
 
-    $query = 'select i.internship_id from internship as i, placed_internship as p_i where i.internship_id = ? and p_i.company_id = ? and i.internship_id = p_i.internship_id';
-    $stmt = $db->prepare($query);
-    $stmt->bind_param('ss', $_SESSION['internship_id'], $_SESSION['company_id']);
-    $stmt->execute();
-    $stmt->store_result();
-
-    if($stmt->num_rows == 0) {
+    if(($_SESSION['internship_applied'] != true || $_SESSION['internship_id'] == null)
+        && ($_SESSION['job_applied'] != true || $_SESSION['job_id'] == null))
         exit('Huge Error Occurred');
-    }
+
+    if($_SESSION['roll_number'] == null)
+        exit('Huge Error');
 ?>
 
 <html>
 <head>
-        <title>Students Applied for Internship</title>
+        <title>Accept Student</title>
         <link rel="stylesheet" href="../css_files/common.css">
         <link rel="stylesheet" href="../css_files/common_home.css">
         <link rel="stylesheet" href="../css_files/table.css">
@@ -98,44 +95,25 @@
 
         <div class="main">
             <br>
-            <h2>Applied Students</h2>
+            <h2>Accept Student</h2>
             <?php
-
-                $_SESSION['internship_applied'] = true;
-                $_SESSION['job_applied'] = false;
-
-                $query = 'call get_applied_students_internship(?)';
-                $stmt = $db->prepare($query);
-                $stmt->bind_param('s', $_SESSION['internship_id']);
-                $stmt->execute();
-                $stmt->bind_result($roll_number, $name, $cgpa, $branch, $batch);
-
-                echo '<table>';
-                echo '<tr>
-                        <th>Roll Number</th>
-                        <th>Name</th>
-                        <th>CGPA</th>
-                        <th>Branch</th>
-                        <th>Batch</th>
-                    </tr>';
-
-                while($stmt->fetch()) {
-                    echo '<tr>';
-                    echo '<td>' . '<a class="simple_link" href="student_profile.php?roll_number=' . $roll_number . '">'
-                        . htmlspecialchars($roll_number) 
-                        . '</a>'
-                        . '</td>';
-
-                    echo '<td>'. htmlspecialchars($name) .'</td>';
-                    echo '<td>'. htmlspecialchars($cgpa) .'</td>';
-                    echo '<td>'. htmlspecialchars($branch) .'</td>';
-                    echo '<td>'. htmlspecialchars($batch) .'</td>';
-                    echo '</tr>';
+                if($_SESSION['internship_applied'] == true) {
+                    $query = 'call accept_student_internship(?, ?)';
+                    $stmt = $db->prepare($query);
+                    $stmt->bind_param('ss', $_SESSION['roll_number'], $_SESSION['internship_id']);
+                    if($stmt->execute() != true)
+                        exit('Some Error Occurred');
                 }
-
-                echo '</table>';
-                $stmt->close();
+                else {
+                    $query = 'call accept_student_job(?, ?)';
+                    $stmt = $db->prepare($query);
+                    $stmt->bind_param('ss', $_SESSION['roll_number'], $_SESSION['job_id']);
+                    if($stmt->execute() != true)
+                        exit('Some Error Occurred');
+                }
             ?>
+
+            <h3>Student Accepted</h3>
             <br><br>
         </div>
    
