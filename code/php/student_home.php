@@ -43,22 +43,28 @@
     }
 
     # Check if student has got an internship
-    $query = 'select roll_number from accept_internship where roll_number = ?';
+    $query = 'select internship_id from accept_internship where roll_number = ?';
     $stmt = $db->prepare($query);
     $stmt->bind_param('s', $_SESSION['roll_number']);
     $stmt->execute();
     $stmt->store_result();
+    $stmt->bind_result($internship_id);
+    $stmt->fetch();
 
     $accept_internship = $stmt->num_rows > 0;
+    $stmt->close();
 
     # Check if student has got a job
-    $query = 'select roll_number from accept_job where roll_number = ?';
+    $query = 'select job_id from accept_job where roll_number = ?';
     $stmt = $db->prepare($query);
     $stmt->bind_param('s', $_SESSION['roll_number']);
     $stmt->execute();
     $stmt->store_result();
+    $stmt->bind_result($job_id);
+    $stmt->fetch();
 
     $accept_job = $stmt->num_rows > 0;
+    $stmt->close();
 
     # Student cannot have both job and internship at a time
     if($accept_intership && $accept_job)
@@ -106,9 +112,9 @@
             <br>
             <?php
                 if($accept_internship)
-                    echo '<a href="../php/student_internship.php">My Internship</a> <br>';
+                    echo '<a href="../php/internship_detail.php?internship_id=' . $internship_id . '">My Internship</a> <br>';
                 else if($accept_job)
-                    echo '<a href="../php/student_job.php">My Job</a> <br>';
+                    echo '<a href="../php/internship_detail.php?job_id=' . $job_id . '">My Job</a> <br>';
                 else
                     echo '<a href="../php/student_applications.php">Applications</a> <br>';
             ?>

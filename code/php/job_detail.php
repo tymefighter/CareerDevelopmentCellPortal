@@ -203,22 +203,48 @@
 
                     if($_SESSION['roll_number'] == null)
                         exit('Huge Error Occurred');
-
-                    $query = 'select roll_number from is_verified where roll_number = ?';
+                    
+                    # Check if student has got an internship
+                    $query = 'select internship_id from accept_internship where roll_number = ?';
                     $stmt = $db->prepare($query);
                     $stmt->bind_param('s', $_SESSION['roll_number']);
                     $stmt->execute();
                     $stmt->store_result();
+                    $stmt->bind_result($internship_id);
+                    $stmt->fetch();
 
-                    if($stmt->num_rows == 0) {
-                        echo '<h4>You cannot apply since you have not been verified yet</h4>';
-                    }
-                    else {
-                        $_SESSION['job_id'] = $job_id;
-                        echo '<a href="../php/student_apply_job.php" class="main_link">Apply For Job</a>';
-                    }
-
+                    $accept_internship = $stmt->num_rows > 0;
                     $stmt->close();
+
+                    # Check if student has got a job
+                    $query = 'select job_id from accept_job where roll_number = ?';
+                    $stmt = $db->prepare($query);
+                    $stmt->bind_param('s', $_SESSION['roll_number']);
+                    $stmt->execute();
+                    $stmt->store_result();
+                    $stmt->bind_result($job_id);
+                    $stmt->fetch();
+
+                    $accept_job = $stmt->num_rows > 0;
+                    $stmt->close();
+                    
+                    if($accept_internship == false && $accept_job == false) {
+                        $query = 'select roll_number from is_verified where roll_number = ?';
+                        $stmt = $db->prepare($query);
+                        $stmt->bind_param('s', $_SESSION['roll_number']);
+                        $stmt->execute();
+                        $stmt->store_result();
+
+                        if($stmt->num_rows == 0) {
+                            echo '<h4>You cannot apply since you have not been verified yet</h4>';
+                        }
+                        else {
+                            $_SESSION['job_id'] = $job_id;
+                            echo '<a href="../php/student_apply_job.php" class="main_link">Apply For Job</a>';
+                        }
+
+                        $stmt->close();
+                    }
                 }
                 else if($_SESSION['user_type'] == 'company') {
                     
