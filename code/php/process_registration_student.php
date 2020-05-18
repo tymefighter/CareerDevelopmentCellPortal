@@ -106,11 +106,20 @@
                 $_SESSION['user_type'] = 'student';
                 $_SESSION['logged_in'] = true;
                 $_SESSION['roll_number'] = $_POST['roll_number'];
+
+                $stmt->close();
+                
+                $query = "insert into academic_performance (roll_number) values (?)";
+                $stmt = $db->prepare($query);
+                $stmt->bind_param('s', $_SESSION['roll_number']);
+                if(!$stmt->execute())
+                    exit('Huge Error Occurred');
+
                 header("Location: ../php/student_home.php");
                 exit('');
             }
 
-            error_log("error conn(process_registeration.php):  " . $stmt->error . "\n", 3, '../log_dir/log_file');
+            error_log("Error(process_registeration.php):  " . $stmt->error . "\n", 3, '../log_dir/log_file');
         }
     }
 ?>

@@ -83,14 +83,21 @@
 
                 $roll_number = $_SESSION['roll_number'];
 
-		// Try to establish connection to cdc database
-		$db = new mysqli ($server, $user, $pass, $database);
+                // Try to establish connection to cdc database
+                $db = new mysqli ($server, $user, $pass, $database);
                             
                 // Connection error, hence place error in log file
                 $error_num = mysqli_connect_errno();
                 if($error_num) {
                     error_log("error conn(process_update_academic.php):  " . $error_num . "\n", 3, '../log_dir/log_file');
                     exit('');
+                }
+
+                for($i = 1;$i <= 8;$i ++) {
+                    $sem_no = 'sem' . $i;
+
+                    if($_POST[$sem_no] == '')
+                        $_POST[$sem_no] = null;
                 }
 
                 $query = 'call update_academic_details(?, ?, ?, ?, ?, ?, ?, ?, ?)';

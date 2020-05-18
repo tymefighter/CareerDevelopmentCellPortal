@@ -125,28 +125,28 @@
                 <br><br>
                 
                     <label for="sem1"><b>Sem1 GPA</b></label>
-                    <input type="number" value = <?php echo $sem1 ?> name="sem1" min="0" max="10" class="number" step="0.01">
+                    <input type="number" value = "<?php echo $sem1 ?>" name="sem1" min="0" max="10" class="number" step="0.01">
 
                     <label for="sem2"><b>Sem2 GPA</b></label>
-                    <input type="number" value = <?php echo $sem2 ?> name="sem2" min="0" max="10" class="number" step="0.01">
+                    <input type="number" value = "<?php echo $sem2 ?>" name="sem2" min="0" max="10" class="number" step="0.01">
 
                     <label for="sem3"><b>Sem3 GPA</b></label>
-                    <input type="number" value = <?php echo $sem3 ?> name="sem3" min="0" max="10" class="number" step="0.01">
+                    <input type="number" value = "<?php echo $sem3 ?>" name="sem3" min="0" max="10" class="number" step="0.01">
 
                     <label for="sem4"><b>Sem4 GPA</b></label>
-                    <input type="number" value = <?php echo $sem4 ?> name="sem4" min="0" max="10" class="number" step="0.01">
+                    <input type="number" value = "<?php echo $sem4 ?>" name="sem4" min="0" max="10" class="number" step="0.01">
 
                     <label for="sem5"><b>Sem5 GPA</b></label>
-                    <input type="number" value = <?php echo $sem5 ?> name="sem5" min="0" max="10" class="number" step="0.01">
+                    <input type="number" value = "<?php echo $sem5 ?>" name="sem5" min="0" max="10" class="number" step="0.01">
 
                     <label for="sem6"><b>Sem6 GPA</b></label>
-                    <input type="number" value = <?php echo $sem6 ?> name="sem6" min="0" max="10" class="number" step="0.01">
+                    <input type="number" value = "<?php echo $sem6 ?>" name="sem6" min="0" max="10" class="number" step="0.01">
 
                     <label for="sem7"><b>Sem7 GPA</b></label>
-                    <input type="number" value = <?php echo $sem7 ?> name="sem7" min="0" max="10" class="number" step="0.01">
+                    <input type="number" value = "<?php echo $sem7 ?>" name="sem7" min="0" max="10" class="number" step="0.01">
 
                     <label for="sem8"><b>Sem8 GPA</b></label>
-                    <input type="number" value = <?php echo $sem8 ?> name="sem8" min="0" max="10" class="number" step="0.01">
+                    <input type="number" value = "<?php echo $sem8 ?>" name="sem8" min="0" max="10" class="number" step="0.01">
 
                     <button type="submit" id="login_button">Update Information</button>
                 </div>
