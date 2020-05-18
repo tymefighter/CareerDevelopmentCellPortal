@@ -9,6 +9,7 @@
         $stmt->store_result();
 
         if($stmt->num_rows == 0) {
+            $_SESSION['logged_in'] = false;
             exit('Huge Error Occurred');
         }
 
@@ -26,6 +27,7 @@
         $stmt->store_result();
 
         if($stmt->num_rows == 0) {
+            $_SESSION['logged_in'] = false;
             exit('Huge Error Occurred');
         }
 
@@ -43,6 +45,7 @@
         $stmt->store_result();
 
         if($stmt->num_rows == 0) {
+            $_SESSION['logged_in'] = false;
             exit('Huge Error Occurred');
         }
 
@@ -60,6 +63,7 @@
         $stmt->store_result();
 
         if($stmt->num_rows == 0) {
+            $_SESSION['logged_in'] = false;
             exit('Huge Error Occurred');
         }
 
