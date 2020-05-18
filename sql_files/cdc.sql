@@ -43,8 +43,61 @@ CREATE TABLE `academic_performance` (
 
 LOCK TABLES `academic_performance` WRITE;
 /*!40000 ALTER TABLE `academic_performance` DISABLE KEYS */;
-INSERT INTO `academic_performance` VALUES ('100000000',9.95,9.89,10.00,10.00,8.90,8.50,9.10,10.00),('111701002',10.00,10.00,10.00,10.00,10.00,10.00,NULL,NULL);
+INSERT INTO `academic_performance` VALUES ('100000000',9.00,9.00,9.00,9.00,NULL,NULL,NULL,NULL),('111701002',9.00,9.00,9.00,9.00,NULL,NULL,NULL,NULL),('11701000',9.00,9.00,9.00,9.00,NULL,NULL,NULL,NULL),('123456789',9.00,9.00,9.00,9.00,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `academic_performance` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `accept_internship`
+--
+
+DROP TABLE IF EXISTS `accept_internship`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `accept_internship` (
+  `roll_number` char(9) NOT NULL DEFAULT '',
+  `internship_id` char(9) NOT NULL,
+  PRIMARY KEY (`roll_number`),
+  KEY `internship_id` (`internship_id`),
+  CONSTRAINT `accept_internship_ibfk_1` FOREIGN KEY (`roll_number`) REFERENCES `student` (`roll_number`),
+  CONSTRAINT `accept_internship_ibfk_2` FOREIGN KEY (`internship_id`) REFERENCES `internship` (`internship_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `accept_internship`
+--
+
+LOCK TABLES `accept_internship` WRITE;
+/*!40000 ALTER TABLE `accept_internship` DISABLE KEYS */;
+INSERT INTO `accept_internship` VALUES ('123456789','ma5ey6gij');
+/*!40000 ALTER TABLE `accept_internship` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `accept_job`
+--
+
+DROP TABLE IF EXISTS `accept_job`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `accept_job` (
+  `roll_number` char(9) NOT NULL DEFAULT '',
+  `job_id` char(9) NOT NULL,
+  PRIMARY KEY (`roll_number`),
+  KEY `job_id` (`job_id`),
+  CONSTRAINT `accept_job_ibfk_1` FOREIGN KEY (`roll_number`) REFERENCES `student` (`roll_number`),
+  CONSTRAINT `accept_job_ibfk_2` FOREIGN KEY (`job_id`) REFERENCES `job` (`job_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `accept_job`
+--
+
+LOCK TABLES `accept_job` WRITE;
+/*!40000 ALTER TABLE `accept_job` DISABLE KEYS */;
+/*!40000 ALTER TABLE `accept_job` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -71,6 +124,7 @@ CREATE TABLE `apply_internship` (
 
 LOCK TABLES `apply_internship` WRITE;
 /*!40000 ALTER TABLE `apply_internship` DISABLE KEYS */;
+INSERT INTO `apply_internship` VALUES ('111701002','8ib1dyuzc','2020-04-14'),('111701002','8ihptdq45','2020-04-14'),('111701002','ap1b123h2','2020-04-14'),('11701000','8ihptdq45','2020-04-16');
 /*!40000 ALTER TABLE `apply_internship` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -98,6 +152,7 @@ CREATE TABLE `apply_job` (
 
 LOCK TABLES `apply_job` WRITE;
 /*!40000 ALTER TABLE `apply_job` DISABLE KEYS */;
+INSERT INTO `apply_job` VALUES ('100000000','91rcf3il6','2020-04-14');
 /*!40000 ALTER TABLE `apply_job` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -147,7 +202,7 @@ CREATE TABLE `belongs_to` (
 
 LOCK TABLES `belongs_to` WRITE;
 /*!40000 ALTER TABLE `belongs_to` DISABLE KEYS */;
-INSERT INTO `belongs_to` VALUES ('100000000',2016),('111701002',2017),('771818412',2020);
+INSERT INTO `belongs_to` VALUES ('100000000',2016),('11701000',2016),('111701002',2017),('111111111',2018),('123456789',2018);
 /*!40000 ALTER TABLE `belongs_to` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -250,7 +305,7 @@ CREATE TABLE `company` (
 
 LOCK TABLES `company` WRITE;
 /*!40000 ALTER TABLE `company` DISABLE KEYS */;
-INSERT INTO `company` VALUES ('2dfya45bl','FriendsBook','friend@book.com',NULL,'123',NULL,0,'Friend of Friends','asf','asdf','asdf','asdf','asd','12321312','friend@bbookk.kkoob'),('74vhqxgd2','FriendsBook','friend@book.com','','123','',0,'Friend of Friends','asf','asdf','asdf','asdf','asd','12321312','friend@bbookk.kkoob'),('fvsj83tx4','Hoogle','hoogle@hoogle.com','ab@hoogle.com','123123','2123123',0,'Great Company','asdf','asf','asdf','asdf','asdf','100001','abc@def.com'),('ictm01akp','The Soil Company','soil@soil.com','soil@binan.com','101020102',NULL,0,'Come on along the largest soil company in your mind !!','85801, 85th floor, Epsilon Building','Royal Street','Akin City','Sanama','Kingdom of Wadela','391093','soil.wadeela.wad.com');
+INSERT INTO `company` VALUES ('2dfya45bl','FriendsBook','friend@book.com',NULL,'123',NULL,0,'Friend of Friends','asf','asdf','asdf','asdf','asd','12321312','friend@bbookk.kkoob'),('74vhqxgd2','FriendsBook','friend@book.com','','123','',0,'Friend of Friends','asf','asdf','asdf','asdf','asd','12321312','friend@bbookk.kkoob'),('fvsj83tx4','Hoogle','hoogle@hoogle.com','ab@hoogle.com','123123','2123123',0,'Great Company','asdf','asf','asdf','asdf','asdf','100001','abc@def.com'),('ictm01akp','The Soil Company','soil@soil.com','soil@binan.com','101020102',NULL,0,'Come on along the largest soil company in your mind !!','85801, 85th floor, Epsilon Building','Royal Street','Akin City','Sanama','Kingdom of Wadela','391093','soil.wadeela.wad.com'),('zmq7poiht','MyCompany','mycomp@mycomp.com','mycompalt@mycomp.com','10101010','00010101',0,'Great Company','a','a','a','a','a','112312312','mycomp.com');
 /*!40000 ALTER TABLE `company` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -277,7 +332,7 @@ CREATE TABLE `company_login` (
 
 LOCK TABLES `company_login` WRITE;
 /*!40000 ALTER TABLE `company_login` DISABLE KEYS */;
-INSERT INTO `company_login` VALUES ('74vhqxgd2','friendbook'),('2dfya45bl','friendbookkh'),('fvsj83tx4','hoogle'),('ictm01akp','soil_company');
+INSERT INTO `company_login` VALUES ('74vhqxgd2','friendbook'),('2dfya45bl','friendbookkh'),('fvsj83tx4','hoogle'),('zmq7poiht','mycomp'),('ictm01akp','soil_company');
 /*!40000 ALTER TABLE `company_login` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -328,7 +383,7 @@ CREATE TABLE `has_branch` (
 
 LOCK TABLES `has_branch` WRITE;
 /*!40000 ALTER TABLE `has_branch` DISABLE KEYS */;
-INSERT INTO `has_branch` VALUES ('100000000','civil_eng'),('771818412','civil_eng'),('111701002','comp_sc');
+INSERT INTO `has_branch` VALUES ('100000000','civil_eng'),('111701002','comp_sc'),('111111111','mech_eng'),('11701000','mech_eng'),('123456789','mech_eng');
 /*!40000 ALTER TABLE `has_branch` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -356,7 +411,7 @@ CREATE TABLE `internship` (
 
 LOCK TABLES `internship` WRITE;
 /*!40000 ALTER TABLE `internship` DISABLE KEYS */;
-INSERT INTO `internship` VALUES ('0znecxt7y','abacaefa','Write Description Here',123,40,5.00),('74ims8qt3','Soil Intern','Intern at one of the most prestigious companies ',100000,100,6.55),('7q6ije9ka','abc','Write Description Here',123,40,5.00),('8ib1dyuzc','Full Stack Developer','Be A full Stack Dev here at Hoogle inc.',25000,90,9.50),('8ihptdq45','fasdasdfabaacaefa','Write Description Here',123,40,5.00),('9vhrs8u67','1abcef','Write Description Here',123,40,5.00),('ap1b123h2','SDE Intern','SDE Intern Position is being offered by HOOGLE inc.',10000,90,10.00),('d3pc4of97','Ground Striker','Strike The ground',10000,50,6.55),('egy6fna8o','abc','Write Description Here',123,40,5.00),('flj7uzr1i','abcaefa','Write Description Here',123,40,5.00),('hv58pzku9','asdfabacaefa','Write Description Here',123,40,5.00),('intern1','SDE Intern','software intern',80000,80,5.00),('intern2','Soil intern','Best internship',81000,85,5.50),('l1vc8s0j7','abcef','Write Description Here',123,40,5.00),('p1hovqi3t','abcaef','Write Description Here',123,40,5.00),('r6kxtzqjg','abce','Write Description Here',123,40,5.00),('s5ygh32tx','fasdasdfabacaefa','Write Description Here',123,40,5.00),('spozjl34e','Skyscraper Design','Design huge buildings',10000,90,8.55),('tmzekfy0n','aasdfabacaefa','Write Description Here',123,40,5.00),('u9y5p68al','Ground Developer','Develop the ground for large skyscrapers',10000,100,7.50);
+INSERT INTO `internship` VALUES ('0znecxt7y','abacaefa','Write Description Here',123,40,5.00),('74ims8qt3','Soil Intern','Intern at one of the most prestigious companies ',100000,100,6.55),('7q6ije9ka','abc','Write Description Here',123,40,5.00),('8ib1dyuzc','Full Stack Developer','Be A full Stack Dev here at Hoogle inc.',25000,90,9.50),('8ihptdq45','fasdasdfabaacaefa','Write Description Here',123,40,5.00),('9vhrs8u67','1abcef','Write Description Here',123,40,5.00),('ap1b123h2','SDE Intern','SDE Intern Position is being offered by HOOGLE inc.',10000,90,10.00),('d3pc4of97','Ground Striker','Strike The ground',10000,50,6.55),('egy6fna8o','abc','Write Description Here',123,40,5.00),('flj7uzr1i','abcaefa','Write Description Here',123,40,5.00),('hv58pzku9','asdfabacaefa','Write Description Here',123,40,5.00),('intern1','SDE Intern','software intern',80000,80,5.00),('intern2','Soil intern','Best internship',81000,85,5.50),('l1vc8s0j7','abcef','Write Description Here',123,40,5.00),('ma5ey6gij','Intern Pos','Great',1000,45,6.00),('p1hovqi3t','abcaef','Write Description Here',123,40,5.00),('r6kxtzqjg','abce','Write Description Here',123,40,5.00),('s5ygh32tx','fasdasdfabacaefa','Write Description Here',123,40,5.00),('spozjl34e','Skyscraper Design','Design huge buildings',10000,90,8.55),('tmzekfy0n','aasdfabacaefa','Write Description Here',123,40,5.00),('u9y5p68al','Ground Developer','Develop the ground for large skyscrapers',10000,100,7.50);
 /*!40000 ALTER TABLE `internship` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -380,7 +435,7 @@ CREATE TABLE `is_verified` (
 
 LOCK TABLES `is_verified` WRITE;
 /*!40000 ALTER TABLE `is_verified` DISABLE KEYS */;
-INSERT INTO `is_verified` VALUES ('111701002');
+INSERT INTO `is_verified` VALUES ('111701002'),('123456789');
 /*!40000 ALTER TABLE `is_verified` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -433,7 +488,7 @@ CREATE TABLE `login_details` (
 
 LOCK TABLES `login_details` WRITE;
 /*!40000 ALTER TABLE `login_details` DISABLE KEYS */;
-INSERT INTO `login_details` VALUES ('abcdef','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','cdc_official'),('friendbook','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','company'),('friendbookkh','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','company'),('habib','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','student'),('hoogle','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','company'),('iqwas','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','student'),('soil_company','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','company'),('tpotpo','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','cdc_official'),('tymefighter','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','student'),('vol123','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','student_vol'),('warfighter','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','student');
+INSERT INTO `login_details` VALUES ('abcdef','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','cdc_official'),('friendbook','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','company'),('friendbookkh','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','company'),('habib','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','student'),('hoogle','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','company'),('iqwas','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','student'),('jetfighter','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','student'),('mycomp','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','company'),('new_student','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','student'),('soil_company','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','company'),('student','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','student'),('tpotpo','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','cdc_official'),('tymefighter','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','student'),('vol123','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','student_vol'),('warfighter','e934caee645cd33ca0ea2c3c9b6e5e71e10b6430','student');
 /*!40000 ALTER TABLE `login_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -501,7 +556,7 @@ CREATE TABLE `placed_internship` (
 
 LOCK TABLES `placed_internship` WRITE;
 /*!40000 ALTER TABLE `placed_internship` DISABLE KEYS */;
-INSERT INTO `placed_internship` VALUES ('0znecxt7y','ictm01akp','2020-04-13'),('74ims8qt3','ictm01akp','2020-04-13'),('7q6ije9ka','ictm01akp','2020-04-13'),('8ib1dyuzc','fvsj83tx4','2020-03-31'),('8ihptdq45','ictm01akp','2020-04-13'),('9vhrs8u67','ictm01akp','2020-04-13'),('ap1b123h2','fvsj83tx4','2020-04-30'),('d3pc4of97','ictm01akp','2020-04-13'),('egy6fna8o','ictm01akp','2020-04-13'),('flj7uzr1i','ictm01akp','2020-04-13'),('hv58pzku9','ictm01akp','2020-04-13'),('l1vc8s0j7','ictm01akp','2020-04-13'),('p1hovqi3t','ictm01akp','2020-04-13'),('r6kxtzqjg','ictm01akp','2020-04-13'),('s5ygh32tx','ictm01akp','2020-04-13'),('spozjl34e','ictm01akp','2020-04-13'),('tmzekfy0n','ictm01akp','2020-04-13'),('u9y5p68al','ictm01akp','2020-04-13');
+INSERT INTO `placed_internship` VALUES ('0znecxt7y','ictm01akp','2020-04-13'),('74ims8qt3','ictm01akp','2020-04-13'),('7q6ije9ka','ictm01akp','2020-04-13'),('8ib1dyuzc','fvsj83tx4','2020-03-31'),('8ihptdq45','ictm01akp','2020-04-13'),('9vhrs8u67','ictm01akp','2020-04-13'),('ap1b123h2','fvsj83tx4','2020-04-30'),('d3pc4of97','ictm01akp','2020-04-13'),('egy6fna8o','ictm01akp','2020-04-13'),('flj7uzr1i','ictm01akp','2020-04-13'),('hv58pzku9','ictm01akp','2020-04-13'),('l1vc8s0j7','ictm01akp','2020-04-13'),('ma5ey6gij','zmq7poiht','2020-05-18'),('p1hovqi3t','ictm01akp','2020-04-13'),('r6kxtzqjg','ictm01akp','2020-04-13'),('s5ygh32tx','ictm01akp','2020-04-13'),('spozjl34e','ictm01akp','2020-04-13'),('tmzekfy0n','ictm01akp','2020-04-13'),('u9y5p68al','ictm01akp','2020-04-13');
 /*!40000 ALTER TABLE `placed_internship` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -664,7 +719,7 @@ CREATE TABLE `required_batch_internship` (
 
 LOCK TABLES `required_batch_internship` WRITE;
 /*!40000 ALTER TABLE `required_batch_internship` DISABLE KEYS */;
-INSERT INTO `required_batch_internship` VALUES (2017,'8ib1dyuzc'),(2016,'8ihptdq45'),(2017,'8ihptdq45'),(2018,'8ihptdq45'),(2017,'ap1b123h2');
+INSERT INTO `required_batch_internship` VALUES (2017,'8ib1dyuzc'),(2016,'8ihptdq45'),(2017,'8ihptdq45'),(2018,'8ihptdq45'),(2017,'ap1b123h2'),(2018,'ma5ey6gij'),(2019,'ma5ey6gij');
 /*!40000 ALTER TABLE `required_batch_internship` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -691,7 +746,7 @@ CREATE TABLE `required_branch_internship` (
 
 LOCK TABLES `required_branch_internship` WRITE;
 /*!40000 ALTER TABLE `required_branch_internship` DISABLE KEYS */;
-INSERT INTO `required_branch_internship` VALUES ('comp_sc','8ib1dyuzc'),('comp_sc','8ihptdq45'),('mech_eng','8ihptdq45'),('comp_sc','ap1b123h2'),('comp_sc','intern1'),('mech_eng','intern1'),('civil_eng','intern2'),('mech_eng','intern2');
+INSERT INTO `required_branch_internship` VALUES ('comp_sc','8ib1dyuzc'),('comp_sc','8ihptdq45'),('mech_eng','8ihptdq45'),('comp_sc','ap1b123h2'),('comp_sc','intern1'),('mech_eng','intern1'),('civil_eng','intern2'),('mech_eng','intern2'),('elec_eng','ma5ey6gij'),('mech_eng','ma5ey6gij');
 /*!40000 ALTER TABLE `required_branch_internship` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -813,7 +868,7 @@ CREATE TABLE `student` (
 
 LOCK TABLES `student` WRITE;
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
-INSERT INTO `student` VALUES ('100000000','Iqbal Ibn Waseem','Nigerian','1999-01-01','M',99.99,'CBSE',99.99,'CBSE',2,2,'60124, 60th Floor, Rafeeq Tower','Futaim Street','Abu Salman City','Maladun','Republic of Wanoda','2342','12324124','2343252'),('111000111','habib habib','Indian','2000-01-01','M',99.99,'CBSE',99.99,'CBSE',1,1,'asd','asf','asdf','asdf','asd','123213','11231231',NULL),('111701002','Ahmed Zaheer Dadarkar','Indian','1999-11-25','M',79.80,'CBSE',92.80,'CBSE',1,4518,'Link Plaza','Malad West','Mumbai','Maharashtra','India','400064','7594069315','9920460918'),('771818412','Habooshh','Indian','2000-10-10','F',99.99,'CBSE',99.99,'CBSE',1,1,'ab','ab','ab','ab','ab','1231','23123',NULL);
+INSERT INTO `student` VALUES ('100000000','Iqbal Ibn Waseem','Nigerian','1999-01-01','M',99.99,'CBSE',99.99,'CBSE',2,2,'60124, 60th Floor, Rafeeq Tower','Futaim Street','Abu Salman City','Maladun','Republic of Wanoda','2342','12324124','2343252'),('111111111','abcd','Indian','1999-01-01','M',99.99,'CBSE',99.99,'CBSE',45,50,'asdf','asdf','asdf','asdf','asdf','123','12312321','2352353'),('111701002','Ahmed Zaheer Dadarkar','Indian','1999-11-25','M',79.80,'CBSE',92.80,'CBSE',1,4518,'Link Plaza','Malad West','Mumbai','Maharashtra','India','400064','7594069315','9920460918'),('11701000','Khalid Phillips','Nigerian','1998-03-03','M',99.99,'CBSE',99.99,'CBSE',10,10,'43001, 43th floor Faheem Towers','Wahid Farooq Street','Al Mubeen Madina','Wonoban Isle','Kingdom of Wahaba','10010','100100100','330100100'),('123456789','abcas','Indian','1999-03-03','M',99.99,'CBSE',99.99,'CBSE',1,1,'asdf','asd','asdf','asdf','asdf','123','124214','2384039');
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -858,7 +913,7 @@ CREATE TABLE `student_login` (
 
 LOCK TABLES `student_login` WRITE;
 /*!40000 ALTER TABLE `student_login` DISABLE KEYS */;
-INSERT INTO `student_login` VALUES ('111000111','habib'),('100000000','iqwas'),('111701002','tymefighter'),('771818412','warfighter');
+INSERT INTO `student_login` VALUES ('100000000','iqwas'),('11701000','jetfighter'),('111111111','new_student'),('123456789','student'),('111701002','tymefighter');
 /*!40000 ALTER TABLE `student_login` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1093,4 +1148,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-13 20:21:31
+-- Dump completed on 2020-05-18 15:56:40
