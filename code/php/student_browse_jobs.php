@@ -75,7 +75,7 @@
 
         <div class="main">
             <br>
-            <h2>Internships</h2>
+            <h2>Jobs</h2>
             <br><br>
             <?php
                 
@@ -91,6 +91,27 @@
 
                 if($_SESSION['roll_number'] == null)
                     exit('Huge Error Occurred');
+
+                # Check if student has got an internship
+                $query = 'select roll_number from accept_internship where roll_number = ?';
+                $stmt = $db->prepare($query);
+                $stmt->bind_param('s', $_SESSION['roll_number']);
+                $stmt->execute();
+                $stmt->store_result();
+
+                if($stmt->num_rows > 0)
+                    exit('You already have an internship !!');
+
+                # Check if student has got a job
+                $query = 'select roll_number from accept_job where roll_number = ?';
+                $stmt = $db->prepare($query);
+                $stmt->bind_param('s', $_SESSION['roll_number']);
+                $stmt->execute();
+                $stmt->store_result();
+
+                if($stmt->num_rows > 0)
+                    exit('You already have a job !!');
+
 
                 $query = 'call get_allowed_jobs(?)';
                 $stmt = $db->prepare($query);
