@@ -3,7 +3,10 @@
     if($_SESSION['logged_in'] == null || $_SESSION['logged_in'] == false) {
         exit('This Page cannot be accessed without logging in');
     }
+    session_destroy();
+    die(header("location:home.php"));
 ?>
+<!--
 <html>
     <head>
         <title>Logout Page</title>
@@ -52,3 +55,4 @@
         </div>
     </body>
 </html>
+-->
