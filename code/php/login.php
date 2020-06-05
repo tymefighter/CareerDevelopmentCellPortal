@@ -20,6 +20,13 @@
         <link rel="stylesheet" href="../css_files/common.css">
         <link rel="stylesheet" href="../css_files/login_style.css">
         <script src='../javascript/automate_button.js'></script>
+        <script>
+        	function logout_confirm() {
+				if (confirm('Confirm logout ?'))
+					return true;
+				return false;
+			}
+		</script>
     </head>
     <body>
         <ul class="nav">
@@ -31,7 +38,7 @@
             <li class="nav"><a href="../php/news.php" class="nav">News</a></li>
             <?php
                 if($_SESSION['logged_in'] != null && $_SESSION['logged_in'] == true) {
-                    echo '<li class="nav"><a href="../php/logout.php" class="nav">Logout</a></li>';
+                    echo '<li class="nav"><a href="../php/logout.php" class="nav" onclick="return logout_confirm();">Logout</a></li>';
                 }
                 else {
                     echo '<li class="nav"><a href="../php/login.php" class="nav">Login</a></li>';

@@ -75,7 +75,7 @@
         <title>Student Home Page</title>
         <link rel="stylesheet" href="../css_files/common.css">
         <link rel="stylesheet" href="../css_files/common_home.css">
-        <script src='../javascript/validate.js'></script>
+        <script src="../javascript/validate.js"></script>
         <script>
         	function logout_confirm() {
 				if (confirm('Confirm logout ?'))
