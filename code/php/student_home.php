@@ -78,7 +78,7 @@
         <script src='../javascript/validate.js'></script>
         <script>
         	function logout_confirm() {
-				if (confirm('Are you sure to logout ?'))
+				if (confirm('Confirm logout ?'))
 					return true;
 				return false;
 			}
