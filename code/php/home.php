@@ -28,5 +28,15 @@
 		?>
         <img src="../images/iit.png" alt="cdc logo" id="img_logo">
         <h2 id="cdc_heading">Career Development Cell IIT Palakkad<br>CDC</h2>
+        <div id="invalid_login">
+        <?php
+        	$attempt = $_SESSION["invalid_login"];
+              if ($attempt != null) {
+                  $invalid = "Invalid Username or Password";
+                  echo $invalid;
+                  $_SESSION["invalid_login"] = null;
+              }
+        ?>
+        </div>
     </body>
 </html>

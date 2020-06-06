@@ -31,9 +31,9 @@
 }
 
 #invalid_login {
-    margin-left: 400;
-    margin-right: 400;
-    font-size: large;
+    margin-left: 300;
+    margin-right: 300;
+    font-size: medium;
     text-align: center;
     color: red;
 }
