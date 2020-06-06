@@ -20,39 +20,9 @@
         <link rel="stylesheet" href="../css_files/common.css">
         <link rel="stylesheet" href="../css_files/login_style.css">
         <script src='../javascript/automate_button.js'></script>
-        <script>
-        	function logout_confirm() {
-				if (confirm('Confirm logout ?'))
-					return true;
-				return false;
-			}
-		</script>
     </head>
     <body>
         <ul class="nav">
-            <li class="nav"><a href='../php/home.php' class="nav">Home</a></li>
-            <li class="nav"><a href='https://iitpkd.ac.in' class="nav">IIT Palakkad</a></li>
-            <li class="nav"><a href="../php/companies.php" class="nav">Companies</a></li>
-            <li class="nav"><a href="../php/projects.php" class="nav">Projects</a></li>
-            <li class="nav"><a href="../php/research.php" class="nav">Research</a></li>
-            <li class="nav"><a href="../php/news.php" class="nav">News</a></li>
-            <?php
-                if($_SESSION['logged_in'] != null && $_SESSION['logged_in'] == true) {
-                    echo '<li class="nav"><a href="../php/logout.php" class="nav" onclick="return logout_confirm();">Logout</a></li>';
-                }
-                else {
-                    echo '<li class="nav"><a href="../php/login.php" class="nav">Login</a></li>';
-                    echo '<li class="nav"><a href="../php/register.php" class="nav">Register</a></li>';
-                }
-            ?>
-            <li id="nav_button">
-                <div class="cont" onclick="clickMenuButton(this)">
-                    <div class="bar1"></div>
-                    <div class="bar2"></div>
-                    <div class="bar3"></div>
-                </div>
-            </li>
-        </ul>
         <h2 class="heading_common">Login</h2>
 
         <form action="../php/process_login.php" method="post" id="login_form">
@@ -87,5 +57,51 @@
         <div class="container" style="background-color:#f1f1f1">
             <br><br>
         </div>
+        <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+
+<div id="id01" class="modal">
+  
+  <form class="modal-content animate" action="../php/process_login.php" method="post">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="../images/avatar.png" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">
+      <label for="username"><b>Username</b></label>
+            	<input type="text" placeholder="Enter Username" name="username"
+	                required="" oninvalid="this.setCustomValidity('Username is Required')"
+	                oninput="setCustomValidity('')">
+
+      <label for="password"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="password"
+	                required="" oninvalid="this.setCustomValidity('Please enter your password')"
+	                oninput="setCustomValidity('')">
+        
+      <button type="submit">Login</button>
+      <label>
+        <input type="checkbox" checked="checked" name="remember"> Remember me
+      </label>
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+      <span class="psw">Forgot <a href="#">password?</a></span>
+    </div>
+  </form>
+</div>
+
+<script>
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+
     </body>
 </html>
