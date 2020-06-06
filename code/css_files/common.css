@@ -3,7 +3,7 @@ ul.nav {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: DodgerBlue;
     top: 0;
     position: fixed;
     width: 100%;
@@ -16,7 +16,7 @@ body {
   
 li.nav {
     float: left;
-    border-right:1px solid gold;
+    border-right:1px solid white;
 }
   
 li:last-child.nav {
@@ -25,14 +25,14 @@ li:last-child.nav {
   
 a.nav {
     display: block;
-    color: gold;
+    color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
 }
   
 a:hover.nav {
-    background-color: #111;
+    background-color: black;
 }
 
 h2.heading_common {
