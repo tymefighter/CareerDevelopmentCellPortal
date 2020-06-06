@@ -5,7 +5,6 @@
     color: red;
     text-align: center;
 }
-
 #back_button {
     width: auto;
     padding: 10px 18px;
@@ -14,18 +13,8 @@
     text-decoration: none;
     color: goldenrod;
 }
-
-div.container {
-    padding-left: 400px;
-    padding-right: 400px;
-    color: goldenrod;
-}
-
 @media screen and (max-width: 800px) {
-    div.container {
-        padding-left: 50px;
-        padding-right: 50px;
-    }
+   
     #error_heading {
         margin-left: 100;
         margin-right: 100;

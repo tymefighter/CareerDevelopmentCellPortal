@@ -155,7 +155,7 @@
     else
         $_SESSION['invalid_attempt'] = $_SESSION['invalid_attempt'] + 1;
 
-	
+	//$_SESSION['prev_page'] = 'home.php';
     // Now, we move back to home page
-    die(header("location:../php/home.php"));
+    die(header("location:".$_SESSION['prev_page']));
 ?>
