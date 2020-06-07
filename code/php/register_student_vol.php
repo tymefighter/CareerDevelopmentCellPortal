@@ -19,10 +19,7 @@
 <html>
     <head>
         <title>Register Student Volunteer</title>
-        <link rel="stylesheet" href="../css_files/common.css">
         <link rel="stylesheet" href="../css_files/register_common.css">
-        <link rel="stylesheet" href="../css_files/login_style.css">
-        <script src='../javascript/automate_button.js'></script>
         <script src='../javascript/validate_form.js'></script>
     </head>
     <body>

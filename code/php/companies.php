@@ -5,10 +5,7 @@
 <html>
     <head>
         <title>Companies</title>
-        <link rel="stylesheet" href="../css_files/common.css">
         <link rel="stylesheet" href="../css_files/companies.css">
-        <script src='../javascript/automate_button.js'></script>
-        <link rel="stylesheet" href="../css_files/login_style.css">
     </head>
     <body>
         <?php

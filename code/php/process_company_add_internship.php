@@ -123,10 +123,7 @@
 <html>
     <head>
         <title>Processing Add Internship Request</title>
-        <link rel="stylesheet" href="../css_files/common.css">
         <link rel="stylesheet" href="../css_files/error.css">
-        <link rel="stylesheet" href="../css_files/login_style.css">
-        <script src='../javascript/automate_button.js'></script>
     </head>
     <body>
         <?php

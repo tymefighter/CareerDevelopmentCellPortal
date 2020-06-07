@@ -71,15 +71,12 @@
         exit('Huge Error Occurred');
 ?>
 <html>
-<head>
-        <title>Student Home Page</title>
-        <link rel="stylesheet" href="../css_files/common.css">
-        <link rel="stylesheet" href="../css_files/common_home.css">
-        <link rel="stylesheet" href="../css_files/login_style.css">
-        <link rel="stylesheet" href="../css_files/login_style.css">
-        <script src="../javascript/validate.js"></script>
-</head>
-<body>
+    <head>
+            <title>Student Home Page</title>
+            <link rel="stylesheet" href="../css_files/common_home.css">
+            <script src="../javascript/validate.js"></script>
+    </head>
+    <body>
         <?php 
         	include('header.php');
         ?>
@@ -119,9 +116,5 @@
                         ';
             ?>
         </div>
-   
-</body>
-</html> 
-            
     </body>
 </html>

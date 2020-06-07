@@ -97,7 +97,7 @@
 ?>
 
 <?php
-    
+
     // Try to establish connection to cdc database
     $db = new mysqli ($server, $user, $pass, $database);
     // Connection error, hence place error in log file
@@ -144,7 +144,6 @@
             header('Location: cdc_official_home.php');   // Redirect to cdc offical home page
         }
 
-        exit('');
     }
 
     // The following variable stores the number of invalid logins
@@ -155,7 +154,6 @@
     else
         $_SESSION['invalid_attempt'] = $_SESSION['invalid_attempt'] + 1;
 
-	//$_SESSION['prev_page'] = 'home.php';
     // Now, we move back to home page
     die(header("location:".$_SESSION['prev_page']));
 ?>

@@ -32,11 +32,8 @@
 <html>
     <head>
         <title>Company Placed Internship</title>
-        <link rel="stylesheet" href="../css_files/common.css">
         <link rel="stylesheet" href="../css_files/common_home.css">
         <link rel="stylesheet" href="../css_files/table.css">
-        <link rel="stylesheet" href="../css_files/login_style.css">
-        <script src='../javascript/automate_button.js'></script>
     </head>
     <body>
     	<?php
