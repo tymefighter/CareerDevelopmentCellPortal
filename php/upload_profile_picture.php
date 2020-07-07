@@ -1,6 +1,6 @@
 <?php
     if ($_SESSION['login_info'] == null) {
-		$line = file_get_contents("../login_info.txt") or die("Unable to open file!");
+		$line = file_get_contents("../important_text/login_info.txt") or die("Unable to open file!");
 		$lines = explode("\n", $line);
 		if (count($lines) < 4)
 	   		die("Some login information are missing!");

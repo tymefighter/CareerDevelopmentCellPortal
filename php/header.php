@@ -36,7 +36,7 @@
 		  </form>
 		</div>
     <?php
-          if($_SESSION['header_logged_in'] != null && $_SESSION['header_logged_in'] == true) {
+          if($_SESSION['logged_in'] != null && $_SESSION['logged_in'] == true) {
               echo '<li class="header_nav"><a href="../php/logout.php" class="header_nav" onclick="return logout_confirm();">Logout</a></li>';
           }
           else {
