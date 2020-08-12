@@ -15,3 +15,14 @@ error conn(process_login.php):  2002
 error conn(process_login.php):  2002
 error conn(process_login.php):  2002
 error conn(process_login.php):  2002
+error conn(process_registration_student_volunteer.php):  
+
+Cannot add or update a child row: a foreign key constraint 
+fails (`cdc`.`volunteer_login`, CONSTRAINT `volunteer_login_ibfk_2` 
+FOREIGN KEY (`username`) REFERENCES `login_details` (`username`) ON DELETE CASCADE)
+
+
+error conn(process_registration_student_volunteer.php):  Cannot add or update a child row: a foreign key constraint fails (`cdc`.`volunteer_login`, CONSTRAINT `volunteer_login_ibfk_2` FOREIGN KEY (`username`) REFERENCES `login_details` (`username`) ON DELETE CASCADE)
+error conn(process_registration_student_volunteer.php):  Cannot add or update a child row: a foreign key constraint fails (`cdc`.`volunteer_login`, CONSTRAINT `volunteer_login_ibfk_2` FOREIGN KEY (`username`) REFERENCES `login_details` (`username`) ON DELETE CASCADE)
+error conn(process_registration_student_volunteer.php):  Cannot add or update a child row: a foreign key constraint fails (`cdc`.`volunteer_login`, CONSTRAINT `volunteer_login_ibfk_2` FOREIGN KEY (`username`) REFERENCES `login_details` (`username`) ON DELETE CASCADE)
+error conn(process_registration_student_volunteer.php):  Cannot add or update a child row: a foreign key constraint fails (`cdc`.`volunteer_login`, CONSTRAINT `volunteer_login_ibfk_2` FOREIGN KEY (`username`) REFERENCES `login_details` (`username`) ON DELETE CASCADE)

@@ -56,12 +56,12 @@ select `php` and then select `home.php`, you will then begin at the home page
 ```
 5. Student Volunteer user, details are
 ```
-    username: volunteer1
+    username: vol1
     password: Ab123&
 ```
 6. Student Volunteer user, details are
 ```
-    username: volunteer2
+    username: vol2
     password: Ab123&
 ```
 7. CDC Offical user, details are
