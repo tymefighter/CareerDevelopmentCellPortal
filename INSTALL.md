@@ -32,6 +32,22 @@ select `php` and then select `home.php`, you will then begin at the home page
 
 ### Linux
 
+- Apache Server, PHP and MariaDB are needed. Install these and follow the below  steps:
+- Clone this repository in some location. For example, the location would look like:
+```
+    root/git/CareerDevelopmentCellPortal
+```
+- Start the 
+- Create a database using `mysql` as follows (write in mysql interpretor)
+```
+    CREATE DATABASE cdc
+```
+- Now, import all `sql` files into the database by running `importSql.sh` bash
+script
+```
+    chmod +x importSql.sh
+    ./importSql.sh
+
 ## Sample User Details
 
 1. Student user, details are
