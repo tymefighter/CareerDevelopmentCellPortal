@@ -30,7 +30,35 @@ script
 - Now start your `MAMP` application and open CareerDevelopmentCellPortal folder,
 select `php` and then select `home.php`, you will then begin at the home page
 
-### Linux
+### Linux (Debian)
+
+The following steps are for Debian. Little changes maybe required for other Linux distributions.
+Apache Server, PHP (>= 7.0) and MariaDB are needed. Install these and follow the below  steps:
+- Clone this repository in some location. For example, the location would look something like:
+```
+    root/git/CareerDevelopmentCellPortal
+```
+- Start the MySQL server. 
+```
+    service mysql start
+```
+- Run the MySQL interpreter and create a database named `cdc`.
+```
+    CREATE DATABASE cdc
+```
+- Now, import all `sql` files into the database by running `importSqlLinux.sh` bash
+script. You may need to modify a line in the bash (adding login details in the import statement).
+```
+    chmod +x importSqlLinux.sh
+    ./importSqlLinux.sh
+```
+- Modify the Apache configuration file in `/etc/apache2`. DocumentRoot is needed to be changed.
+For Debian distribution, Modify these two files:  `/etc/apache2/sites-enabled/000-default.conf` and `/etc/apache2/sites-available/000-default.conf`.
+Change `DocumentRoot /var/www/html` to `DocumentRoot /root/git/CareerDevelopmentCellPortal`.
+- Finally, Start the Apache Server. Go to localhost and select `php` and then select `home.php`, you will then land up at the home page.
+```
+    service apache2 start
+```
 
 ## Sample User Details
 
